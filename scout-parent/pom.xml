@@ -14,7 +14,7 @@
 
   <groupId>org.eclipse.scout</groupId>
   <artifactId>scout-parent</artifactId>
-  <version>1-SNAPSHOT</version>
+  <version>1</version>
   <packaging>pom</packaging>
 
   <prerequisites>
@@ -182,7 +182,7 @@
                     </goals>
                   </pluginExecutionFilter>
                   <action>
-                    <ignore></ignore>
+                    <ignore />
                   </action>
                 </pluginExecution>
                 <pluginExecution>
@@ -195,7 +195,7 @@
                     </goals>
                   </pluginExecutionFilter>
                   <action>
-                    <ignore></ignore>
+                    <ignore />
                   </action>
                 </pluginExecution>
               </pluginExecutions>
@@ -259,7 +259,7 @@
 
   <scm>
     <connection>scm:git:git://git.eclipse.org/gitroot/scout/org.eclipse.scout-aggregator.git</connection>
-    <tag>parent/develop</tag>
+    <tag>parent/v1</tag>
     <url>http://git.eclipse.org/c/scout/org.eclipse.scout-aggregator.git/</url>
   </scm>
 
@@ -278,7 +278,7 @@
       <url>https://repo.eclipse.org/content/groups/releases/</url>
     </repository>
     <repository>
-      <snapshots></snapshots>
+      <snapshots />
       <id>eclipse.snapshot</id>
       <name>eclipse-snapshot-repo</name>
       <url>https://repo.eclipse.org/content/groups/snapshots/</url>
@@ -295,7 +295,7 @@
       <url>https://repo.eclipse.org/content/groups/releases/</url>
     </pluginRepository>
     <pluginRepository>
-      <snapshots></snapshots>
+      <snapshots />
       <id>eclipse.snapshot</id>
       <name>eclipse-snapshot-repo</name>
       <url>https://repo.eclipse.org/content/groups/snapshots/</url>
