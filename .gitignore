@@ -1,0 +1,23 @@
+# Backupfiles from mergetools #
+*.orig
+
+# Java Class Files #
+*.class
+
+# Package Files #
+*.jar
+*.war
+*.ear
+*.zip
+
+# Eclipse #
+bin/**
+
+# Maven #
+target/
+/.maven
+/.repository
+
+# Root can be imported with maven, so this files do not need to be commited to git
+/.settings
+/.project
