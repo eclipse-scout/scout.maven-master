@@ -14,7 +14,7 @@
 
   <groupId>org.eclipse.scout</groupId>
   <artifactId>scout-parent</artifactId>
-  <version>1-SNAPSHOT</version>
+  <version>1.2</version>
   <packaging>pom</packaging>
 
   <prerequisites>
@@ -229,7 +229,7 @@
 
   <scm>
     <connection>scm:git:git://git.eclipse.org/gitroot/scout/org.eclipse.scout-aggregator.git</connection>
-    <tag>parent/develop</tag>
+    <tag>parent/v1.2</tag>
     <url>http://git.eclipse.org/c/scout/org.eclipse.scout-aggregator.git/</url>
   </scm>
 
