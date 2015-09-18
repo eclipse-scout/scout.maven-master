@@ -1,10 +1,10 @@
-Eclipse Scout - Parent
+Eclipse Scout - Maven Master
 ==========================
 
 [Eclipse Scout] [1] is a mature and open framework for modern, service oriented business applications.
 It substantially boosts developer productivity and is simple to learn.
 
-This repository **Eclipse Scout Parent** contains the parent pom for Eclipse Scout projects
+This repository **Eclipse Scout Maven Master** contains the master POMs for Eclipse Scout projects
 
 
 Downloads

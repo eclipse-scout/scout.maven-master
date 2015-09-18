@@ -323,6 +323,7 @@
         </plugins>
       </build>
     </profile>
+
     <profile>
       <id>scout-release</id>
       <build>
