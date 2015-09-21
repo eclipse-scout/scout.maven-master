@@ -26,7 +26,94 @@
 
   <build>
     <pluginManagement>
-      <plugins></plugins>
+      <plugins>
+        <plugin>
+          <!-- Loads phantomjs executable, necessary for jasmine plugin -->
+          <groupId>com.github.klieber</groupId>
+          <artifactId>phantomjs-maven-plugin</artifactId>
+          <configuration>
+            <version>${phantomjs.version}</version>
+          </configuration>
+        </plugin>
+
+        <!-- JS testing with Jasmine -->
+        <plugin>
+          <groupId>com.github.searls</groupId>
+          <artifactId>jasmine-maven-plugin</artifactId>
+          <configuration>
+            <!-- do not break build when Jasmine tests fail -->
+            <haltOnFailure>false</haltOnFailure>
+            <jsSrcDir>${project.basedir}/../org.eclipse.scout.rt.ui.html/src/main/js</jsSrcDir>
+            <jsTestSrcDir>${project.basedir}/src/test/js</jsTestSrcDir>
+            <customRunnerTemplate>${project.basedir}/src/test/js/SpecRunnerMaven.html</customRunnerTemplate>
+            <sourceExcludes>
+              <!-- jasmine files are explicitly included in SpecRunnerMaven.html
+                because the need to be before actual sources -->
+              <sourceExclude>**/jasmine/*.js</sourceExclude>
+            </sourceExcludes>
+            <!-- HtmlUnitDriver does not work with jQuery 2.1.0, throws exception -->
+            <webDriverClassName>org.openqa.selenium.phantomjs.PhantomJSDriver</webDriverClassName>
+            <webDriverCapabilities>
+              <capability>
+                <name>phantomjs.binary.path</name>
+                <value>${phantomjs.binary}</value>
+              </capability>
+            </webDriverCapabilities>
+          </configuration>
+        </plugin>
+
+        <!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself. -->
+        <plugin>
+          <groupId>org.eclipse.m2e</groupId>
+          <artifactId>lifecycle-mapping</artifactId>
+          <version>1.0.0</version>
+          <configuration>
+            <lifecycleMappingMetadata>
+              <pluginExecutions>
+                <pluginExecution>
+                  <pluginExecutionFilter>
+                    <groupId>com.github.klieber</groupId>
+                    <artifactId>phantomjs-maven-plugin</artifactId>
+                    <versionRange>[0.7,)</versionRange>
+                    <goals>
+                      <goal>install</goal>
+                    </goals>
+                  </pluginExecutionFilter>
+                  <action>
+                    <ignore></ignore>
+                  </action>
+                </pluginExecution>
+                <pluginExecution>
+                  <pluginExecutionFilter>
+                    <groupId>org.kuali.maven.plugins</groupId>
+                    <artifactId>properties-maven-plugin</artifactId>
+                    <versionRange>[2.0.1,)</versionRange>
+                    <goals>
+                      <goal>read-project-properties</goal>
+                    </goals>
+                  </pluginExecutionFilter>
+                  <action>
+                    <ignore></ignore>
+                  </action>
+                </pluginExecution>
+                <pluginExecution>
+                  <pluginExecutionFilter>
+                    <groupId>org.jvnet.jax-ws-commons</groupId>
+                    <artifactId>jaxws-maven-plugin</artifactId>
+                    <versionRange>[2.3.1-b20150201.1248,)</versionRange>
+                    <goals>
+                      <goal>wsimport</goal>
+                    </goals>
+                  </pluginExecutionFilter>
+                  <action>
+                    <ignore></ignore>
+                  </action>
+                </pluginExecution>
+              </pluginExecutions>
+            </lifecycleMappingMetadata>
+          </configuration>
+        </plugin>
+      </plugins>
     </pluginManagement>
   </build>
 
@@ -61,6 +148,334 @@
                 </configuration>
               </execution>
             </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <profile>
+      <id>javascript_src_folder</id>
+      <activation>
+        <file>
+          <exists>${basedir}/src/main/js</exists>
+        </file>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>build-helper-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>add-resource</id>
+                <goals>
+                  <goal>add-resource</goal>
+                </goals>
+                <phase>generate-resources</phase>
+                <configuration>
+                  <resources>
+                    <resource>
+                      <directory>src/main/js</directory>
+                    </resource>
+                  </resources>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <profile>
+      <id>javascript_test_folder</id>
+      <activation>
+        <file>
+          <exists>${basedir}/src/test/js</exists>
+        </file>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>build-helper-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>add-test-resource</id>
+                <goals>
+                  <goal>add-resource</goal>
+                </goals>
+                <phase>generate-resources</phase>
+                <configuration>
+                  <resources>
+                    <resource>
+                      <directory>src/test/js</directory>
+                    </resource>
+                  </resources>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <profile>
+      <id>webapp_folder</id>
+      <activation>
+        <file>
+          <exists>${basedir}/src/main/webapp</exists>
+        </file>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>build-helper-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>add-resource</id>
+                <goals>
+                  <goal>add-resource</goal>
+                </goals>
+                <phase>generate-resources</phase>
+                <configuration>
+                  <resources>
+                    <resource>
+                      <directory>src/main/webapp</directory>
+                    </resource>
+                  </resources>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <!-- Profile used for JAX-WS plugins to generate webservice artifacts like stub and proxy. -->
+    <!-- This profile is activated automatically if a folder 'src/main/resources/WEB-INF/wsdl' is found. -->
+    <profile>
+      <id>jaxws</id>
+      <activation>
+        <file>
+          <exists>${basedir}/src/main/resources/WEB-INF/wsdl</exists>
+        </file>
+      </activation>
+      <properties>
+        <!-- Destination directory for generated webservice artifacts -->
+        <jaxws.stub.directory>${project.build.directory}/generated-sources/wsimport</jaxws.stub.directory>
+        <!-- Directory to contain the calculated hash of WSDL, XSD and binding-files. If changed or absent, the stub is regenerated anew. -->
+        <jaxws.stale.directory>${project.build.directory}/jaxws/wsartifact-hash</jaxws.stale.directory>
+        <!-- To enable debug output when running APT. -->
+        <jaxws.apt.consoleLog>true</jaxws.apt.consoleLog>
+        <!-- Destination directory for generated APT artifacts. -->
+        <jaxws.apt.directory>${project.build.directory}/generated-sources/annotations</jaxws.apt.directory>
+        <!-- WSDL file name to set the 'wsdl-location' in @WebService and @WebServiceClient annotation -->
+        <jaxws.wsdl.file></jaxws.wsdl.file>
+      </properties>
+
+      <dependencies>
+        <dependency>
+          <groupId>org.eclipse.scout.rt</groupId>
+          <artifactId>org.eclipse.scout.rt.server.jaxws</artifactId>
+        </dependency>
+        <dependency>
+          <groupId>javax.servlet</groupId>
+          <artifactId>javax.servlet-api</artifactId>
+          <scope>provided</scope>
+        </dependency>
+      </dependencies>
+
+      <build>
+        <!-- EXCLUDE BINDING FILES (not used at runtime) -->
+        <resources>
+          <resource>
+            <directory>${basedir}/src/main/resources</directory>
+            <includes>
+              <include>**/**</include>
+            </includes>
+            <excludes>
+              <exclude>**/binding/</exclude>
+            </excludes>
+          </resource>
+        </resources>
+        <plugins>
+          <!-- WSIMPORT (stub generation) -->
+          <!-- Note: The stub is only re-generated if the hash of 'wsartifact-hash' changed. -->
+          <plugin>
+            <groupId>org.jvnet.jax-ws-commons</groupId>
+            <artifactId>jaxws-maven-plugin</artifactId>
+            <configuration>
+              <wsdlDirectory>${basedir}/src/main/resources/WEB-INF/wsdl</wsdlDirectory>
+              <wsdlLocation>WEB-INF/wsdl/${jaxws.wsdl.file}</wsdlLocation>
+              <bindingDirectory>${basedir}/src/main/resources/WEB-INF/binding</bindingDirectory>
+              <sourceDestDir>${jaxws.stub.directory}</sourceDestDir>
+              <destDir>${jaxws.stub.directory}</destDir>
+              <xnocompile>true</xnocompile>
+              <!-- compilation done by Maven -->
+              <xdisableSSLHostnameVerification>true</xdisableSSLHostnameVerification>
+              <xdisableAuthenticator>true</xdisableAuthenticator>
+              <xdebug>true</xdebug>
+              <verbose>true</verbose>
+              <target>2.0</target>
+              <keep>true</keep>
+              <staleFile>${jaxws.stale.directory}</staleFile>
+              <vmArgs>
+                <vmArg>-Djavax.xml.accessExternalDTD=all</vmArg>
+                <vmArg>-Djavax.xml.accessExternalSchema=all</vmArg>
+              </vmArgs>
+            </configuration>
+            <executions>
+              <execution>
+                <id>wsimport-1</id>
+                <goals>
+                  <goal>wsimport</goal>
+                </goals>
+                <phase>generate-sources</phase>
+              </execution>
+            </executions>
+          </plugin>
+
+          <!-- APT (PortTypeProxy, HandlerProxy, handler-chain.xml) -->
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <configuration>
+              <compilerArgs>
+                <arg>-AconsoleLog=${jaxws.apt.consoleLog}</arg>
+                <arg>-XprintProcessorInfo</arg>
+                <arg>-XprintRounds</arg>
+              </compilerArgs>
+              <verbose>true</verbose>
+              <generatedSourcesDirectory>${jaxws.apt.directory}</generatedSourcesDirectory>
+            </configuration>
+            <dependencies>
+              <!-- dependency to the annotation processor -->
+              <dependency>
+                <groupId>org.eclipse.scout.rt</groupId>
+                <artifactId>org.eclipse.scout.jaxws.apt</artifactId>
+                <version>${org.eclipse.scout.rt.version}</version>
+              </dependency>
+            </dependencies>
+          </plugin>
+
+          <!-- REGISTER SOURCE FOLDER -->
+          <!-- Add 'target/generated-sources/annotations' as source folder -->
+          <!-- Add 'target/generated-sources/wsimport' as source folder -->
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>build-helper-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>add-wsimport-source</id>
+                <goals>
+                  <goal>add-source</goal>
+                </goals>
+                <configuration>
+                  <sources>
+                    <source>${jaxws.stub.directory}</source>
+                  </sources>
+                </configuration>
+              </execution>
+              <execution>
+                <id>add-apt-source</id>
+                <goals>
+                  <goal>add-source</goal>
+                </goals>
+                <configuration>
+                  <sources>
+                    <source>${jaxws.apt.directory}</source>
+                  </sources>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+
+          <!-- COPY artifacts -->
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-resources-plugin</artifactId>
+            <executions>
+              <!-- WSIMPORT artifacts -->
+              <execution>
+                <id>copy-wsimport-artifacts</id>
+                <!-- must not be 'process-resources' because APT files are only generated in compile phase -->
+                <goals>
+                  <goal>copy-resources</goal>
+                </goals>
+                <phase>process-sources</phase>
+                <configuration>
+                  <outputDirectory>${basedir}/target/classes</outputDirectory>
+                  <resources>
+                    <resource>
+                      <directory>${jaxws.stub.directory}</directory>
+                      <includes>
+                        <include>**/**.xml</include>
+                      </includes>
+                    </resource>
+                  </resources>
+                </configuration>
+              </execution>
+              <!-- APT artifacts -->
+              <execution>
+                <id>copy-apt-artifacts</id>
+                <!-- must not be 'process-resources' because APT files are only generated in compile phase -->
+                <goals>
+                  <goal>copy-resources</goal>
+                </goals>
+                <phase>process-classes</phase>
+                <configuration>
+                  <outputDirectory>${basedir}/target/classes</outputDirectory>
+                  <resources>
+                    <resource>
+                      <directory>${jaxws.apt.directory}</directory>
+                      <includes>
+                        <include>**/**.xml</include>
+                      </includes>
+                    </resource>
+                  </resources>
+                </configuration>
+              </execution>
+              <!-- Copy JAX-WS artifacts to 'META-INF/resources/WEB-INF/wsdl' to respect ServletContext resource-loading API -->
+              <!-- That is crucial if 'JAX-WS implementor' loads resources by ServletContext, e.g. METRO -->
+              <execution>
+                <id>copy-jaxws-artifacts-to-meta-inf</id>
+                <goals>
+                  <goal>copy-resources</goal>
+                </goals>
+                <phase>process-resources</phase>
+                <configuration>
+                  <outputDirectory>${basedir}/target/classes/META-INF/resources/WEB-INF/wsdl</outputDirectory>
+                  <resources>
+                    <resource>
+                      <directory>${basedir}/src/main/resources/WEB-INF/wsdl</directory>
+                    </resource>
+                  </resources>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <profile>
+      <id>release.usereleases</id>
+      <activation>
+        <activeByDefault>false</activeByDefault>
+      </activation>
+      <modules>
+        <module>com.bsiag.widgets.parent</module>
+      </modules>
+      <build>
+        <defaultGoal>org.codehaus.mojo:versions-maven-plugin:use-releases</defaultGoal>
+        <plugins>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>versions-maven-plugin</artifactId>
+            <configuration>
+              <generateBackupPoms>false</generateBackupPoms>
+            </configuration>
           </plugin>
         </plugins>
       </build>
