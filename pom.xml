@@ -22,7 +22,6 @@
     <module>maven_plugin_config-master</module>
     <module>maven_rt_plugin_config-master</module>
     <module>maven_sdk_plugin_config-master</module>
-    <module>maven_sdk_p2_plugin_config-master</module>
   </modules>
 
   <properties>
@@ -40,6 +39,13 @@
     <forgeReleaseUrl>https://repo.eclipse.org/content/repositories/scout-releases/</forgeReleaseUrl>
     <forgeSnapshotId>repo.eclipse.org</forgeSnapshotId>
     <forgeSnapshotUrl>https://repo.eclipse.org/content/repositories/scout-snapshots/</forgeSnapshotUrl>
+
+    <tycho-repo.url>https://oss.sonatype.org/content/repositories/public/</tycho-repo.url>
+    <!--
+      repo for released versions of CBI. Note, we intentionally use as specific a repo as possible.
+      See bug 471835.
+    -->
+    <eclipse-cbi-repo.url>https://repo.eclipse.org/content/repositories/cbi/</eclipse-cbi-repo.url>
   </properties>
 
   <build>
@@ -191,6 +197,27 @@
       <id>eclipse.snapshot</id>
       <name>eclipse-snapshot-repo</name>
       <url>https://repo.eclipse.org/content/groups/snapshots/</url>
+    </pluginRepository>
+
+    <pluginRepository>
+      <id>tycho</id>
+      <url>${tycho-repo.url}</url>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </pluginRepository>
+    <pluginRepository>
+      <id>eclipse-cbi</id>
+      <url>${eclipse-cbi-repo.url}</url>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
     </pluginRepository>
   </pluginRepositories>
 

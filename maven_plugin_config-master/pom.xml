@@ -22,13 +22,24 @@
   <artifactId>maven_plugin_config-master</artifactId>
   <packaging>pom</packaging>
 
+  <prerequisites>
+    <!-- Note that "prerequisites" not inherited, but used by versions-maven-plugin -->
+    <maven>${maven.min.version}</maven>
+  </prerequisites>
+
   <properties>
+    <jdk.min.version>1.7</jdk.min.version>
     <jdk.source.version>1.7</jdk.source.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <maven.build.timestamp.format>yyyyMMdd-HHmmss</maven.build.timestamp.format>
+    <maven.min.version>3.2.1</maven.min.version>
+    <maven.api.version>3.2.1</maven.api.version>
 
+    <skipUnitTests>false</skipUnitTests>
+    <skipWebTests>false</skipWebTests>
     <deployAtEnd>true</deployAtEnd>
+    <skipSanityChecks>false</skipSanityChecks>
   </properties>
 
   <build>
@@ -67,6 +78,7 @@
           <artifactId>maven-surefire-plugin</artifactId>
           <configuration>
             <testFailureIgnore>true</testFailureIgnore>
+            <skipTests>${skipUnitTests}</skipTests>
           </configuration>
         </plugin>
 
@@ -85,6 +97,115 @@
             <autoVersionSubmodules>true</autoVersionSubmodules>
             <tagNameFormat>@{project.version}</tagNameFormat>
             <pushChanges>false</pushChanges>
+          </configuration>
+        </plugin>
+
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>animal-sniffer-maven-plugin</artifactId>
+          <configuration>
+            <signature>
+              <groupId>org.codehaus.mojo.signature</groupId>
+              <artifactId>java17</artifactId>
+              <version>1.0</version>
+            </signature>
+            <!-- for java18 signature check. @see https://github.com/ianbrandt/animal-sniffer-signatures -->
+            <!-- <signature> -->
+            <!-- <groupId>org.kaazing.mojo.signature</groupId> -->
+            <!-- <artifactId>java18</artifactId> -->
+            <!-- <version>1.0</version> -->
+            <!-- </signature> -->
+            <skip>${skipSanityChecks}</skip>
+          </configuration>
+        </plugin>
+
+        <plugin>
+          <groupId>com.mycila</groupId>
+          <artifactId>license-maven-plugin</artifactId>
+          <configuration>
+            <header>${project.basedir}/license_files/copyright.txt</header>
+            <headerDefinitions>
+              <headerDefinition>${project.basedir}/license_files/scoutLicenceHeaderJava.xml</headerDefinition>
+            </headerDefinitions>
+            <failIfMissing>true</failIfMissing>
+            <strictCheck>true</strictCheck>
+            <aggregate>true</aggregate>
+            <includes>
+              <include>**/*scout*/src/main/java/**</include>
+              <include>**/*scout*/src/main/js/**</include>
+              <include>**/*scout*/src/main/less/**</include>
+              <include>**/*scout*/src/test/java/**</include>
+              <include>**/*scout*/src/test/js/**</include>
+            </includes>
+            <excludes>
+              <exclude>tests/**</exclude>
+            </excludes>
+            <mapping>
+              <java>SCOUT_JAVADOC_STYLE</java>
+              <js>SLASHSTAR_STYLE</js>
+              <less>JAVADOC_STYLE</less>
+              <css>JAVADOC_STYLE</css>
+            </mapping>
+            <skip>${skipSanityChecks}</skip>
+          </configuration>
+          <dependencies>
+            <dependency>
+              <groupId>com.mycila</groupId>
+              <artifactId>license-maven-plugin-git</artifactId>
+              <!-- make sure you use the same version as license-maven-plugin -->
+              <version>${license-maven-plugin.version}</version>
+            </dependency>
+          </dependencies>
+        </plugin>
+
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-enforcer-plugin</artifactId>
+          <configuration>
+            <rules>
+              <requirePluginVersions>
+                <message>Build reproducibility : always define plugin versions</message>
+                <banLatest>true</banLatest>
+                <banRelease>true</banRelease>
+                <phases>clean,deploy</phases>
+              </requirePluginVersions>
+              <requireReleaseDeps>
+                <message>No SNAPSHOT versions allowed for dependencies</message>
+                <onlyWhenRelease>true</onlyWhenRelease>
+              </requireReleaseDeps>
+              <requireJavaVersion>
+                <message>To build this project JDK ${jdk.min.version} (or upper) is required. Please install it.
+                </message>
+                <version>${jdk.min.version}</version>
+              </requireJavaVersion>
+              <requireMavenVersion>
+                <message>To build this project Maven ${maven.min.version} (or upper) is required. Please install it.
+                </message>
+                <version>${maven.min.version}</version>
+              </requireMavenVersion>
+              <bannedDependencies>
+                <message>commons-beanutils:commons-beanutils should be used instead</message>
+                <excludes>
+                  <exclude>commons-beanutils:commons-beanutils-core</exclude>
+                </excludes>
+                <searchTransitive>true</searchTransitive>
+              </bannedDependencies>
+              <banDuplicatePomDependencyVersions/>
+              <!-- can't be used until html ui in eclipse repo and of the tools-build -->
+<!--               <reactorModuleConvergence/> -->
+              <requireSameVersions>
+                <dependencies>
+                  <dependency>org.eclipse.scout</dependency>
+                  <dependency>org.eclipse.scout.rt</dependency>
+                  <dependency>org.eclipse.scout.sdk</dependency>
+                </dependencies>
+              </requireSameVersions>
+              <requireSameVersions>
+                <dependencies>
+                  <dependency>org.eclipse.jetty</dependency>
+                </dependencies>
+              </requireSameVersions>
+            </rules>
           </configuration>
         </plugin>
 
@@ -128,6 +249,35 @@
         </plugin>
       </plugins>
     </pluginManagement>
+
+    <plugins>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>animal-sniffer-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>enforce-java-api-compatibility</id>
+            <phase>verify</phase>
+            <goals>
+              <goal>check</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-enforcer-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>enforce-rules</id>
+            <goals>
+              <goal>enforce</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
   </build>
 
   <reporting>
@@ -136,6 +286,7 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-project-info-reports-plugin</artifactId>
       </plugin>
+
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>versions-maven-plugin</artifactId>
@@ -153,6 +304,56 @@
   </reporting>
 
   <profiles>
+    <profile>
+      <!-- disable all tests -->
+      <id>skipTests</id>
+      <activation>
+        <property>
+          <name>skipTests</name>
+        </property>
+      </activation>
+      <properties>
+        <skipUnitTests>true</skipUnitTests>
+        <skipWebTests>true</skipWebTests>
+      </properties>
+    </profile>
+
+    <profile>
+      <id>dev</id>
+      <properties>
+        <skipSanityChecks>true</skipSanityChecks>
+        <enforcer.skip>true</enforcer.skip>
+      </properties>
+    </profile>
+
+    <profile>
+      <id>license_check</id>
+      <activation>
+        <property>
+          <name>license_check</name>
+        </property>
+      </activation>
+      <build>
+        <plugins>
+          <!-- check copyright/license headers -->
+          <plugin>
+            <groupId>com.mycila</groupId>
+            <artifactId>license-maven-plugin</artifactId>
+            <inherited>false</inherited>
+            <executions>
+              <execution>
+                <id>enforce-license-headers</id>
+                <phase>validate</phase>
+                <goals>
+                  <goal>check</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
     <profile>
       <id>scout-release</id>
       <activation>
