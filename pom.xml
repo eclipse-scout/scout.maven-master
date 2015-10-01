@@ -14,7 +14,7 @@
 
   <groupId>org.eclipse.scout</groupId>
   <artifactId>maven-master</artifactId>
-  <version>1.3</version>
+  <version>1.4-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <modules>
@@ -151,7 +151,7 @@
 
   <scm>
     <connection>scm:git:git://git.eclipse.org/gitroot/scout/maven-master.git</connection>
-    <tag>v1.3</tag>
+    <tag>master</tag>
     <url>https://git.eclipse.org/c/scout/maven-master.git/</url>
   </scm>
 
