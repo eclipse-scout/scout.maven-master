@@ -141,6 +141,37 @@
 
   <profiles>
     <profile>
+      <id>fixture_src_folder</id>
+      <activation>
+        <file>
+          <exists>${basedir}/src/main/fixture</exists>
+        </file>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>build-helper-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>add-source</id>
+                <goals>
+                  <goal>add-source</goal>
+                </goals>
+                <phase>generate-sources</phase>
+                <configuration>
+                  <sources>
+                    <source>src/main/fixture</source>
+                  </sources>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <profile>
       <id>include_manifest_in_jar</id>
       <activation>
         <file>
@@ -161,6 +192,7 @@
         </plugins>
       </build>
     </profile>
+
     <profile>
       <id>p2_build</id>
       <activation>
