@@ -96,17 +96,22 @@
                     <ignore />
                   </action>
                 </pluginExecution>
+                <!-- WS-STUB generation: Instrument 'm2e' to generate webservice stub in Eclipse IDE (does not affect standalone Maven build) -->
+                <!-- Note: Artifacts are on re-generated if the hash of 'wsartifact-hash' changes. -->
+                <!-- Note: Do not move into 'jaxws' profile because ignored by 'm2e' otherwise. -->
                 <pluginExecution>
                   <pluginExecutionFilter>
                     <groupId>org.jvnet.jax-ws-commons</groupId>
                     <artifactId>jaxws-maven-plugin</artifactId>
-                    <versionRange>[2.3.1-b20150201.1248,)</versionRange>
+                    <versionRange>[${jaxws.plugin.version},)</versionRange>
                     <goals>
                       <goal>wsimport</goal>
                     </goals>
                   </pluginExecutionFilter>
                   <action>
-                    <ignore />
+                    <execute>
+                      <runOnIncremental>true</runOnIncremental>
+                    </execute>
                   </action>
                 </pluginExecution>
               </pluginExecutions>
