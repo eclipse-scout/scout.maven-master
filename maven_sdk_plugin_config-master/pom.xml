@@ -15,24 +15,24 @@
   <parent>
     <groupId>org.eclipse.scout</groupId>
     <artifactId>maven_plugin_config-master</artifactId>
-    <version>1.3-SNAPSHOT</version>
+    <version>1.3.1</version>
     <relativePath>../maven_plugin_config-master</relativePath>
   </parent>
 
   <artifactId>maven_sdk_plugin_config-master</artifactId>
   <packaging>pom</packaging>
 
-  <properties></properties>
+  <properties />
 
   <build>
     <pluginManagement>
-      <plugins></plugins>
+      <plugins />
     </pluginManagement>
   </build>
 
   <reporting>
-    <plugins></plugins>
+    <plugins />
   </reporting>
 
-  <profiles></profiles>
+  <profiles />
 </project>
