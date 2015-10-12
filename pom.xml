@@ -151,7 +151,7 @@
 
   <scm>
     <connection>scm:git:git://git.eclipse.org/gitroot/scout/maven-master.git</connection>
-    <tag>master</tag>
+    <tag>hotfix_1.3.1</tag>
     <url>https://git.eclipse.org/c/scout/maven-master.git/</url>
   </scm>
 
