@@ -110,7 +110,8 @@
                   </pluginExecutionFilter>
                   <action>
                     <execute>
-                      <runOnIncremental>true</runOnIncremental>
+                      <runOnIncremental>true</runOnIncremental> <!-- to run on full and incremental build -->
+                      <runOnConfiguration>true</runOnConfiguration> <!-- to run once a JAX-WS module is imported into workspace -->
                     </execute>
                   </action>
                 </pluginExecution>
