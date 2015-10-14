@@ -27,42 +27,25 @@
   <properties>
     <maven.build.timestamp.format>yyyyMMdd-HHmmss</maven.build.timestamp.format>
 
-    <!-- version of Tycho used by profiles eclipse-sign and eclipse-pack -->
-    <tycho.version>0.23.1</tycho.version>
-    <tycho-extras.version>0.23.1</tycho-extras.version>
-    <cbi-plugins.version>1.1.2</cbi-plugins.version>
-    <jarsigner.version>1.1.2</jarsigner.version>
-
     <deployAtEnd>true</deployAtEnd>
 
     <forgeReleaseId>repo.eclipse.org</forgeReleaseId>
     <forgeReleaseUrl>https://repo.eclipse.org/content/repositories/scout-releases/</forgeReleaseUrl>
     <forgeSnapshotId>repo.eclipse.org</forgeSnapshotId>
     <forgeSnapshotUrl>https://repo.eclipse.org/content/repositories/scout-snapshots/</forgeSnapshotUrl>
-
-    <tycho-repo.url>https://oss.sonatype.org/content/repositories/public/</tycho-repo.url>
-    <!--
-      repo for released versions of CBI. Note, we intentionally use as specific a repo as possible.
-      See bug 471835.
-    -->
-    <eclipse-cbi-repo.url>https://repo.eclipse.org/content/repositories/cbi/</eclipse-cbi-repo.url>
   </properties>
 
   <build>
     <pluginManagement>
       <plugins>
         <plugin>
-          <groupId>org.eclipse.cbi.maven.plugins</groupId>
-          <artifactId>eclipse-cbi-plugin</artifactId>
-          <version>${cbi-plugins.version}</version>
-          <inherited>false</inherited>
-        </plugin>
-
-        <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-deploy-plugin</artifactId>
           <version>2.8.2</version>
           <inherited>false</inherited>
+          <configuration>
+            <deployAtEnd>${deployAtEnd}</deployAtEnd>
+          </configuration>
         </plugin>
 
         <plugin>
@@ -70,27 +53,13 @@
           <artifactId>maven-release-plugin</artifactId>
           <version>2.5.2</version>
           <inherited>false</inherited>
-        </plugin>
-
-        <plugin>
-          <groupId>org.eclipse.tycho.extras</groupId>
-          <artifactId>tycho-pack200a-plugin</artifactId>
-          <version>${tycho-extras.version}</version>
-          <inherited>false</inherited>
-        </plugin>
-
-        <plugin>
-          <groupId>org.eclipse.cbi.maven.plugins</groupId>
-          <artifactId>eclipse-jarsigner-plugin</artifactId>
-          <version>${jarsigner.version}</version>
-          <inherited>false</inherited>
-        </plugin>
-
-        <plugin>
-          <groupId>org.eclipse.tycho.extras</groupId>
-          <artifactId>tycho-pack200b-plugin</artifactId>
-          <version>${tycho-extras.version}</version>
-          <inherited>false</inherited>
+          <configuration>
+            <autoVersionSubmodules>true</autoVersionSubmodules>
+            <tagNameFormat>@{project.version}</tagNameFormat>
+            <pushChanges>false</pushChanges>
+            <arguments>${arguments} -Drelease-build</arguments>
+            <useReleaseProfile>false</useReleaseProfile>
+          </configuration>
         </plugin>
 
         <plugin>
@@ -104,31 +73,15 @@
 
     <plugins>
       <plugin>
-        <groupId>org.eclipse.cbi.maven.plugins</groupId>
-        <artifactId>eclipse-cbi-plugin</artifactId>
-        <inherited>false</inherited>
-      </plugin>
-
-      <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-deploy-plugin</artifactId>
         <inherited>false</inherited>
-        <configuration>
-          <deployAtEnd>${deployAtEnd}</deployAtEnd>
-        </configuration>
       </plugin>
 
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-release-plugin</artifactId>
         <inherited>false</inherited>
-        <configuration>
-          <autoVersionSubmodules>true</autoVersionSubmodules>
-          <tagNameFormat>@{project.version}</tagNameFormat>
-          <pushChanges>false</pushChanges>
-          <arguments>${arguments} -Drelease-build</arguments>
-          <useReleaseProfile>false</useReleaseProfile>
-        </configuration>
       </plugin>
     </plugins>
   </build>
@@ -198,27 +151,6 @@
       <name>eclipse-snapshot-repo</name>
       <url>https://repo.eclipse.org/content/groups/snapshots/</url>
     </pluginRepository>
-
-    <pluginRepository>
-      <id>tycho</id>
-      <url>${tycho-repo.url}</url>
-      <releases>
-        <enabled>true</enabled>
-      </releases>
-      <snapshots>
-        <enabled>true</enabled>
-      </snapshots>
-    </pluginRepository>
-    <pluginRepository>
-      <id>eclipse-cbi</id>
-      <url>${eclipse-cbi-repo.url}</url>
-      <releases>
-        <enabled>true</enabled>
-      </releases>
-      <snapshots>
-        <enabled>true</enabled>
-      </snapshots>
-    </pluginRepository>
   </pluginRepositories>
 
   <distributionManagement>
@@ -242,89 +174,12 @@
 
   <profiles>
     <profile>
-      <id>eclipse-sign</id>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.eclipse.tycho.extras</groupId>
-            <artifactId>tycho-pack200a-plugin</artifactId>
-            <executions>
-              <execution>
-                <id>pack200-normalize</id>
-                <goals>
-                  <goal>normalize</goal>
-                </goals>
-                <phase>verify</phase>
-              </execution>
-            </executions>
-          </plugin>
-
-          <plugin>
-            <groupId>org.eclipse.cbi.maven.plugins</groupId>
-            <artifactId>eclipse-jarsigner-plugin</artifactId>
-            <executions>
-              <execution>
-                <id>sign</id>
-                <goals>
-                  <goal>sign</goal>
-                </goals>
-                <phase>verify</phase>
-              </execution>
-            </executions>
-          </plugin>
-
-          <plugin>
-            <groupId>org.eclipse.tycho.extras</groupId>
-            <artifactId>tycho-pack200b-plugin</artifactId>
-            <executions>
-              <execution>
-                <id>pack200-pack</id>
-                <goals>
-                  <goal>pack</goal>
-                </goals>
-                <phase>verify</phase>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-
-    <profile>
-      <id>eclipse-pack</id>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.eclipse.tycho.extras</groupId>
-            <artifactId>tycho-pack200a-plugin</artifactId>
-            <executions>
-              <execution>
-                <id>pack200-normalize</id>
-                <goals>
-                  <goal>normalize</goal>
-                </goals>
-              </execution>
-            </executions>
-          </plugin>
-
-          <plugin>
-            <groupId>org.eclipse.tycho.extras</groupId>
-            <artifactId>tycho-pack200b-plugin</artifactId>
-            <executions>
-              <execution>
-                <id>pack200-pack</id>
-                <goals>
-                  <goal>pack</goal>
-                </goals>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-
-    <profile>
       <id>scout-release</id>
+      <activation>
+        <property>
+          <name>release-build</name>
+        </property>
+      </activation>
       <build>
         <plugins>
           <plugin>

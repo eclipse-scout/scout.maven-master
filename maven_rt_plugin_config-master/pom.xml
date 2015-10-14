@@ -43,7 +43,6 @@
           <configuration>
             <!-- do not break build when Jasmine tests fail -->
             <haltOnFailure>false</haltOnFailure>
-            <jsSrcDir>${project.basedir}/../org.eclipse.scout.rt.ui.html/src/main/js</jsSrcDir>
             <jsTestSrcDir>${project.basedir}/src/test/js</jsTestSrcDir>
             <customRunnerTemplate>${project.basedir}/src/test/js/SpecRunnerMaven.html</customRunnerTemplate>
             <sourceExcludes>
@@ -72,11 +71,11 @@
               <pluginExecutions>
                 <pluginExecution>
                   <pluginExecutionFilter>
-                    <groupId>com.github.klieber</groupId>
-                    <artifactId>phantomjs-maven-plugin</artifactId>
-                    <versionRange>[0.7,)</versionRange>
+                    <groupId>org.jboss.jandex</groupId>
+                    <artifactId>jandex-maven-plugin</artifactId>
+                    <versionRange>[1.0.1,)</versionRange>
                     <goals>
-                      <goal>install</goal>
+                      <goal>jandex</goal>
                     </goals>
                   </pluginExecutionFilter>
                   <action>
@@ -85,11 +84,11 @@
                 </pluginExecution>
                 <pluginExecution>
                   <pluginExecutionFilter>
-                    <groupId>org.kuali.maven.plugins</groupId>
-                    <artifactId>properties-maven-plugin</artifactId>
-                    <versionRange>[2.0.1,)</versionRange>
+                    <groupId>com.github.klieber</groupId>
+                    <artifactId>phantomjs-maven-plugin</artifactId>
+                    <versionRange>[0.7,)</versionRange>
                     <goals>
-                      <goal>read-project-properties</goal>
+                      <goal>install</goal>
                     </goals>
                   </pluginExecutionFilter>
                   <action>
@@ -151,6 +150,43 @@
                 <!-- phase is 'process-classes by default' -->
                 <configuration>
                   <!-- Nothing needed here for simple cases -->
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <profile>
+      <!-- Only create the jandex.idx when a scout.xml is found -->
+      <id>jandex-test-idx</id>
+      <activation>
+        <file>
+          <exists>${basedir}/src/test/resources/META-INF/scout.xml</exists>
+        </file>
+      </activation>
+      <build>
+        <plugins>
+          <!-- Create META-INF/jandex.idx -->
+          <plugin>
+            <groupId>org.jboss.jandex</groupId>
+            <artifactId>jandex-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>make-index</id>
+                <goals>
+                  <goal>jandex</goal>
+                </goals>
+                <!-- phase is 'process-classes by default' -->
+                <phase>process-test-classes</phase>
+                <configuration>
+                  <processDefaultFileSet>false</processDefaultFileSet>
+                  <fileSets>
+                    <fileSet>
+                      <directory>${project.build.directory}/test-classes/</directory>
+                    </fileSet>
+                  </fileSets>
                 </configuration>
               </execution>
             </executions>
@@ -465,66 +501,66 @@
       </build>
     </profile>
 
-    <profile>
-      <id>release.usereleases</id>
-      <activation>
-        <activeByDefault>false</activeByDefault>
-      </activation>
-      <modules>
-        <module>com.bsiag.widgets.parent</module>
-      </modules>
-      <build>
-        <defaultGoal>org.codehaus.mojo:versions-maven-plugin:use-releases</defaultGoal>
-        <plugins>
-          <plugin>
-            <groupId>org.codehaus.mojo</groupId>
-            <artifactId>versions-maven-plugin</artifactId>
-            <configuration>
-              <generateBackupPoms>false</generateBackupPoms>
-            </configuration>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
+    <!-- <profile> -->
+    <!-- <id>release.usereleases</id> -->
+    <!-- <activation> -->
+    <!-- <activeByDefault>false</activeByDefault> -->
+    <!-- </activation> -->
+    <!-- <modules> -->
+    <!-- <module>com.bsiag.widgets.parent</module> -->
+    <!-- </modules> -->
+    <!-- <build> -->
+    <!-- <defaultGoal>org.codehaus.mojo:versions-maven-plugin:use-releases</defaultGoal> -->
+    <!-- <plugins> -->
+    <!-- <plugin> -->
+    <!-- <groupId>org.codehaus.mojo</groupId> -->
+    <!-- <artifactId>versions-maven-plugin</artifactId> -->
+    <!-- <configuration> -->
+    <!-- <generateBackupPoms>false</generateBackupPoms> -->
+    <!-- </configuration> -->
+    <!-- </plugin> -->
+    <!-- </plugins> -->
+    <!-- </build> -->
+    <!-- </profile> -->
 
-    <profile>
-      <id>release.setversion</id>
-      <activation>
-        <activeByDefault>false</activeByDefault>
-      </activation>
-      <properties>
-        <milestone.version>I</milestone.version>
-        <newVersion>${scout.base.version}.${maven.build.timestamp}-${milestone.version}</newVersion>
-      </properties>
-      <build>
-        <defaultGoal>org.codehaus.mojo:versions-maven-plugin:set</defaultGoal>
-        <plugins>
-          <plugin>
-            <groupId>org.codehaus.mojo</groupId>
-            <artifactId>versions-maven-plugin</artifactId>
-            <configuration>
-              <newVersion>${newVersion}</newVersion>
-              <generateBackupPoms>false</generateBackupPoms>
-            </configuration>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
+    <!-- <profile> -->
+    <!-- <id>release.setversion</id> -->
+    <!-- <activation> -->
+    <!-- <activeByDefault>false</activeByDefault> -->
+    <!-- </activation> -->
+    <!-- <properties> -->
+    <!-- <milestone.version>I</milestone.version> -->
+    <!-- <newVersion>${scout.base.version}.${maven.build.timestamp}-${milestone.version}</newVersion> -->
+    <!-- </properties> -->
+    <!-- <build> -->
+    <!-- <defaultGoal>org.codehaus.mojo:versions-maven-plugin:set</defaultGoal> -->
+    <!-- <plugins> -->
+    <!-- <plugin> -->
+    <!-- <groupId>org.codehaus.mojo</groupId> -->
+    <!-- <artifactId>versions-maven-plugin</artifactId> -->
+    <!-- <configuration> -->
+    <!-- <newVersion>${newVersion}</newVersion> -->
+    <!-- <generateBackupPoms>false</generateBackupPoms> -->
+    <!-- </configuration> -->
+    <!-- </plugin> -->
+    <!-- </plugins> -->
+    <!-- </build> -->
+    <!-- </profile> -->
 
-    <profile>
-      <id>release.updatechilds</id>
-      <build>
-        <defaultGoal>org.codehaus.mojo:versions-maven-plugin:update-child-modules</defaultGoal>
-        <plugins>
-          <plugin>
-            <groupId>org.codehaus.mojo</groupId>
-            <artifactId>versions-maven-plugin</artifactId>
-            <configuration>
-              <generateBackupPoms>false</generateBackupPoms>
-            </configuration>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
+    <!-- <profile> -->
+    <!-- <id>release.updatechilds</id> -->
+    <!-- <build> -->
+    <!-- <defaultGoal>org.codehaus.mojo:versions-maven-plugin:update-child-modules</defaultGoal> -->
+    <!-- <plugins> -->
+    <!-- <plugin> -->
+    <!-- <groupId>org.codehaus.mojo</groupId> -->
+    <!-- <artifactId>versions-maven-plugin</artifactId> -->
+    <!-- <configuration> -->
+    <!-- <generateBackupPoms>false</generateBackupPoms> -->
+    <!-- </configuration> -->
+    <!-- </plugin> -->
+    <!-- </plugins> -->
+    <!-- </build> -->
+    <!-- </profile> -->
   </profiles>
 </project>
