@@ -30,9 +30,15 @@
     <license-maven-plugin.version>2.11</license-maven-plugin.version>
 
     <!-- version of Tycho used by org.eclipse.scout.sdk.core.releng build and profiles eclipse-sign and eclipse-pack -->
-    <tycho.version>0.22.0</tycho.version> <!-- must be 0.22.0 because version 0.23.x has an issue with target resolving and mirrors -->
+    <!-- must be 0.22.0 because version 0.23.x has an issue with target resolving and mirrors -->
+    <tycho.version>0.22.0</tycho.version>
     <tycho-extras.version>${tycho.version}</tycho-extras.version>
     <jarsigner.version>1.1.2</jarsigner.version>
+
+    <forgeReleaseId>repo.eclipse.org</forgeReleaseId>
+    <forgeReleaseUrl>https://repo.eclipse.org/content/repositories/scout-releases/</forgeReleaseUrl>
+    <forgeSnapshotId>repo.eclipse.org</forgeSnapshotId>
+    <forgeSnapshotUrl>https://repo.eclipse.org/content/repositories/scout-snapshots/</forgeSnapshotUrl>
   </properties>
 
   <build>
@@ -284,5 +290,149 @@
         </plugin>
       </plugins>
     </pluginManagement>
+
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-deploy-plugin</artifactId>
+        <inherited>false</inherited>
+        <configuration>
+          <deployAtEnd>${deployAtEnd}</deployAtEnd>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-release-plugin</artifactId>
+        <inherited>false</inherited>
+        <configuration>
+          <autoVersionSubmodules>true</autoVersionSubmodules>
+          <tagNameFormat>@{project.version}</tagNameFormat>
+          <pushChanges>false</pushChanges>
+          <arguments>${arguments} -Drelease-build</arguments>
+          <useReleaseProfile>false</useReleaseProfile>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-gpg-plugin</artifactId>
+        <inherited>false</inherited>
+      </plugin>
+    </plugins>
   </build>
+
+  <licenses>
+    <license>
+      <name>Eclipse Public License v1.0</name>
+      <comments>All rights reserved.
+
+       This program and the accompanying materials are made
+       available under the terms of the Eclipse Public License v1.0
+       which accompanies this distribution, and is available at
+       http://www.eclipse.org/legal/epl-v10.htm</comments>
+    </license>
+  </licenses>
+
+  <mailingLists>
+    <mailingList>
+      <name>scout-dev Mailing List</name>
+      <subscribe>https://dev.eclipse.org/mailman/listinfo/scout-dev</subscribe>
+      <unsubscribe>https://dev.eclipse.org/mailman/listinfo/scout-dev</unsubscribe>
+      <post>scout-dev@eclipse.org</post>
+      <archive>http://dev.eclipse.org/mhonarc/lists/scout-dev</archive>
+    </mailingList>
+  </mailingLists>
+
+  <scm>
+    <connection>scm:git:git://git.eclipse.org/gitroot/scout/maven-master.git</connection>
+    <tag>master</tag>
+    <url>https://git.eclipse.org/c/scout/maven-master.git/</url>
+  </scm>
+
+  <issueManagement>
+    <system>Bugzilla</system>
+    <url>https://bugs.eclipse.org/bugs/buglist.cgi?query_format=advanced;product=Scout;classification=Technology</url>
+  </issueManagement>
+
+  <repositories>
+    <repository>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+      <id>eclipse.release</id>
+      <name>eclipse-release-repo</name>
+      <url>https://repo.eclipse.org/content/groups/releases/</url>
+    </repository>
+    <repository>
+      <snapshots></snapshots>
+      <id>eclipse.snapshot</id>
+      <name>eclipse-snapshot-repo</name>
+      <url>https://repo.eclipse.org/content/groups/snapshots/</url>
+    </repository>
+  </repositories>
+
+  <pluginRepositories>
+    <pluginRepository>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+      <id>eclipse.release</id>
+      <name>eclipse-release-repo</name>
+      <url>https://repo.eclipse.org/content/groups/releases/</url>
+    </pluginRepository>
+    <pluginRepository>
+      <snapshots></snapshots>
+      <id>eclipse.snapshot</id>
+      <name>eclipse-snapshot-repo</name>
+      <url>https://repo.eclipse.org/content/groups/snapshots/</url>
+    </pluginRepository>
+  </pluginRepositories>
+
+  <distributionManagement>
+    <repository>
+      <id>${forgeReleaseId}</id>
+      <name>Scout Repository - Releases</name>
+      <url>${forgeReleaseUrl}</url>
+    </repository>
+    <snapshotRepository>
+      <id>${forgeSnapshotId}</id>
+      <name>Scout Repository - Snapshots</name>
+      <url>${forgeSnapshotUrl}</url>
+    </snapshotRepository>
+    <site>
+      <id>eclipse.scout.site</id>
+      <name>Eclipse Scout Site</name>
+      <!-- >workaround for http://jira.codehaus.org/browse/MSITE-671 -->
+      <url>http://staging</url>
+    </site>
+  </distributionManagement>
+
+  <profiles>
+    <profile>
+      <id>scout-release</id>
+      <activation>
+        <property>
+          <name>release-build</name>
+        </property>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-gpg-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>sign-artifacts</id>
+                <goals>
+                  <goal>sign</goal>
+                </goals>
+                <phase>verify</phase>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
 </project>

@@ -136,7 +136,7 @@
   </build>
 
   <reporting>
-    <plugins />
+    <plugins></plugins>
   </reporting>
 
   <profiles>
@@ -424,10 +424,10 @@
               </execution>
               <execution>
                 <id>attach-p2-metadata</id>
-                <phase>package</phase>
                 <goals>
                   <goal>p2-metadata</goal>
                 </goals>
+                <phase>package</phase>
               </execution>
             </executions>
           </plugin>

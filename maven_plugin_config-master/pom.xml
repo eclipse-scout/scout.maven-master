@@ -168,20 +168,18 @@
                 <banLatest>true</banLatest>
                 <banRelease>true</banRelease>
                 <phases>clean,deploy</phases>
-<!--            <unCheckedPluginList>org.apache.maven.plugins:maven-deploy-plugin</unCheckedPluginList> -->
+                <!--            <unCheckedPluginList>org.apache.maven.plugins:maven-deploy-plugin</unCheckedPluginList> -->
               </requirePluginVersions>
               <requireReleaseDeps>
                 <message>No SNAPSHOT versions allowed for dependencies</message>
                 <onlyWhenRelease>true</onlyWhenRelease>
               </requireReleaseDeps>
               <requireJavaVersion>
-                <message>To build this project JDK ${jdk.min.version} (or upper) is required. Please install it.
-                </message>
+                <message>To build this project JDK ${jdk.min.version} (or upper) is required. Please install it.</message>
                 <version>${jdk.min.version}</version>
               </requireJavaVersion>
               <requireMavenVersion>
-                <message>To build this project Maven ${maven.min.version} (or upper) is required. Please install it.
-                </message>
+                <message>To build this project Maven ${maven.min.version} (or upper) is required. Please install it.</message>
                 <version>${maven.min.version}</version>
               </requireMavenVersion>
               <bannedDependencies>
@@ -191,7 +189,7 @@
                 </excludes>
                 <searchTransitive>true</searchTransitive>
               </bannedDependencies>
-              <banDuplicatePomDependencyVersions/>
+              <banDuplicatePomDependencyVersions></banDuplicatePomDependencyVersions>
               <!-- can't be used until html ui in eclipse repo and of the tools-build
               <reactorModuleConvergence/> -->
               <requireSameVersions>
@@ -219,10 +217,10 @@
         <executions>
           <execution>
             <id>enforce-java-api-compatibility</id>
-            <phase>verify</phase>
             <goals>
               <goal>check</goal>
             </goals>
+            <phase>verify</phase>
           </execution>
         </executions>
       </plugin>
@@ -305,10 +303,10 @@
             <executions>
               <execution>
                 <id>enforce-license-headers</id>
-                <phase>validate</phase>
                 <goals>
                   <goal>check</goal>
                 </goals>
+                <phase>validate</phase>
               </execution>
             </executions>
           </plugin>
