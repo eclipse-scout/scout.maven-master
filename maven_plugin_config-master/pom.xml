@@ -168,7 +168,7 @@
                 <banLatest>true</banLatest>
                 <banRelease>true</banRelease>
                 <phases>clean,deploy</phases>
-                <!--            <unCheckedPluginList>org.apache.maven.plugins:maven-deploy-plugin</unCheckedPluginList> -->
+                <unCheckedPluginList>org.apache.maven.plugins:maven-deploy-plugin</unCheckedPluginList>
               </requirePluginVersions>
               <requireReleaseDeps>
                 <message>No SNAPSHOT versions allowed for dependencies</message>
