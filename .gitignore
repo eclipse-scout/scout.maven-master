@@ -11,8 +11,8 @@
 *.zip
 
 # Eclipse #
-.project
-.settings
+/.project
+/.settings
 bin/**
 
 # Maven #
