@@ -211,7 +211,7 @@
             <artifactId>build-helper-maven-plugin</artifactId>
             <executions>
               <execution>
-                <id>add-resource</id>
+                <id>add-js-resource</id>
                 <goals>
                   <goal>add-resource</goal>
                 </goals>
@@ -244,11 +244,11 @@
             <artifactId>build-helper-maven-plugin</artifactId>
             <executions>
               <execution>
-                <id>add-test-resource</id>
+                <id>add-js-test-resource</id>
                 <goals>
-                  <goal>add-resource</goal>
+                  <goal>add-test-resource</goal>
                 </goals>
-                <phase>generate-resources</phase>
+                <phase>generate-test-resources</phase>
                 <configuration>
                   <resources>
                     <resource>
