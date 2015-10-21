@@ -15,14 +15,14 @@
   <parent>
     <groupId>org.eclipse.scout</groupId>
     <artifactId>maven_plugin_config-master</artifactId>
-    <version>1.4-SNAPSHOT</version>
+    <version>1.4</version>
     <relativePath>../maven_plugin_config-master</relativePath>
   </parent>
 
   <artifactId>maven_rt_plugin_config-master</artifactId>
   <packaging>pom</packaging>
 
-  <properties></properties>
+  <properties />
 
   <build>
     <pluginManagement>
@@ -79,7 +79,7 @@
                     </goals>
                   </pluginExecutionFilter>
                   <action>
-                    <ignore></ignore>
+                    <ignore />
                   </action>
                 </pluginExecution>
                 <pluginExecution>
@@ -92,7 +92,7 @@
                     </goals>
                   </pluginExecutionFilter>
                   <action>
-                    <ignore></ignore>
+                    <ignore />
                   </action>
                 </pluginExecution>
                 <!-- WS-STUB generation: Instrument 'm2e' to generate webservice stub in Eclipse IDE (does not affect standalone Maven build) -->
@@ -125,7 +125,7 @@
   </build>
 
   <reporting>
-    <plugins></plugins>
+    <plugins />
   </reporting>
 
   <profiles>
@@ -315,7 +315,7 @@
         <!-- Destination directory for generated APT artifacts. -->
         <jaxws.apt.directory>${project.build.directory}/generated-sources/annotations</jaxws.apt.directory>
         <!-- WSDL file name to set the 'wsdl-location' in @WebService and @WebServiceClient annotation -->
-        <jaxws.wsdl.file></jaxws.wsdl.file>
+        <jaxws.wsdl.file />
       </properties>
 
       <dependencies>
