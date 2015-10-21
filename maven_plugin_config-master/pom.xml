@@ -96,6 +96,10 @@
           <configuration>
             <autoVersionSubmodules>true</autoVersionSubmodules>
             <tagNameFormat>@{project.version}</tagNameFormat>
+            <addSchema>true</addSchema>
+            <detail>true</detail>
+            <indentSize>2</indentSize>
+            <localCheckout>true</localCheckout>
             <pushChanges>false</pushChanges>
           </configuration>
         </plugin>
@@ -191,7 +195,7 @@
               </bannedDependencies>
               <banDuplicatePomDependencyVersions></banDuplicatePomDependencyVersions>
               <!-- can't be used until html ui in eclipse repo and of the tools-build
-              <reactorModuleConvergence/> -->
+                <reactorModuleConvergence/> -->
               <requireSameVersions>
                 <dependencies>
                   <dependency>org.eclipse.scout</dependency>
