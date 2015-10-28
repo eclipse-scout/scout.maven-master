@@ -303,6 +303,7 @@
     </profile>
 
     <profile>
+      <!-- skip checks for faster development-build -->
       <id>dev</id>
       <properties>
         <skipSanityChecks>true</skipSanityChecks>
@@ -311,6 +312,20 @@
     </profile>
 
     <profile>
+      <!-- remote debug tests -->
+      <id>debug</id>
+      <properties>
+        <debugArgLine>-Xdebug -Xrunjdwp:transport=dt_socket,address=${remote.debug.port},server=y,suspend=y</debugArgLine>
+      </properties>
+      <activation>
+        <property>
+          <name>debugTests</name>
+        </property>
+      </activation>
+    </profile>
+
+    <profile>
+      <!-- check copyright/license headers -->
       <id>license_check</id>
       <activation>
         <property>
@@ -319,7 +334,6 @@
       </activation>
       <build>
         <plugins>
-          <!-- check copyright/license headers -->
           <plugin>
             <groupId>com.mycila</groupId>
             <artifactId>license-maven-plugin</artifactId>
@@ -339,6 +353,7 @@
     </profile>
 
     <profile>
+      <!-- sign jars -->
       <id>sign</id>
       <build>
         <plugins>
@@ -360,6 +375,7 @@
     </profile>
 
     <profile>
+      <!-- make a release build. includes sources/javadoc... -->
       <id>scout-release</id>
       <activation>
         <property>
