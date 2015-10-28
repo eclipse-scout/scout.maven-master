@@ -598,6 +598,26 @@
           </execution>
         </executions>
       </plugin>
+
+      <plugin>
+        <!-- until there is a automatic nightly build include sources in every build (snapshot and release). Default would be only to include sources in the release profile. -->
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-source-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>attach-sources</id>
+            <goals>
+              <goal>jar-no-fork</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>attach-test-sources</id>
+            <goals>
+              <goal>test-jar-no-fork</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
     </plugins>
   </build>
 
@@ -715,7 +735,7 @@
 
     <profile>
       <!-- make a release build. includes sources/javadoc... -->
-      <id>scout-release</id>
+      <id>release</id>
       <activation>
         <property>
           <name>release-build</name>

@@ -615,7 +615,7 @@
     </profile>
 
     <profile>
-      <id>scout-release</id>
+      <id>release</id>
       <activation>
         <property>
           <name>release-build</name>
