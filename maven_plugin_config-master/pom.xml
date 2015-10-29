@@ -9,7 +9,8 @@
   Contributors:
   BSI Business Systems Integration AG - initial API and implementation
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
@@ -36,10 +37,27 @@
     <maven.min.version>3.2.1</maven.min.version>
     <maven.api.version>3.2.1</maven.api.version>
 
-    <skipUnitTests>false</skipUnitTests>
-    <skipWebTests>false</skipWebTests>
     <deployAtEnd>true</deployAtEnd>
-    <skipSanityChecks>false</skipSanityChecks>
+    <master_sanity-checks_skip>false</master_sanity-checks_skip>
+
+    <!-- Test Control -->
+    <master_unit-test_skip>false</master_unit-test_skip>
+    <master_web-test_skip>false</master_web-test_skip>
+    <master_coverage_skip>false</master_coverage_skip>
+
+    <!-- Release Control -->
+    <master_release_push-changes>false</master_release_push-changes>
+    <master_release_tag-name>${project.version}</master_release_tag-name>
+
+    <!-- Git Information Control -->
+    <master_git-id.skip>false</master_git-id.skip>
+    <master_git-id.fail-no-git>false</master_git-id.fail-no-git>
+    <master_git-id.use-native>false</master_git-id.use-native>
+
+    <!-- Surefire Fork Control -->
+    <master_test_fork-count>1.0C</master_test_fork-count>
+    <master_test_reuse-vm>true</master_test_reuse-vm>
+    <master_test_timeout>30</master_test_timeout>
   </properties>
 
   <build>
@@ -60,6 +78,8 @@
             <compilerId>jdt</compilerId>
             <source>${jdk.source.version}</source>
             <target>${jdk.source.version}</target>
+            <encoding>${project.build.sourceEncoding}</encoding>
+            <showWarnings>true</showWarnings>
             <compilerArgs>
               <arg>-proc:none</arg>
             </compilerArgs>
@@ -68,7 +88,7 @@
             <dependency>
               <groupId>org.eclipse.tycho</groupId>
               <artifactId>tycho-compiler-jdt</artifactId>
-              <version>${tycho-compiler-jdt}</version>
+              <version>${master_dependency_tycho-compiler_version}</version>
             </dependency>
           </dependencies>
         </plugin>
@@ -78,7 +98,19 @@
           <artifactId>maven-surefire-plugin</artifactId>
           <configuration>
             <testFailureIgnore>true</testFailureIgnore>
-            <skipTests>${skipUnitTests}</skipTests>
+            <skipTests>${master_unit-test_skip}</skipTests>
+            <argLine>${argLine} -Dfile.encoding=${project.build.sourceEncoding}</argLine>
+            <systemPropertyVariables>
+              <sun.jnu.encoding>${project.build.sourceEncoding}</sun.jnu.encoding>
+              <user.timezone>UTC</user.timezone>
+              <java.awt.headless>true</java.awt.headless>
+              <java.util.logging.SimpleFormatter.format>%1$tY-%1$tm-%1$td %1$tH:%1$tM:%1$tS %4$s %5$s%6$s%n</java.util.logging.SimpleFormatter.format>
+            </systemPropertyVariables>
+            <runOrder>failedfirst</runOrder>
+            <reuseForks>${master_test_reuse-vm}</reuseForks>
+            <forkCount>${master_test_fork-count}</forkCount>
+            <forkedProcessTimeoutInSeconds>${master_test_timeout}</forkedProcessTimeoutInSeconds>
+            <useManifestOnlyJar>false</useManifestOnlyJar>
           </configuration>
         </plugin>
 
@@ -95,12 +127,90 @@
           <artifactId>maven-release-plugin</artifactId>
           <configuration>
             <autoVersionSubmodules>true</autoVersionSubmodules>
-            <tagNameFormat>@{project.version}</tagNameFormat>
+            <tagNameFormat>${master_release_tag-name}</tagNameFormat>
             <addSchema>true</addSchema>
             <detail>true</detail>
             <indentSize>2</indentSize>
             <localCheckout>true</localCheckout>
-            <pushChanges>false</pushChanges>
+            <pushChanges>${master_release_push-changes}</pushChanges>
+            <arguments>${arguments} --batch-mode -Drelease-build</arguments>
+            <useReleaseProfile>false</useReleaseProfile>
+            <goals>install</goals>
+          </configuration>
+        </plugin>
+
+        <plugin>
+          <groupId>pl.project13.maven</groupId>
+          <artifactId>git-commit-id-plugin</artifactId>
+          <configuration>
+            <dateFormat>yyyy-MM-dd'T'HH:mm:ssZZ</dateFormat>
+            <verbose>true</verbose>
+            <generateGitPropertiesFile>false</generateGitPropertiesFile>
+            <skipPoms>true</skipPoms>
+            <failOnNoGitDirectory>${master_git-id.fail-no-git}</failOnNoGitDirectory>
+            <skip>${master_git-id.skip}</skip>
+            <useNativeGit>${master_git-id.use-native}</useNativeGit>
+            <abbrevLength>10</abbrevLength>
+            <gitDescribe>
+              <always>true</always>
+              <abbrev>7</abbrev>
+              <dirty>-dirty</dirty>
+              <forceLongFormat>false</forceLongFormat>
+              <tags>true</tags>
+            </gitDescribe>
+          </configuration>
+        </plugin>
+
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-jar-plugin</artifactId>
+          <configuration>
+            <!-- do not build an empty jar if the project is
+              e.g. a pom project -->
+            <skipIfEmpty>true</skipIfEmpty>
+            <archive>
+              <manifest>
+                <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+                <addClasspath>false</addClasspath>
+              </manifest>
+              <manifestSections combine.children="append">
+                <manifestSection>
+                  <name>${project.groupId}:${project.artifactId}</name>
+                  <manifestEntries>
+                    <!-- This is actually the time when the build was done -->
+                    <Build-Time>${git.build.time}</Build-Time>
+                    <!-- Git specific properties -->
+                    <Git-Branch>${git.branch}</Git-Branch>
+                    <Git-Commit-Id>${git.commit.id}</Git-Commit-Id>
+                    <Git-Commit-Id-Describe>${git.commit.id.describe}</Git-Commit-Id-Describe>
+                    <Git-Remote-Origin-Url>${git.remote.origin.url}</Git-Remote-Origin-Url>
+                    <!-- project information -->
+                    <Project-ArtifactId>${project.artifactId}</Project-ArtifactId>
+                    <Project-GroupId>${project.groupId}</Project-GroupId>
+                    <Project-Name>${project.name}</Project-Name>
+                    <Project-Version>${project.version}</Project-Version>
+                  </manifestEntries>
+                </manifestSection>
+              </manifestSections>
+            </archive>
+          </configuration>
+        </plugin>
+
+        <plugin>
+          <groupId>org.basepom.maven</groupId>
+          <artifactId>duplicate-finder-maven-plugin</artifactId>
+          <configuration>
+            <skip>${master_sanity-checks_skip}</skip>
+            <failBuildInCaseOfConflict>true</failBuildInCaseOfConflict>
+          </configuration>
+        </plugin>
+
+        <plugin>
+          <groupId>org.jacoco</groupId>
+          <artifactId>jacoco-maven-plugin</artifactId>
+          <configuration>
+            <skip>${master_coverage_skip}</skip>
           </configuration>
         </plugin>
 
@@ -119,7 +229,7 @@
             <!-- <artifactId>java18</artifactId> -->
             <!-- <version>1.0</version> -->
             <!-- </signature> -->
-            <skip>${skipSanityChecks}</skip>
+            <skip>${master_sanity-checks_skip}</skip>
           </configuration>
         </plugin>
 
@@ -134,30 +244,44 @@
             <failIfMissing>true</failIfMissing>
             <strictCheck>true</strictCheck>
             <aggregate>true</aggregate>
+            <useDefaultExcludes>false</useDefaultExcludes>
             <includes>
               <include>**/*scout*/src/main/java/**</include>
               <include>**/*scout*/src/main/js/**</include>
               <include>**/*scout*/src/main/less/**</include>
               <include>**/*scout*/src/test/java/**</include>
               <include>**/*scout*/src/test/js/**</include>
+              <include>**/pom.xml</include>
+              <include>**/*.properties</include>
+              <include>**/*.java</include>
+              <include>**/*.js</include>
+              <include>**/*.css</include>
+              <include>**/*.xml</include>
+              <include>**/*.xsd</include>
             </includes>
             <excludes>
+              <exclude>**/target/**</exclude>
+              <exclude>**/.*</exclude>
+              <exclude>**/.settings/**</exclude>
+              <exclude>**/release.properties</exclude>
+              <exclude>**/pom.xml.releaseBackup</exclude>
+              <exclude>**/*.sh</exclude>
               <exclude>tests/**</exclude>
             </excludes>
             <mapping>
               <java>SCOUT_JAVADOC_STYLE</java>
-              <js>SLASHSTAR_STYLE</js>
-              <less>JAVADOC_STYLE</less>
-              <css>JAVADOC_STYLE</css>
+              <js>SCOUT_JAVADOC_STYLE</js>
+              <less>SCOUT_JAVADOC_STYLE</less>
+              <css>SCOUT_JAVADOC_STYLE</css>
             </mapping>
-            <skip>${skipSanityChecks}</skip>
+            <skip>${master_sanity-checks_skip}</skip>
           </configuration>
           <dependencies>
             <dependency>
               <groupId>com.mycila</groupId>
               <artifactId>license-maven-plugin-git</artifactId>
               <!-- make sure you use the same version as license-maven-plugin -->
-              <version>${license-maven-plugin.version}</version>
+              <version>${master_plugin_license_version}</version>
             </dependency>
           </dependencies>
         </plugin>
@@ -215,6 +339,34 @@
     </pluginManagement>
 
     <plugins>
+      <plugin>
+        <groupId>pl.project13.maven</groupId>
+        <artifactId>git-commit-id-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>default</id>
+            <phase>initialize</phase>
+            <goals>
+              <goal>revision</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.basepom.maven</groupId>
+        <artifactId>duplicate-finder-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>default</id>
+            <phase>verify</phase>
+            <goals>
+              <goal>check</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>animal-sniffer-maven-plugin</artifactId>
@@ -277,8 +429,9 @@
         </property>
       </activation>
       <properties>
-        <skipUnitTests>true</skipUnitTests>
-        <skipWebTests>true</skipWebTests>
+        <master_unit-test_skip>true</master_unit-test_skip>
+        <master_web-test_skip>true</master_web-test_skip>
+        <master_coverage_skip>true</master_coverage_skip>
       </properties>
     </profile>
 
@@ -286,8 +439,9 @@
       <!-- skip checks for faster development-build -->
       <id>dev</id>
       <properties>
-        <skipSanityChecks>true</skipSanityChecks>
+        <master_sanity-checks_skip>true</master_sanity-checks_skip>
         <enforcer.skip>true</enforcer.skip>
+        <master_coverage_skip>true</master_coverage_skip>
       </properties>
     </profile>
 
@@ -366,6 +520,14 @@
         <plugins>
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <configuration>
+              <skip>true</skip>
+            </configuration>
+          </plugin>
+
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-source-plugin</artifactId>
             <executions>
               <execution>
@@ -394,7 +556,11 @@
                 </goals>
                 <configuration>
                   <failOnError>false</failOnError>
+                  <source>${jdk.source.version}</source>
+                  <target>${jdk.source.version}</target>
+                  <encoding>${project.build.sourceEncoding}</encoding>
                   <quiet>true</quiet>
+                  <additionalparam>-quiet</additionalparam>
                 </configuration>
               </execution>
             </executions>

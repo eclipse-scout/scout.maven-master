@@ -32,7 +32,7 @@
           <groupId>com.github.klieber</groupId>
           <artifactId>phantomjs-maven-plugin</artifactId>
           <configuration>
-            <version>${phantomjs.version}</version>
+            <version>${master_dependency_phantomjs_version}</version>
           </configuration>
         </plugin>
 
@@ -102,7 +102,7 @@
                   <pluginExecutionFilter>
                     <groupId>org.jvnet.jax-ws-commons</groupId>
                     <artifactId>jaxws-maven-plugin</artifactId>
-                    <versionRange>[${jaxws.plugin.version},)</versionRange>
+                    <versionRange>[${master_plugin_jaxws_version},)</versionRange>
                     <goals>
                       <goal>wsimport</goal>
                     </goals>

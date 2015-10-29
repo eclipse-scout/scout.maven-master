@@ -9,7 +9,8 @@
   Contributors:
   BSI Business Systems Integration AG - initial API and implementation
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>org.eclipse.scout</groupId>
@@ -22,23 +23,122 @@
   </prerequisites>
 
   <properties>
-    <tycho-compiler-jdt>0.23.1</tycho-compiler-jdt>
-    <!-- Plugin version of 'jaxws-maven-plugin' to generate webservice stub. -->
-    <jaxws.plugin.version>2.3.1-b20150201.1248</jaxws.plugin.version>
-    <phantomjs.version>1.9.7</phantomjs.version>
-
-    <license-maven-plugin.version>2.11</license-maven-plugin.version>
-
-    <!-- version of Tycho used by org.eclipse.scout.sdk.core.releng build and profiles eclipse-sign and eclipse-pack -->
-    <!-- must be 0.22.0 because version 0.23.x has an issue with target resolving and mirrors -->
-    <tycho.version>0.22.0</tycho.version>
-    <tycho-extras.version>${tycho.version}</tycho-extras.version>
     <jarsigner.version>1.1.2</jarsigner.version>
 
     <master_deploy_ReleaseId>repo.eclipse.org</master_deploy_ReleaseId>
     <master_deploy_ReleaseUrl>https://repo.eclipse.org/content/repositories/scout-releases/</master_deploy_ReleaseUrl>
     <master_deploy_SnapshotId>repo.eclipse.org</master_deploy_SnapshotId>
     <master_deploy_SnapshotUrl>https://repo.eclipse.org/content/repositories/scout-snapshots/</master_deploy_SnapshotUrl>
+
+
+    <!-- ####################################################################### -->
+    <!-- Maven Plugin versions, ordered like http://maven.apache.org/plugins/ -->
+    <!-- ####################################################################### -->
+    <!-- Core plugins. -->
+    <!-- Plugins corresponding to default core phases (ie. clean, compile). They may have multiple goals as well. -->
+    <!-- ####################################################################### -->
+    <master_plugin_clean_version>2.6.1</master_plugin_clean_version>
+    <master_plugin_compiler_version>3.3</master_plugin_compiler_version>
+    <master_plugin_deploy_version>2.8.2</master_plugin_deploy_version>
+    <master_plugin_install_version>2.5.2</master_plugin_install_version>
+    <master_plugin_resources_version>2.7</master_plugin_resources_version>
+    <master_plugin_site_version>3.4</master_plugin_site_version>
+    <master_plugin_surefire_version>2.18.1</master_plugin_surefire_version>
+
+    <!-- ####################################################################### -->
+    <!-- Packaging types/tools -->
+    <!-- These plugins relate to packaging respective artifact types. -->
+    <!-- ####################################################################### -->
+    <master_plugin_jar_version>2.6</master_plugin_jar_version>
+    <master_plugin_war_version>2.6</master_plugin_war_version>
+    <!-- <master_plugin_shade_version>2.4.1</master_plugin_shade_version> -->
+    <master_plugin_source_version>2.4</master_plugin_source_version>
+
+    <!-- ####################################################################### -->
+    <!-- Reporting plugins -->
+    <!-- Plugins which generate reports, are configured as reports in the POM and run under the site generation lifecycle. -->
+    <!-- ####################################################################### -->
+    <!-- <master_plugin_checkstyle_version>2.16</master_plugin_checkstyle_version> -->
+    <master_plugin_javadoc_version>2.10.3</master_plugin_javadoc_version>
+    <!-- <master_plugin_pmd_version>3.5</master_plugin_pmd_version> -->
+    <master_plugin_project-info-reports_version>2.8.1</master_plugin_project-info-reports_version>
+
+    <!-- ####################################################################### -->
+    <!-- Tools -->
+    <!-- These are miscellaneous tools available through Maven by default. -->
+    <!-- ####################################################################### -->
+    <master_plugin_assembly_version>2.5.5</master_plugin_assembly_version>
+    <master_plugin_dependency_version>2.10</master_plugin_dependency_version>
+    <master_plugin_enforcer_version>1.4.1</master_plugin_enforcer_version>
+    <master_plugin_gpg_version>1.6</master_plugin_gpg_version>
+    <!-- <master_plugin_invoker_version>2.0.0</master_plugin_invoker_version> -->
+    <master_plugin_release_version>2.5.3</master_plugin_release_version>
+    <!-- <master_plugin_scm_version>1.9.4</master_plugin_scm_version> -->
+
+    <!-- ####################################################################### -->
+    <!-- Outside The Maven Land (List at http://maven.apache.org/plugins/) -->
+    <!-- ####################################################################### -->
+    <!-- http://www.mojohaus.org/animal-sniffer/ -->
+    <!-- https://github.com/mojohaus/animal-sniffer -->
+    <master_plugin_animal-sniffer_version>1.14</master_plugin_animal-sniffer_version>
+
+    <!-- http://www.mojohaus.org/build-helper-maven-plugin -->
+    <!-- https://github.com/mojohaus/build-helper-maven-plugin -->
+    <master_plugin_build-helper_version>1.9.1</master_plugin_build-helper_version>
+
+    <!-- http://www.mojohaus.org/versions-maven-plugin/ -->
+    <!-- https://github.com/mojohaus/versions-maven-plugin -->
+    <master_plugin_versions_version>2.2</master_plugin_versions_version>
+
+    <!-- https://codehaus-cargo.github.io/cargo/Home.html -->
+    <master_plugin_cargo_version>1.4.15</master_plugin_cargo_version>
+
+    <!-- http://tomcat.apache.org/maven-plugin.html -->
+    <master_plugin_tomcat7_version>2.1</master_plugin_tomcat7_version>
+
+    <!-- ####################################################################### -->
+    <!-- Outside The Maven Land (Own list) -->
+    <!-- ####################################################################### -->
+    <!-- https://github.com/basepom/duplicate-finder-maven-plugin/releases -->
+    <master_plugin_duplicate-finder_version>1.2.0</master_plugin_duplicate-finder_version>
+
+    <!-- https://github.com/wildfly/jandex-maven-plugin -->
+    <master_plugin_jandex_version>1.0.1</master_plugin_jandex_version>
+
+    <!-- Plugin version of 'jaxws-maven-plugin' to generate webservice stub. -->
+    <!-- https://jax-ws-commons.java.net/jaxws-maven-plugin/ -->
+    <master_plugin_jaxws_version>2.3.1-b20150201.1248</master_plugin_jaxws_version>
+
+    <!-- https://github.com/klieber/phantomjs-maven-plugin -->
+    <master_plugin_phantomjs_version>0.7</master_plugin_phantomjs_version>
+    <master_dependency_phantomjs_version>1.9.7</master_dependency_phantomjs_version>
+
+    <!-- http://searls.github.io/jasmine-maven-plugin/ -->
+    <master_plugin_jasmine_version>2.0</master_plugin_jasmine_version>
+
+    <!-- http://site.kuali.org/maven/plugins/properties-maven-plugin/latest/ -->
+    <master_plugin_properties_version>2.0.1</master_plugin_properties_version>
+
+    <!-- http://code.mycila.com/license-maven-plugin/ -->
+    <!-- https://github.com/mycila/license-maven-plugin -->
+    <master_plugin_license_version>2.11</master_plugin_license_version>
+
+    <!-- http://felix.apache.org/documentation/subprojects/apache-felix-maven-bundle-plugin-bnd.html -->
+    <!-- http://svn.apache.org/repos/asf/felix/releases/maven-bundle-plugin-2.5.0/doc/site/index.html -->
+    <master_plugin_bundle_version>2.5.4</master_plugin_bundle_version>
+
+    <!-- https://github.com/ktoso/maven-git-commit-id-plugin -->
+    <master_plugin_git-commit-id_version>2.2.0</master_plugin_git-commit-id_version>
+
+    <!-- http://eclemma.org/jacoco/trunk/doc/maven.html -->
+    <master_plugin_jacoco_version>0.7.5.201505241946</master_plugin_jacoco_version>
+
+    <!-- https://wiki.eclipse.org/Tycho -->
+    <master_dependency_tycho-compiler_version>0.23.1</master_dependency_tycho-compiler_version>
+    <!-- version of Tycho used by org.eclipse.scout.sdk.core.releng build and profiles eclipse-sign and eclipse-pack -->
+    <!-- must be 0.22.0 because version 0.23.x has an issue with target resolving and mirrors -->
+    <master_plugin_tycho_version>0.22.0</master_plugin_tycho_version>
+    <master_plugin_tycho-extras_version>${master_plugin_tycho_version}</master_plugin_tycho-extras_version>
   </properties>
 
   <build>
@@ -47,193 +147,205 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-resources-plugin</artifactId>
-          <version>2.7</version>
+          <version>${master_plugin_resources_version}</version>
         </plugin>
 
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-source-plugin</artifactId>
-          <version>2.4</version>
+          <version>${master_plugin_source_version}</version>
         </plugin>
 
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-compiler-plugin</artifactId>
-          <version>3.3</version>
+          <version>${master_plugin_compiler_version}</version>
         </plugin>
 
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-surefire-plugin</artifactId>
-          <version>2.18.1</version>
+          <version>${master_plugin_surefire_version}</version>
         </plugin>
 
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-jar-plugin</artifactId>
-          <version>2.6</version>
+          <version>${master_plugin_jar_version}</version>
         </plugin>
 
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-javadoc-plugin</artifactId>
-          <version>2.10.3</version>
+          <version>${master_plugin_javadoc_version}</version>
         </plugin>
 
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-clean-plugin</artifactId>
-          <version>2.6.1</version>
+          <version>${master_plugin_clean_version}</version>
         </plugin>
 
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-install-plugin</artifactId>
-          <version>2.5.2</version>
+          <version>${master_plugin_install_version}</version>
         </plugin>
 
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-deploy-plugin</artifactId>
-          <version>2.8.2</version>
+          <version>${master_plugin_deploy_version}</version>
         </plugin>
 
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-site-plugin</artifactId>
-          <version>3.4</version>
+          <version>${master_plugin_site_version}</version>
         </plugin>
 
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-dependency-plugin</artifactId>
-          <version>2.10</version>
+          <version>${master_plugin_dependency_version}</version>
         </plugin>
 
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-assembly-plugin</artifactId>
-          <version>2.5.5</version>
+          <version>${master_plugin_assembly_version}</version>
         </plugin>
 
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-release-plugin</artifactId>
-          <version>2.5.3</version>
+          <version>${master_plugin_release_version}</version>
         </plugin>
 
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-gpg-plugin</artifactId>
-          <version>1.6</version>
+          <version>${master_plugin_gpg_version}</version>
         </plugin>
 
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-project-info-reports-plugin</artifactId>
-          <version>2.8</version>
+          <version>${master_plugin_project-info-reports_version}</version>
         </plugin>
 
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-war-plugin</artifactId>
-          <version>2.6</version>
+          <version>${master_plugin_war_version}</version>
         </plugin>
 
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-enforcer-plugin</artifactId>
-          <version>1.4.1</version>
+          <version>${master_plugin_enforcer_version}</version>
         </plugin>
 
         <plugin>
           <groupId>org.codehaus.mojo</groupId>
           <artifactId>build-helper-maven-plugin</artifactId>
-          <version>1.9.1</version>
+          <version>${master_plugin_build-helper_version}</version>
         </plugin>
 
         <plugin>
           <groupId>org.codehaus.mojo</groupId>
           <artifactId>animal-sniffer-maven-plugin</artifactId>
-          <version>1.14</version>
+          <version>${master_plugin_animal-sniffer_version}</version>
         </plugin>
 
         <plugin>
           <groupId>org.codehaus.mojo</groupId>
           <artifactId>versions-maven-plugin</artifactId>
-          <version>2.2</version>
+          <version>${master_plugin_versions_version}</version>
         </plugin>
 
         <plugin>
           <groupId>org.basepom.maven</groupId>
           <artifactId>duplicate-finder-maven-plugin</artifactId>
-          <version>1.2.0</version>
+          <version>${master_plugin_duplicate-finder_version}</version>
         </plugin>
 
         <plugin>
           <groupId>org.jboss.jandex</groupId>
           <artifactId>jandex-maven-plugin</artifactId>
-          <version>1.0.1</version>
+          <version>${master_plugin_jandex_version}</version>
         </plugin>
 
         <plugin>
           <groupId>org.jvnet.jax-ws-commons</groupId>
           <artifactId>jaxws-maven-plugin</artifactId>
-          <version>${jaxws.plugin.version}</version>
+          <version>${master_plugin_jaxws_version}</version>
         </plugin>
 
         <plugin>
           <groupId>com.github.klieber</groupId>
           <artifactId>phantomjs-maven-plugin</artifactId>
-          <version>0.7</version>
+          <version>${master_plugin_phantomjs_version}</version>
         </plugin>
 
         <plugin>
           <groupId>com.github.searls</groupId>
           <artifactId>jasmine-maven-plugin</artifactId>
-          <version>2.0</version>
+          <version>${master_plugin_jasmine_version}</version>
         </plugin>
 
         <plugin>
           <groupId>org.codehaus.cargo</groupId>
           <artifactId>cargo-maven2-plugin</artifactId>
-          <version>1.4.15</version>
+          <version>${master_plugin_cargo_version}</version>
         </plugin>
 
         <plugin>
           <groupId>org.kuali.maven.plugins</groupId>
           <artifactId>properties-maven-plugin</artifactId>
-          <version>2.0.1</version>
+          <version>${master_plugin_properties_version}</version>
         </plugin>
 
         <plugin>
           <groupId>org.apache.tomcat.maven</groupId>
           <artifactId>tomcat7-maven-plugin</artifactId>
-          <version>2.1</version>
+          <version>${master_plugin_tomcat7_version}</version>
         </plugin>
 
         <plugin>
           <groupId>com.mycila</groupId>
           <artifactId>license-maven-plugin</artifactId>
-          <version>${license-maven-plugin.version}</version>
+          <version>${master_plugin_license_version}</version>
+        </plugin>
+
+        <plugin>
+          <groupId>pl.project13.maven</groupId>
+          <artifactId>git-commit-id-plugin</artifactId>
+          <version>${master_plugin_git-commit-id_version}</version>
+        </plugin>
+
+        <plugin>
+          <groupId>org.jacoco</groupId>
+          <artifactId>jacoco-maven-plugin</artifactId>
+          <version>${master_plugin_jacoco_version}</version>
         </plugin>
 
         <plugin>
           <groupId>org.apache.felix</groupId>
           <artifactId>maven-bundle-plugin</artifactId>
-          <version>2.5.4</version>
+          <version>${master_plugin_bundle_version}</version>
         </plugin>
 
         <plugin>
           <groupId>org.eclipse.tycho</groupId>
           <artifactId>tycho-maven-plugin</artifactId>
-          <version>${tycho.version}</version>
+          <version>${master_plugin_tycho_version}</version>
         </plugin>
 
         <plugin>
           <groupId>org.eclipse.tycho.extras</groupId>
           <artifactId>tycho-pack200a-plugin</artifactId>
-          <version>${tycho.version}</version>
+          <version>${master_plugin_tycho_version}</version>
         </plugin>
 
         <plugin>
@@ -245,55 +357,55 @@
         <plugin>
           <groupId>org.eclipse.tycho.extras</groupId>
           <artifactId>tycho-pack200b-plugin</artifactId>
-          <version>${tycho.version}</version>
+          <version>${master_plugin_tycho_version}</version>
         </plugin>
 
         <plugin>
           <groupId>org.eclipse.tycho</groupId>
           <artifactId>target-platform-configuration</artifactId>
-          <version>${tycho.version}</version>
+          <version>${master_plugin_tycho_version}</version>
         </plugin>
 
         <plugin>
           <groupId>org.eclipse.tycho</groupId>
           <artifactId>tycho-packaging-plugin</artifactId>
-          <version>${tycho.version}</version>
+          <version>${master_plugin_tycho_version}</version>
         </plugin>
 
         <plugin>
           <groupId>org.eclipse.tycho</groupId>
           <artifactId>tycho-p2-director-plugin</artifactId>
-          <version>${tycho.version}</version>
+          <version>${master_plugin_tycho_version}</version>
         </plugin>
 
         <plugin>
           <groupId>org.eclipse.tycho</groupId>
           <artifactId>tycho-p2-repository-plugin</artifactId>
-          <version>${tycho.version}</version>
+          <version>${master_plugin_tycho_version}</version>
         </plugin>
 
         <plugin>
           <groupId>org.eclipse.tycho.extras</groupId>
           <artifactId>tycho-source-feature-plugin</artifactId>
-          <version>${tycho-extras.version}</version>
+          <version>${master_plugin_tycho-extras_version}</version>
         </plugin>
 
         <plugin>
           <groupId>org.eclipse.tycho.extras</groupId>
           <artifactId>tycho-custom-bundle-plugin</artifactId>
-          <version>${tycho-extras.version}</version>
+          <version>${master_plugin_tycho-extras_version}</version>
         </plugin>
 
         <plugin>
           <groupId>org.eclipse.tycho</groupId>
           <artifactId>tycho-p2-plugin</artifactId>
-          <version>${tycho.version}</version>
+          <version>${master_plugin_tycho_version}</version>
         </plugin>
 
         <plugin>
           <groupId>org.eclipse.tycho</groupId>
           <artifactId>tycho-p2-publisher-plugin</artifactId>
-          <version>${tycho.version}</version>
+          <version>${master_plugin_tycho_version}</version>
         </plugin>
       </plugins>
     </pluginManagement>
