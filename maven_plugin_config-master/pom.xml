@@ -143,7 +143,7 @@
           <artifactId>git-commit-id-plugin</artifactId>
           <configuration>
             <dateFormat>yyyy-MM-dd'T'HH:mm:ssZZ</dateFormat>
-            <verbose>true</verbose>
+            <!-- <verbose>true</verbose> -->
             <generateGitPropertiesFile>false</generateGitPropertiesFile>
             <skipPoms>true</skipPoms>
             <failOnNoGitDirectory>${master_git-id.fail-no-git}</failOnNoGitDirectory>
@@ -164,8 +164,7 @@
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-jar-plugin</artifactId>
           <configuration>
-            <!-- do not build an empty jar if the project is
-              e.g. a pom project -->
+            <!-- do not build an empty jar if the project is e.g. a pom project -->
             <skipIfEmpty>true</skipIfEmpty>
             <archive>
               <manifest>
@@ -201,7 +200,37 @@
           <artifactId>duplicate-finder-maven-plugin</artifactId>
           <configuration>
             <skip>${master_sanity-checks_skip}</skip>
+            <printEqualFiles>false</printEqualFiles>
             <failBuildInCaseOfConflict>true</failBuildInCaseOfConflict>
+            <failBuildInCaseOfDifferentContentConflict>true</failBuildInCaseOfDifferentContentConflict>
+            <failBuildInCaseOfEqualContentConflict>true</failBuildInCaseOfEqualContentConflict>
+            <checkCompileClasspath>true</checkCompileClasspath>
+            <checkRuntimeClasspath>true</checkRuntimeClasspath>
+            <checkTestClasspath>true</checkTestClasspath>
+            <quiet>false</quiet>
+            <preferLocal>true</preferLocal>
+            <useResultFile>false</useResultFile>
+            <includePomProjects>true</includePomProjects>
+            <ignoredResourcePatterns>
+              <ignoredResourcePattern>.*ico$</ignoredResourcePattern>
+              <ignoredResourcePattern>.*html$</ignoredResourcePattern>
+              <ignoredResourcePattern>.*xml$</ignoredResourcePattern>
+              <ignoredResourcePattern>.*properties$</ignoredResourcePattern>
+            </ignoredResourcePatterns>
+            <ignoredDependencies>
+              <!-- <dependency> -->
+              <!-- <groupId>org.hamcrest</groupId> -->
+              <!-- <artifactId>hamcrest-core</artifactId> -->
+              <!-- </dependency> -->
+              <!-- <dependency> -->
+              <!-- <groupId>org.apache.xmlgraphics</groupId> -->
+              <!-- <artifactId>batik-js</artifactId> -->
+              <!-- </dependency> -->
+              <!-- <dependency> -->
+              <!-- <groupId>org.mozilla</groupId> -->
+              <!-- <artifactId>rhino</artifactId> -->
+              <!-- </dependency> -->
+            </ignoredDependencies>
           </configuration>
         </plugin>
 
@@ -353,6 +382,31 @@
       </plugin>
 
       <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-resources-plugin</artifactId>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <executions>
+          <!-- Always build a jar with the test classes -->
+          <execution>
+            <id>attach-tests</id>
+            <goals>
+              <goal>test-jar</goal>
+            </goals>
+            <phase>package</phase>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
         <groupId>org.basepom.maven</groupId>
         <artifactId>duplicate-finder-maven-plugin</artifactId>
         <executions>
@@ -389,6 +443,25 @@
             <goals>
               <goal>enforce</goal>
             </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+      </plugin>
+
+      <plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>default</id>
+            <goals>
+              <goal>prepare-agent</goal>
+            </goals>
+            <phase>initialize</phase>
           </execution>
         </executions>
       </plugin>
@@ -538,7 +611,7 @@
               <execution>
                 <id>attach-test-sources</id>
                 <goals>
-                  <goal>test-jar</goal>
+                  <goal>test-jar-no-fork</goal>
                 </goals>
               </execution>
             </executions>
