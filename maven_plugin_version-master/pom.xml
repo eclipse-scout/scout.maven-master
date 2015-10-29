@@ -35,10 +35,10 @@
     <tycho-extras.version>${tycho.version}</tycho-extras.version>
     <jarsigner.version>1.1.2</jarsigner.version>
 
-    <forgeReleaseId>repo.eclipse.org</forgeReleaseId>
-    <forgeReleaseUrl>https://repo.eclipse.org/content/repositories/scout-releases/</forgeReleaseUrl>
-    <forgeSnapshotId>repo.eclipse.org</forgeSnapshotId>
-    <forgeSnapshotUrl>https://repo.eclipse.org/content/repositories/scout-snapshots/</forgeSnapshotUrl>
+    <master_deploy_ReleaseId>repo.eclipse.org</master_deploy_ReleaseId>
+    <master_deploy_ReleaseUrl>https://repo.eclipse.org/content/repositories/scout-releases/</master_deploy_ReleaseUrl>
+    <master_deploy_SnapshotId>repo.eclipse.org</master_deploy_SnapshotId>
+    <master_deploy_SnapshotUrl>https://repo.eclipse.org/content/repositories/scout-snapshots/</master_deploy_SnapshotUrl>
   </properties>
 
   <build>
@@ -398,14 +398,14 @@
 
   <distributionManagement>
     <repository>
-      <id>${forgeReleaseId}</id>
+      <id>${master_deploy_ReleaseId}</id>
       <name>Scout Repository - Releases</name>
-      <url>${forgeReleaseUrl}</url>
+      <url>${master_deploy_ReleaseUrl}</url>
     </repository>
     <snapshotRepository>
-      <id>${forgeSnapshotId}</id>
+      <id>${master_deploy_SnapshotId}</id>
       <name>Scout Repository - Snapshots</name>
-      <url>${forgeSnapshotUrl}</url>
+      <url>${master_deploy_SnapshotUrl}</url>
     </snapshotRepository>
     <site>
       <id>eclipse.scout.site</id>
