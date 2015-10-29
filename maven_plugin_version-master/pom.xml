@@ -9,8 +9,7 @@
   Contributors:
   BSI Business Systems Integration AG - initial API and implementation
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>org.eclipse.scout</groupId>
@@ -29,7 +28,6 @@
     <master_deploy_ReleaseUrl>https://repo.eclipse.org/content/repositories/scout-releases/</master_deploy_ReleaseUrl>
     <master_deploy_SnapshotId>repo.eclipse.org</master_deploy_SnapshotId>
     <master_deploy_SnapshotUrl>https://repo.eclipse.org/content/repositories/scout-snapshots/</master_deploy_SnapshotUrl>
-
 
     <!-- ####################################################################### -->
     <!-- Maven Plugin versions, ordered like http://maven.apache.org/plugins/ -->
@@ -132,6 +130,9 @@
 
     <!-- http://eclemma.org/jacoco/trunk/doc/maven.html -->
     <master_plugin_jacoco_version>0.7.5.201505241946</master_plugin_jacoco_version>
+
+    <!-- https://github.com/Ekryd/sortpom -->
+    <master_plugin_sortpom_version>2.4.0</master_plugin_sortpom_version>
 
     <!-- https://wiki.eclipse.org/Tycho -->
     <master_dependency_tycho-compiler_version>0.23.1</master_dependency_tycho-compiler_version>
@@ -331,6 +332,12 @@
         </plugin>
 
         <plugin>
+          <groupId>com.github.ekryd.sortpom</groupId>
+          <artifactId>sortpom-maven-plugin</artifactId>
+          <version>${master_plugin_sortpom_version}</version>
+        </plugin>
+
+        <plugin>
           <groupId>org.apache.felix</groupId>
           <artifactId>maven-bundle-plugin</artifactId>
           <version>${master_plugin_bundle_version}</version>
@@ -441,6 +448,8 @@
     </plugins>
   </build>
 
+  <inceptionYear>2015</inceptionYear>
+
   <licenses>
     <license>
       <name>Eclipse Public License v1.0</name>
@@ -484,7 +493,7 @@
       <url>https://repo.eclipse.org/content/groups/releases/</url>
     </repository>
     <repository>
-      <snapshots />
+      <snapshots></snapshots>
       <id>eclipse.snapshot</id>
       <name>eclipse-snapshot-repo</name>
       <url>https://repo.eclipse.org/content/groups/snapshots/</url>
@@ -501,7 +510,7 @@
       <url>https://repo.eclipse.org/content/groups/releases/</url>
     </pluginRepository>
     <pluginRepository>
-      <snapshots />
+      <snapshots></snapshots>
       <id>eclipse.snapshot</id>
       <name>eclipse-snapshot-repo</name>
       <url>https://repo.eclipse.org/content/groups/snapshots/</url>
@@ -528,6 +537,38 @@
   </distributionManagement>
 
   <profiles>
+    <profile>
+      <id>sortpom</id>
+      <activation>
+        <property>
+          <name>sort</name>
+        </property>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>com.github.ekryd.sortpom</groupId>
+            <artifactId>sortpom-maven-plugin</artifactId>
+            <configuration>
+              <createBackupFile>false</createBackupFile>
+              <predefinedSortOrder>custom_1</predefinedSortOrder>
+              <lineSeparator>\n</lineSeparator>
+              <keepBlankLines>true</keepBlankLines>
+              <sortDependencies>scope</sortDependencies>
+            </configuration>
+            <executions>
+              <execution>
+                <id>sort</id>
+                <goals>
+                  <goal>sort</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
     <profile>
       <id>scout-release</id>
       <activation>

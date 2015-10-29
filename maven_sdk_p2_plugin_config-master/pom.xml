@@ -34,7 +34,7 @@
               <filter>
                 <type>p2-installable-unit</type>
                 <id>org.eclipse.equinox.servletbridge.extensionbundle</id>
-                <removeAll />
+                <removeAll></removeAll>
               </filter>
             </filters>
             <resolver>p2</resolver>
@@ -111,7 +111,7 @@
   </build>
 
   <reporting>
-    <plugins />
+    <plugins></plugins>
   </reporting>
 
   <profiles>
