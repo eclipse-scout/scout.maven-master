@@ -71,7 +71,7 @@
     <master_plugin_gpg_version>1.6</master_plugin_gpg_version>
     <!-- <master_plugin_invoker_version>2.0.0</master_plugin_invoker_version> -->
     <master_plugin_release_version>2.5.3</master_plugin_release_version>
-    <!-- <master_plugin_scm_version>1.9.4</master_plugin_scm_version> -->
+    <master_plugin_scm_version>1.9.4</master_plugin_scm_version>
 
     <!-- ####################################################################### -->
     <!-- Outside The Maven Land (List at http://maven.apache.org/plugins/) -->
@@ -249,6 +249,12 @@
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-enforcer-plugin</artifactId>
           <version>${master_plugin_enforcer_version}</version>
+        </plugin>
+
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-scm-plugin</artifactId>
+          <version>${master_plugin_scm_version}</version>
         </plugin>
 
         <plugin>
@@ -564,7 +570,6 @@
               <predefinedSortOrder>custom_1</predefinedSortOrder>
               <lineSeparator>\n</lineSeparator>
               <keepBlankLines>true</keepBlankLines>
-              <sortDependencies>scope</sortDependencies>
             </configuration>
             <executions>
               <execution>

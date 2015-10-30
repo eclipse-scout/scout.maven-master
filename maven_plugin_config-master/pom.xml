@@ -392,7 +392,8 @@
           </executions>
         </plugin>
 
-        <!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
+        <!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build
+          itself. -->
         <plugin>
           <groupId>org.eclipse.m2e</groupId>
           <artifactId>lifecycle-mapping</artifactId>
@@ -739,6 +740,99 @@
                 <phase>verify</phase>
               </execution>
             </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <profile>
+      <id>release.usereleases</id>
+      <activation>
+        <activeByDefault>false</activeByDefault>
+      </activation>
+      <build>
+        <defaultGoal>org.codehaus.mojo:versions-maven-plugin:use-releases</defaultGoal>
+        <plugins>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>versions-maven-plugin</artifactId>
+            <configuration>
+              <generateBackupPoms>false</generateBackupPoms>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <profile>
+      <id>release.setversion</id>
+      <activation>
+        <activeByDefault>false</activeByDefault>
+      </activation>
+      <properties>
+        <milestone.version>I</milestone.version>
+        <newVersion>${base.version}.${milestone.version}</newVersion>
+      </properties>
+      <build>
+        <defaultGoal>org.codehaus.mojo:versions-maven-plugin:set scm:add scm:checkin</defaultGoal>
+        <plugins>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>versions-maven-plugin</artifactId>
+            <configuration>
+              <newVersion>${newVersion}</newVersion>
+              <generateBackupPoms>false</generateBackupPoms>
+            </configuration>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-scm-plugin</artifactId>
+            <configuration>
+              <connectionType>connection</connectionType>
+              <message>version updated to ${newVersion}</message>
+              <basedir>./</basedir>
+              <includes>*/pom.xml</includes>
+              <pushChanges>false</pushChanges>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <profile>
+      <id>release.tag</id>
+      <activation>
+        <activeByDefault>false</activeByDefault>
+      </activation>
+      <build>
+        <defaultGoal>scm:tag</defaultGoal>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-scm-plugin</artifactId>
+            <configuration>
+              <connectionType>connection</connectionType>
+              <tag>${project.version}</tag>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <profile>
+      <id>release.updatechilds</id>
+      <activation>
+        <activeByDefault>false</activeByDefault>
+      </activation>
+      <build>
+        <defaultGoal>org.codehaus.mojo:versions-maven-plugin:update-child-modules</defaultGoal>
+        <plugins>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>versions-maven-plugin</artifactId>
+            <configuration>
+              <generateBackupPoms>false</generateBackupPoms>
+            </configuration>
           </plugin>
         </plugins>
       </build>
