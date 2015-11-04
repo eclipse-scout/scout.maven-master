@@ -36,27 +36,30 @@
     <maven.min.version>3.2.1</maven.min.version>
     <maven.api.version>3.2.1</maven.api.version>
 
-    <deployAtEnd>true</deployAtEnd>
-    <master_sanity-checks_skip>false</master_sanity-checks_skip>
+    <master_deployAtEnd>true</master_deployAtEnd>
+    <master_sanity_checksSkip>false</master_sanity_checksSkip>
 
     <!-- Test Control -->
-    <master_unit-test_skip>false</master_unit-test_skip>
-    <master_web-test_skip>false</master_web-test_skip>
+    <master_unitTest_skip>false</master_unitTest_skip>
+    <master_webTest_skip>false</master_webTest_skip>
     <master_coverage_skip>false</master_coverage_skip>
 
     <!-- Release Control -->
-    <master_release_push-changes>false</master_release_push-changes>
-    <master_release_tag-name>${project.version}</master_release_tag-name>
+    <master_release_pushChanges>false</master_release_pushChanges>
+    <master_release_tagName>${project.version}</master_release_tagName>
 
     <!-- Git Information Control -->
-    <master_git-id.skip>false</master_git-id.skip>
-    <master_git-id.fail-no-git>false</master_git-id.fail-no-git>
-    <master_git-id.use-native>false</master_git-id.use-native>
+    <master_git-id_skip>false</master_git-id_skip>
+    <master_git-id_failNoGit>false</master_git-id_failNoGit>
+    <master_git-id_useNative>false</master_git-id_useNative>
 
-    <!-- Surefire Fork Control -->
-    <master_test_fork-count>1.0C</master_test_fork-count>
-    <master_test_reuse-vm>true</master_test_reuse-vm>
+    <!-- Surefire/Failsafe Fork Control -->
+    <master_test_forkCount>1.0C</master_test_forkCount>
+    <master_test_reuseVm>true</master_test_reuseVm>
     <master_test_timeout>30</master_test_timeout>
+    <master_test_jvmMemory>-Xms512m -Xmx2048m -XX:MaxPermSize=256m</master_test_jvmMemory>
+    <master_test_remoteDebugPort>8000</master_test_remoteDebugPort>
+    <master_test_debugArgLine>-Xdebug -Xrunjdwp:transport=dt_socket,address=${master_test_remoteDebugPort},server=y,suspend=n</master_test_debugArgLine>
   </properties>
 
   <build>
@@ -67,6 +70,23 @@
           <artifactId>maven-resources-plugin</artifactId>
           <configuration>
             <encoding>${project.build.sourceEncoding}</encoding>
+            <!--
+              The delimiter will be used if subprojects set the <filtering> tag to true.
+              It specifies the form for properties to be replaced.
+            -->
+            <delimiters>
+              <delimiter>${*}</delimiter>
+            </delimiters>
+            <nonFilteredFileExtensions>
+              <nonFilteredFileExtension>ico</nonFilteredFileExtension>
+              <nonFilteredFileExtension>png</nonFilteredFileExtension>
+              <nonFilteredFileExtension>pdf</nonFilteredFileExtension>
+              <nonFilteredFileExtension>jar</nonFilteredFileExtension>
+              <nonFilteredFileExtension>doc</nonFilteredFileExtension>
+              <nonFilteredFileExtension>docx</nonFilteredFileExtension>
+              <nonFilteredFileExtension>xls</nonFilteredFileExtension>
+              <nonFilteredFileExtension>xlsx</nonFilteredFileExtension>
+            </nonFilteredFileExtensions>
           </configuration>
         </plugin>
 
@@ -96,9 +116,11 @@
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-surefire-plugin</artifactId>
           <configuration>
+            <failIfNoTests>false</failIfNoTests>
             <testFailureIgnore>true</testFailureIgnore>
-            <skipTests>${master_unit-test_skip}</skipTests>
-            <argLine>${argLine} -Dfile.encoding=${project.build.sourceEncoding}</argLine>
+            <skipTests>${master_unitTest_skip}</skipTests>
+            <!-- inject debug arguments (triggered by system property debugTests from jenkins) -->
+            <argLine>${argLine} ${master_test_jacocoArgLine} ${master_test_jvmMemory} ${master_test_debugArgLine} -Dfile.encoding=${project.build.sourceEncoding}</argLine>
             <systemPropertyVariables>
               <sun.jnu.encoding>${project.build.sourceEncoding}</sun.jnu.encoding>
               <user.timezone>UTC</user.timezone>
@@ -106,8 +128,8 @@
               <java.util.logging.SimpleFormatter.format>%1$tY-%1$tm-%1$td %1$tH:%1$tM:%1$tS %4$s %5$s%6$s%n</java.util.logging.SimpleFormatter.format>
             </systemPropertyVariables>
             <runOrder>failedfirst</runOrder>
-            <reuseForks>${master_test_reuse-vm}</reuseForks>
-            <forkCount>${master_test_fork-count}</forkCount>
+            <forkCount>${master_test_forkCount}</forkCount>
+            <reuseForks>${master_test_reuseVm}</reuseForks>
             <forkedProcessTimeoutInSeconds>${master_test_timeout}</forkedProcessTimeoutInSeconds>
             <useManifestOnlyJar>false</useManifestOnlyJar>
           </configuration>
@@ -115,9 +137,42 @@
 
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-failsafe-plugin</artifactId>
+          <configuration>
+            <failIfNoTests>false</failIfNoTests>
+            <testFailureIgnore>true</testFailureIgnore>
+            <skipTests>${master_unitTest_skip}</skipTests>
+            <!-- inject debug arguments (triggered by system property debugTests from jenkins) -->
+            <argLine>${argLine} ${master_test_jacocoArgLine} ${master_test_jvmMemory} ${master_test_debugArgLine} -Dfile.encoding=${project.build.sourceEncoding}</argLine>
+            <systemPropertyVariables>
+              <sun.jnu.encoding>${project.build.sourceEncoding}</sun.jnu.encoding>
+              <user.timezone>UTC</user.timezone>
+              <java.awt.headless>true</java.awt.headless>
+              <java.util.logging.SimpleFormatter.format>%1$tY-%1$tm-%1$td %1$tH:%1$tM:%1$tS %4$s %5$s%6$s%n</java.util.logging.SimpleFormatter.format>
+            </systemPropertyVariables>
+            <runOrder>failedfirst</runOrder>
+            <!-- failsafe must be forked into its own process in order to enable jacoco's java agent -->
+            <forkCount>${master_test_forkCount}</forkCount>
+            <reuseForks>${master_test_reuseVm}</reuseForks>
+            <forkedProcessTimeoutInSeconds>${master_test_timeout}</forkedProcessTimeoutInSeconds>
+            <useManifestOnlyJar>false</useManifestOnlyJar>
+          </configuration>
+        </plugin>
+
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-dependency-plugin</artifactId>
+          <configuration>
+            <overWriteReleases>false</overWriteReleases>
+            <overWriteSnapshots>true</overWriteSnapshots>
+          </configuration>
+        </plugin>
+
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-deploy-plugin</artifactId>
           <configuration>
-            <deployAtEnd>${deployAtEnd}</deployAtEnd>
+            <deployAtEnd>${master_deployAtEnd}</deployAtEnd>
           </configuration>
         </plugin>
 
@@ -126,12 +181,12 @@
           <artifactId>maven-release-plugin</artifactId>
           <configuration>
             <autoVersionSubmodules>true</autoVersionSubmodules>
-            <tagNameFormat>${master_release_tag-name}</tagNameFormat>
+            <tagNameFormat>${master_release_tagName}</tagNameFormat>
             <addSchema>true</addSchema>
             <detail>true</detail>
             <indentSize>2</indentSize>
             <localCheckout>true</localCheckout>
-            <pushChanges>${master_release_push-changes}</pushChanges>
+            <pushChanges>${master_release_pushChanges}</pushChanges>
             <arguments>${arguments} --batch-mode -Drelease-build</arguments>
             <useReleaseProfile>false</useReleaseProfile>
             <goals>install</goals>
@@ -146,9 +201,9 @@
             <!-- <verbose>true</verbose> -->
             <generateGitPropertiesFile>false</generateGitPropertiesFile>
             <skipPoms>true</skipPoms>
-            <failOnNoGitDirectory>${master_git-id.fail-no-git}</failOnNoGitDirectory>
-            <skip>${master_git-id.skip}</skip>
-            <useNativeGit>${master_git-id.use-native}</useNativeGit>
+            <failOnNoGitDirectory>${master_git-id_failNoGit}</failOnNoGitDirectory>
+            <skip>${master_git-id_skip}</skip>
+            <useNativeGit>${master_git-id_useNative}</useNativeGit>
             <abbrevLength>10</abbrevLength>
             <gitDescribe>
               <always>true</always>
@@ -196,10 +251,20 @@
         </plugin>
 
         <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-war-plugin</artifactId>
+          <configuration>
+            <nonFilteredFileExtensions>
+              <nonFilteredFileExtension>jar</nonFilteredFileExtension>
+            </nonFilteredFileExtensions>
+          </configuration>
+        </plugin>
+
+        <plugin>
           <groupId>org.basepom.maven</groupId>
           <artifactId>duplicate-finder-maven-plugin</artifactId>
           <configuration>
-            <skip>${master_sanity-checks_skip}</skip>
+            <skip>${master_sanity_checksSkip}</skip>
             <printEqualFiles>false</printEqualFiles>
             <failBuildInCaseOfConflict>true</failBuildInCaseOfConflict>
             <failBuildInCaseOfDifferentContentConflict>true</failBuildInCaseOfDifferentContentConflict>
@@ -216,21 +281,9 @@
               <ignoredResourcePattern>.*html$</ignoredResourcePattern>
               <ignoredResourcePattern>.*xml$</ignoredResourcePattern>
               <ignoredResourcePattern>.*properties$</ignoredResourcePattern>
+              <ignoredResourcePattern>.*gitkeep$</ignoredResourcePattern>
+              <ignoredResourcePattern>.*sql$</ignoredResourcePattern>
             </ignoredResourcePatterns>
-            <ignoredDependencies>
-              <!-- <dependency> -->
-              <!-- <groupId>org.hamcrest</groupId> -->
-              <!-- <artifactId>hamcrest-core</artifactId> -->
-              <!-- </dependency> -->
-              <!-- <dependency> -->
-              <!-- <groupId>org.apache.xmlgraphics</groupId> -->
-              <!-- <artifactId>batik-js</artifactId> -->
-              <!-- </dependency> -->
-              <!-- <dependency> -->
-              <!-- <groupId>org.mozilla</groupId> -->
-              <!-- <artifactId>rhino</artifactId> -->
-              <!-- </dependency> -->
-            </ignoredDependencies>
           </configuration>
         </plugin>
 
@@ -239,6 +292,8 @@
           <artifactId>jacoco-maven-plugin</artifactId>
           <configuration>
             <skip>${master_coverage_skip}</skip>
+            <destFile>${basedir}/../jacoco-all.exec</destFile>
+            <propertyName>master_test_jacocoArgLine</propertyName>
           </configuration>
         </plugin>
 
@@ -257,7 +312,7 @@
             <!-- <artifactId>java18</artifactId> -->
             <!-- <version>1.0</version> -->
             <!-- </signature> -->
-            <skip>${master_sanity-checks_skip}</skip>
+            <skip>${master_sanity_checksSkip}</skip>
           </configuration>
         </plugin>
 
@@ -302,7 +357,7 @@
               <less>SCOUT_JAVADOC_STYLE</less>
               <css>SCOUT_JAVADOC_STYLE</css>
             </mapping>
-            <skip>${master_sanity-checks_skip}</skip>
+            <skip>${master_sanity_checksSkip}</skip>
           </configuration>
           <dependencies>
             <dependency>
@@ -579,8 +634,8 @@
         </property>
       </activation>
       <properties>
-        <master_unit-test_skip>true</master_unit-test_skip>
-        <master_web-test_skip>true</master_web-test_skip>
+        <master_unitTest_skip>true</master_unitTest_skip>
+        <master_webTest_skip>true</master_webTest_skip>
         <master_coverage_skip>true</master_coverage_skip>
       </properties>
     </profile>
@@ -589,7 +644,7 @@
       <!-- skip checks for faster development-build -->
       <id>dev</id>
       <properties>
-        <master_sanity-checks_skip>true</master_sanity-checks_skip>
+        <master_sanity_checksSkip>true</master_sanity_checksSkip>
         <enforcer.skip>true</enforcer.skip>
         <master_coverage_skip>true</master_coverage_skip>
       </properties>
