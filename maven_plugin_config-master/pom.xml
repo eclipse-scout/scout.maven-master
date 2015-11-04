@@ -859,15 +859,27 @@
               <generateBackupPoms>false</generateBackupPoms>
             </configuration>
           </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <profile>
+      <id>release.checkin</id>
+      <activation>
+        <activeByDefault>false</activeByDefault>
+      </activation>
+      <build>
+        <defaultGoal>scm:add scm:checkin</defaultGoal>
+        <plugins>
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-scm-plugin</artifactId>
             <configuration>
               <connectionType>connection</connectionType>
-              <message>version updated to ${newVersion}</message>
+              <message>version updated to ${plugin.version}</message>
               <basedir>./</basedir>
               <includes>*/pom.xml</includes>
-              <pushChanges>false</pushChanges>
+              <pushChanges>${master_release_pushChanges}</pushChanges>
             </configuration>
           </plugin>
         </plugins>
