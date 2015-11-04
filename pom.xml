@@ -46,6 +46,8 @@
             <generatePom>false</generatePom>
             <packaging>pom</packaging>
             <version>${project.version}</version>
+            <repositoryId>${master_deploy_SnapshotId}</repositoryId>
+            <url>${master_deploy_SnapshotUrl}</url>
           </configuration>
         </plugin>
       </plugins>
@@ -252,6 +254,8 @@
                 <generatePom>false</generatePom>
                 <packaging>pom</packaging>
                 <version>${project.version}</version>
+                <repositoryId>${master_deploy_ReleaseId}</repositoryId>
+                <url>${master_deploy_ReleaseUrl}</url>
                 <updateReleaseInfo>true</updateReleaseInfo>
                 <!-- sign-and-deploy-file -->
               </configuration>
