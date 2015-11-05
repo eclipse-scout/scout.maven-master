@@ -292,7 +292,7 @@
           <artifactId>jacoco-maven-plugin</artifactId>
           <configuration>
             <skip>${master_coverage_skip}</skip>
-            <destFile>${basedir}/../jacoco-all.exec</destFile>
+            <destFile>${basedir}/../target/jacoco-all.exec</destFile>
             <propertyName>master_test_jacocoArgLine</propertyName>
           </configuration>
         </plugin>
