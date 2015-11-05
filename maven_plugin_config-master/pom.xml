@@ -45,10 +45,6 @@
     <master_webTest_skip>false</master_webTest_skip>
     <master_coverage_skip>false</master_coverage_skip>
 
-    <!-- Release Control -->
-    <master_release_pushChanges>false</master_release_pushChanges>
-    <master_release_tagName>${project.version}</master_release_tagName>
-
     <!-- Git Information Control -->
     <master_git-id_skip>false</master_git-id_skip>
     <master_git-id_failNoGit>false</master_git-id_failNoGit>
@@ -62,6 +58,13 @@
     <master_test_remoteDebugPort>8000</master_test_remoteDebugPort>
     <master_test_debugArgLine>-Xdebug -Xrunjdwp:transport=dt_socket,address=${master_test_remoteDebugPort},server=y,suspend=n</master_test_debugArgLine>
     <master_test_argLine>${master_test_jacocoArgLine} ${master_test_jvmMemory} -Dfile.encoding=${project.build.sourceEncoding}</master_test_argLine>
+
+    <!-- Release Control -->
+    <master_release_pushChanges>false</master_release_pushChanges>
+    <master_release_milestoneVersion>I</master_release_milestoneVersion>
+    <master_release_newVersion>${base.version}.${master_release_milestoneVersion}</master_release_newVersion>
+    <master_release_tagName>${master_release_newVersion}</master_release_tagName>
+    <master_release_checkinMessage>version updated to ${project.version}</master_release_checkinMessage>
   </properties>
 
   <build>
@@ -824,34 +827,10 @@
     </profile>
 
     <profile>
-      <id>release.usereleases</id>
-      <activation>
-        <activeByDefault>false</activeByDefault>
-      </activation>
-      <build>
-        <defaultGoal>org.codehaus.mojo:versions-maven-plugin:use-releases</defaultGoal>
-        <plugins>
-          <plugin>
-            <groupId>org.codehaus.mojo</groupId>
-            <artifactId>versions-maven-plugin</artifactId>
-            <configuration>
-              <generateBackupPoms>false</generateBackupPoms>
-            </configuration>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-
-    <profile>
       <id>release.setversion</id>
       <activation>
         <activeByDefault>false</activeByDefault>
       </activation>
-      <properties>
-        <milestone.version>I</milestone.version>
-        <newVersion>${base.version}.${milestone.version}</newVersion>
-        <tag>${newVersion}</tag>
-      </properties>
       <build>
         <defaultGoal>org.codehaus.mojo:versions-maven-plugin:set com.google.code.maven-replacer-plugin:replacer:replace</defaultGoal>
         <plugins>
@@ -859,7 +838,7 @@
             <groupId>org.codehaus.mojo</groupId>
             <artifactId>versions-maven-plugin</artifactId>
             <configuration>
-              <newVersion>${newVersion}</newVersion>
+              <newVersion>${master_release_newVersion}</newVersion>
               <generateBackupPoms>false</generateBackupPoms>
             </configuration>
           </plugin>
@@ -872,9 +851,9 @@
               <includes>
                 <include>pom.xml</include>
               </includes>
-              <!-- token finds the <scm><tag> and places the ${tag} string there -->
+              <!-- token finds the <scm><tag> and places the ${master_release_tagName} string there -->
               <token>(\\x3cscm\\x3e[a-zA-Z0-9\\x3c\\x3e:/@\\s\\.]*\\x3ctag\\x3e).*(\\x3c/tag\\x3e[a-zA-Z0-9\\x3c\\x3e:/@\\s\\.]*\\x3c/scm\\x3e)</token>
-              <value>$1${tag}$2</value>
+              <value>$1${master_release_tagName}$2</value>
               <unescape>true</unescape>
             </configuration>
           </plugin>
@@ -887,9 +866,6 @@
       <activation>
         <activeByDefault>false</activeByDefault>
       </activation>
-      <properties>
-        <checkinMessage>version updated to ${plugin.version}</checkinMessage>
-      </properties>
       <build>
         <defaultGoal>scm:add scm:checkin</defaultGoal>
         <plugins>
@@ -897,8 +873,8 @@
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-scm-plugin</artifactId>
             <configuration>
-              <connectionType>connection</connectionType>
-              <message>${checkinMessage}</message>
+              <connectionType>developerConnection</connectionType>
+              <message>${master_release_checkinMessage}</message>
               <basedir>./</basedir>
               <includes>*/pom.xml</includes>
               <pushChanges>${master_release_pushChanges}</pushChanges>
@@ -914,7 +890,7 @@
         <activeByDefault>false</activeByDefault>
       </activation>
       <properties>
-        <tag>${project.version}</tag>
+        <master_release_tagName>${project.version}</master_release_tagName>
       </properties>
       <build>
         <defaultGoal>scm:tag</defaultGoal>
@@ -923,27 +899,8 @@
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-scm-plugin</artifactId>
             <configuration>
-              <connectionType>connection</connectionType>
-              <tag>${tag}</tag>
-            </configuration>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-
-    <profile>
-      <id>release.updatechilds</id>
-      <activation>
-        <activeByDefault>false</activeByDefault>
-      </activation>
-      <build>
-        <defaultGoal>org.codehaus.mojo:versions-maven-plugin:update-child-modules</defaultGoal>
-        <plugins>
-          <plugin>
-            <groupId>org.codehaus.mojo</groupId>
-            <artifactId>versions-maven-plugin</artifactId>
-            <configuration>
-              <generateBackupPoms>false</generateBackupPoms>
+              <connectionType>developerConnection</connectionType>
+              <tag>${master_release_tagName}</tag>
             </configuration>
           </plugin>
         </plugins>
