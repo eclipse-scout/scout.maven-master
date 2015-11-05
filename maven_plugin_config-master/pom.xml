@@ -120,7 +120,7 @@
             <testFailureIgnore>true</testFailureIgnore>
             <skipTests>${master_unitTest_skip}</skipTests>
             <!-- inject debug arguments (triggered by system property debugTests from jenkins) -->
-            <argLine>${argLine} ${master_test_jacocoArgLine} ${master_test_jvmMemory} ${master_test_debugArgLine} -Dfile.encoding=${project.build.sourceEncoding}</argLine>
+            <argLine>${master_test_jacocoArgLine} ${master_test_jvmMemory} ${master_test_debugArgLine} -Dfile.encoding=${project.build.sourceEncoding}</argLine>
             <systemPropertyVariables>
               <sun.jnu.encoding>${project.build.sourceEncoding}</sun.jnu.encoding>
               <user.timezone>UTC</user.timezone>
@@ -143,7 +143,7 @@
             <testFailureIgnore>true</testFailureIgnore>
             <skipTests>${master_unitTest_skip}</skipTests>
             <!-- inject debug arguments (triggered by system property debugTests from jenkins) -->
-            <argLine>${argLine} ${master_test_jacocoArgLine} ${master_test_jvmMemory} ${master_test_debugArgLine} -Dfile.encoding=${project.build.sourceEncoding}</argLine>
+            <argLine>${master_test_jacocoArgLine} ${master_test_jvmMemory} ${master_test_debugArgLine} -Dfile.encoding=${project.build.sourceEncoding}</argLine>
             <systemPropertyVariables>
               <sun.jnu.encoding>${project.build.sourceEncoding}</sun.jnu.encoding>
               <user.timezone>UTC</user.timezone>
