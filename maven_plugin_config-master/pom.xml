@@ -41,6 +41,7 @@
 
     <!-- Test Control -->
     <master_unitTest_skip>false</master_unitTest_skip>
+    <master_unitTest_failureIgnore>true</master_unitTest_failureIgnore>
     <master_webTest_skip>false</master_webTest_skip>
     <master_coverage_skip>false</master_coverage_skip>
 
@@ -54,12 +55,13 @@
     <master_git-id_useNative>false</master_git-id_useNative>
 
     <!-- Surefire/Failsafe Fork Control -->
-    <master_test_forkCount>1.0C</master_test_forkCount>
+    <master_test_forkCount>0.5C</master_test_forkCount>
     <master_test_reuseVm>true</master_test_reuseVm>
     <master_test_timeout>30</master_test_timeout>
     <master_test_jvmMemory>-Xms512m -Xmx2048m -XX:MaxPermSize=256m</master_test_jvmMemory>
     <master_test_remoteDebugPort>8000</master_test_remoteDebugPort>
     <master_test_debugArgLine>-Xdebug -Xrunjdwp:transport=dt_socket,address=${master_test_remoteDebugPort},server=y,suspend=n</master_test_debugArgLine>
+    <master_test_argLine>${master_test_jacocoArgLine} ${master_test_jvmMemory} -Dfile.encoding=${project.build.sourceEncoding}</master_test_argLine>
   </properties>
 
   <build>
@@ -117,10 +119,10 @@
           <artifactId>maven-surefire-plugin</artifactId>
           <configuration>
             <failIfNoTests>false</failIfNoTests>
-            <testFailureIgnore>true</testFailureIgnore>
+            <testFailureIgnore>${master_unitTest_failureIgnore}</testFailureIgnore>
             <skipTests>${master_unitTest_skip}</skipTests>
             <!-- inject debug arguments (triggered by system property debugTests from jenkins) -->
-            <argLine>${master_test_jacocoArgLine} ${master_test_jvmMemory} ${master_test_debugArgLine} -Dfile.encoding=${project.build.sourceEncoding}</argLine>
+            <argLine>${master_test_argLine}</argLine>
             <systemPropertyVariables>
               <sun.jnu.encoding>${project.build.sourceEncoding}</sun.jnu.encoding>
               <user.timezone>UTC</user.timezone>
@@ -140,10 +142,10 @@
           <artifactId>maven-failsafe-plugin</artifactId>
           <configuration>
             <failIfNoTests>false</failIfNoTests>
-            <testFailureIgnore>true</testFailureIgnore>
+            <testFailureIgnore>${master_unitTest_failureIgnore}</testFailureIgnore>
             <skipTests>${master_unitTest_skip}</skipTests>
             <!-- inject debug arguments (triggered by system property debugTests from jenkins) -->
-            <argLine>${master_test_jacocoArgLine} ${master_test_jvmMemory} ${master_test_debugArgLine} -Dfile.encoding=${project.build.sourceEncoding}</argLine>
+            <argLine>${master_test_argLine}</argLine>
             <systemPropertyVariables>
               <sun.jnu.encoding>${project.build.sourceEncoding}</sun.jnu.encoding>
               <user.timezone>UTC</user.timezone>
@@ -679,7 +681,8 @@
         </property>
       </activation>
       <properties>
-        <debugArgLine>-Xdebug -Xrunjdwp:transport=dt_socket,address=${remote.debug.port},server=y,suspend=y</debugArgLine>
+        <master_test_argLine>${master_test_jacocoArgLine} ${master_test_jvmMemory} ${master_test_debugArgLine} -Dfile.encoding=${project.build.sourceEncoding}</master_test_argLine>
+        <master_test_forkCount>1</master_test_forkCount>
       </properties>
     </profile>
 
