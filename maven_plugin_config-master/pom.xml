@@ -847,9 +847,10 @@
       <properties>
         <milestone.version>I</milestone.version>
         <newVersion>${base.version}.${milestone.version}</newVersion>
+        <tag>${newVersion}</tag>
       </properties>
       <build>
-        <defaultGoal>org.codehaus.mojo:versions-maven-plugin:set scm:add scm:checkin</defaultGoal>
+        <defaultGoal>org.codehaus.mojo:versions-maven-plugin:set com.google.code.maven-replacer-plugin:replacer:replace</defaultGoal>
         <plugins>
           <plugin>
             <groupId>org.codehaus.mojo</groupId>
@@ -857,6 +858,21 @@
             <configuration>
               <newVersion>${newVersion}</newVersion>
               <generateBackupPoms>false</generateBackupPoms>
+            </configuration>
+          </plugin>
+
+          <plugin>
+            <groupId>com.google.code.maven-replacer-plugin</groupId>
+            <artifactId>replacer</artifactId>
+            <configuration>
+              <basedir>${project.basedir}</basedir>
+              <includes>
+                <include>pom.xml</include>
+              </includes>
+              <!-- token finds the <scm><tag> and places the ${tag} string there -->
+              <token>(\\x3cscm\\x3e[a-zA-Z0-9\\x3c\\x3e:/@\\s\\.]*\\x3ctag\\x3e).*(\\x3c/tag\\x3e[a-zA-Z0-9\\x3c\\x3e:/@\\s\\.]*\\x3c/scm\\x3e)</token>
+              <value>$1${tag}$2</value>
+              <unescape>true</unescape>
             </configuration>
           </plugin>
         </plugins>
@@ -868,6 +884,9 @@
       <activation>
         <activeByDefault>false</activeByDefault>
       </activation>
+      <properties>
+        <checkinMessage>version updated to ${plugin.version}</checkinMessage>
+      </properties>
       <build>
         <defaultGoal>scm:add scm:checkin</defaultGoal>
         <plugins>
@@ -876,7 +895,7 @@
             <artifactId>maven-scm-plugin</artifactId>
             <configuration>
               <connectionType>connection</connectionType>
-              <message>version updated to ${plugin.version}</message>
+              <message>${checkinMessage}</message>
               <basedir>./</basedir>
               <includes>*/pom.xml</includes>
               <pushChanges>${master_release_pushChanges}</pushChanges>
@@ -891,6 +910,9 @@
       <activation>
         <activeByDefault>false</activeByDefault>
       </activation>
+      <properties>
+        <tag>${project.version}</tag>
+      </properties>
       <build>
         <defaultGoal>scm:tag</defaultGoal>
         <plugins>
@@ -899,7 +921,7 @@
             <artifactId>maven-scm-plugin</artifactId>
             <configuration>
               <connectionType>connection</connectionType>
-              <tag>${project.version}</tag>
+              <tag>${tag}</tag>
             </configuration>
           </plugin>
         </plugins>

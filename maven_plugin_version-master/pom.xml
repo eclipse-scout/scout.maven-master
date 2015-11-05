@@ -144,6 +144,12 @@
     <!-- https://github.com/mojohaus/flatten-maven-plugin -->
     <master_plugin_flatten_version>1.0.0-beta-5</master_plugin_flatten_version>
 
+    <!-- https://code.google.com/p/maven-replacer-plugin/ -->
+    <!-- https://github.com/dtracers/maven-replacer-plugin -->
+    <!-- dtracer has a newer version which isn't yet on jcenter or central -->
+    <!-- <master_plugin_replacer_version>1.6.2</master_plugin_replacer_version> -->
+    <master_plugin_replacer_version>1.5.3</master_plugin_replacer_version>
+
     <!-- https://wiki.eclipse.org/Tycho -->
     <master_dependency_tycho-compiler_version>0.23.1</master_dependency_tycho-compiler_version>
     <!-- version of Tycho used by org.eclipse.scout.sdk.core.releng build and profiles eclipse-sign and eclipse-pack -->
@@ -381,6 +387,14 @@
           <groupId>org.codehaus.mojo</groupId>
           <artifactId>flatten-maven-plugin</artifactId>
           <version>${master_plugin_flatten_version}</version>
+        </plugin>
+
+        <plugin>
+          <groupId>com.google.code.maven-replacer-plugin</groupId>
+          <artifactId>replacer</artifactId>
+          <!-- <groupId>com.github.dtracers</groupId> -->
+          <!-- <artifactId>maven-replacer-plugin</artifactId> -->
+          <version>${master_plugin_replacer_version}</version>
         </plugin>
 
         <plugin>
