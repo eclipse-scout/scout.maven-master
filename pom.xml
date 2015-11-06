@@ -270,7 +270,7 @@
               <execution>
                 <id>maven_plugin_version-master</id>
                 <goals>
-                  <goal>deploy-file</goal>
+                  <goal>sign-and-deploy-file</goal>
                 </goals>
                 <phase>deploy</phase>
                 <configuration>
@@ -281,7 +281,7 @@
               <execution>
                 <id>maven_plugin_config-master</id>
                 <goals>
-                  <goal>deploy-file</goal>
+                  <goal>sign-and-deploy-file</goal>
                 </goals>
                 <phase>deploy</phase>
                 <configuration>
@@ -292,7 +292,7 @@
               <execution>
                 <id>maven_rt_plugin_config-master</id>
                 <goals>
-                  <goal>deploy-file</goal>
+                  <goal>sign-and-deploy-file</goal>
                 </goals>
                 <phase>deploy</phase>
                 <configuration>
@@ -303,7 +303,7 @@
               <execution>
                 <id>maven_sdk_plugin_config-master</id>
                 <goals>
-                  <goal>deploy-file</goal>
+                  <goal>sign-and-deploy-file</goal>
                 </goals>
                 <phase>deploy</phase>
                 <configuration>
@@ -314,7 +314,7 @@
               <execution>
                 <id>maven_sdk_p2_plugin_config-master</id>
                 <goals>
-                  <goal>deploy-file</goal>
+                  <goal>sign-and-deploy-file</goal>
                 </goals>
                 <phase>deploy</phase>
                 <configuration>
