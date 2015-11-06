@@ -15,7 +15,7 @@
   <parent>
     <groupId>org.eclipse.scout</groupId>
     <artifactId>maven_plugin_version-master</artifactId>
-    <version>1.6-SNAPSHOT</version>
+    <version>1.6</version>
     <relativePath>../maven_plugin_version-master</relativePath>
   </parent>
 
@@ -405,7 +405,7 @@
                 </excludes>
                 <searchTransitive>true</searchTransitive>
               </bannedDependencies>
-              <banDuplicatePomDependencyVersions></banDuplicatePomDependencyVersions>
+              <banDuplicatePomDependencyVersions />
               <!-- can't be used until html ui in eclipse repo and of the tools-build
                 <reactorModuleConvergence /> -->
               <requireSameVersions>
@@ -471,7 +471,7 @@
                     </goals>
                   </pluginExecutionFilter>
                   <action>
-                    <ignore></ignore>
+                    <ignore />
                   </action>
                 </pluginExecution>
               </pluginExecutions>

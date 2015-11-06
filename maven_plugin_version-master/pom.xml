@@ -14,7 +14,7 @@
 
   <groupId>org.eclipse.scout</groupId>
   <artifactId>maven_plugin_version-master</artifactId>
-  <version>1.6-SNAPSHOT</version>
+  <version>1.6</version>
   <packaging>pom</packaging>
 
   <prerequisites>
@@ -534,7 +534,7 @@
 
   <scm>
     <connection>scm:git:git://git.eclipse.org/gitroot/scout/maven-master.git</connection>
-    <tag>master</tag>
+    <tag>v1.6</tag>
     <url>https://git.eclipse.org/c/scout/maven-master.git/</url>
   </scm>
 
@@ -553,7 +553,7 @@
       <url>https://repo.eclipse.org/content/groups/releases/</url>
     </repository>
     <repository>
-      <snapshots></snapshots>
+      <snapshots />
       <id>eclipse.snapshot</id>
       <name>eclipse-snapshot-repo</name>
       <url>https://repo.eclipse.org/content/groups/snapshots/</url>
@@ -570,7 +570,7 @@
       <url>https://repo.eclipse.org/content/groups/releases/</url>
     </pluginRepository>
     <pluginRepository>
-      <snapshots></snapshots>
+      <snapshots />
       <id>eclipse.snapshot</id>
       <name>eclipse-snapshot-repo</name>
       <url>https://repo.eclipse.org/content/groups/snapshots/</url>
