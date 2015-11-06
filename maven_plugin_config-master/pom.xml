@@ -9,7 +9,8 @@
   Contributors:
   BSI Business Systems Integration AG - initial API and implementation
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
@@ -56,8 +57,10 @@
     <master_test_timeout>30</master_test_timeout>
     <master_test_jvmMemory>-Xms512m -Xmx2048m -XX:MaxPermSize=256m</master_test_jvmMemory>
     <master_test_remoteDebugPort>8000</master_test_remoteDebugPort>
-    <master_test_debugArgLine>-Xdebug -Xrunjdwp:transport=dt_socket,address=${master_test_remoteDebugPort},server=y,suspend=n</master_test_debugArgLine>
-    <master_test_argLine>${master_test_jacocoArgLine} ${master_test_jvmMemory} -Dfile.encoding=${project.build.sourceEncoding}</master_test_argLine>
+    <master_test_debugArgLine>-Xdebug
+      -Xrunjdwp:transport=dt_socket,address=${master_test_remoteDebugPort},server=y,suspend=n</master_test_debugArgLine>
+    <master_test_argLine>${master_test_jacocoArgLine} ${master_test_jvmMemory}
+      -Dfile.encoding=${project.build.sourceEncoding}</master_test_argLine>
 
     <!-- Release Control -->
     <master_release_pushChanges>false</master_release_pushChanges>
@@ -605,7 +608,8 @@
       </plugin>
 
       <plugin>
-        <!-- until there is a automatic nightly build include sources in every build (snapshot and release). Default would be only to include sources in the release profile. -->
+        <!-- until there is a automatic nightly build include sources in every build (snapshot and release). Default would
+          be only to include sources in the release profile. -->
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-source-plugin</artifactId>
         <executions>
@@ -684,7 +688,8 @@
         </property>
       </activation>
       <properties>
-        <master_test_argLine>${master_test_jacocoArgLine} ${master_test_jvmMemory} ${master_test_debugArgLine} -Dfile.encoding=${project.build.sourceEncoding}</master_test_argLine>
+        <master_test_argLine>${master_test_jacocoArgLine} ${master_test_jvmMemory} ${master_test_debugArgLine}
+          -Dfile.encoding=${project.build.sourceEncoding}</master_test_argLine>
         <master_test_forkCount>1</master_test_forkCount>
       </properties>
     </profile>
@@ -831,8 +836,11 @@
       <activation>
         <activeByDefault>false</activeByDefault>
       </activation>
+      <properties>
+        <enforcer.skip>true</enforcer.skip>
+      </properties>
       <build>
-        <defaultGoal>org.codehaus.mojo:versions-maven-plugin:set com.google.code.maven-replacer-plugin:replacer:replace</defaultGoal>
+        <defaultGoal>org.codehaus.mojo:versions-maven-plugin:set generate-resources</defaultGoal>
         <plugins>
           <plugin>
             <groupId>org.codehaus.mojo</groupId>
@@ -846,16 +854,25 @@
           <plugin>
             <groupId>com.google.code.maven-replacer-plugin</groupId>
             <artifactId>replacer</artifactId>
-            <configuration>
-              <basedir>${project.basedir}</basedir>
-              <includes>
-                <include>pom.xml</include>
-              </includes>
-              <!-- token finds the <scm><tag> and places the ${master_release_tagName} string there -->
-              <token>(\\x3cscm\\x3e[a-zA-Z0-9\\x3c\\x3e:/@\\s\\.]*\\x3ctag\\x3e).*(\\x3c/tag\\x3e[a-zA-Z0-9\\x3c\\x3e:/@\\s\\.]*\\x3c/scm\\x3e)</token>
-              <value>$1${master_release_tagName}$2</value>
-              <unescape>true</unescape>
-            </configuration>
+            <executions>
+              <execution>
+                <id>replace_tag</id>
+                <goals>
+                  <goal>replace</goal>
+                </goals>
+                <phase>generate-resources</phase>
+                <configuration>
+                  <basedir>${project.basedir}</basedir>
+                  <includes>
+                    <include>pom.xml</include>
+                  </includes>
+                  <!-- token finds the <scm><tag> and places the ${master_release_tagName} string there -->
+                  <token>(\\x3cscm\\x3e[a-zA-Z0-9\\x3c\\x3e:/@\\s\\.\\{\\}_$]*\\x3ctag\\x3e).*(\\x3c/tag\\x3e[a-zA-Z0-9\\x3c\\x3e:/@\\s\\.?=%;]*\\x3c/scm\\x3e)</token>
+                  <value>$1${master_release_tagName}$2</value>
+                  <unescape>true</unescape>
+                </configuration>
+              </execution>
+            </executions>
           </plugin>
         </plugins>
       </build>
