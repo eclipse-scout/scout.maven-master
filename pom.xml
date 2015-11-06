@@ -15,7 +15,7 @@
   <parent>
     <groupId>org.eclipse.scout</groupId>
     <artifactId>maven_plugin_config-master</artifactId>
-    <version>1.6.2</version>
+    <version>1.6.3-SNAPSHOT</version>
     <relativePath>./maven_plugin_config-master</relativePath>
   </parent>
 
@@ -200,7 +200,7 @@
 
   <scm>
     <connection>scm:git:git://git.eclipse.org/gitroot/scout/maven-master.git</connection>
-    <tag>v1.6.2</tag>
+    <tag>master</tag>
     <url>https://git.eclipse.org/c/scout/maven-master.git/</url>
   </scm>
 
