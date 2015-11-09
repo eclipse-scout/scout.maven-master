@@ -14,7 +14,7 @@
 
   <groupId>org.eclipse.scout</groupId>
   <artifactId>maven_plugin_version-master</artifactId>
-  <version>1.6.4</version>
+  <version>1.6.5-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <prerequisites>
@@ -535,7 +535,7 @@
 
   <scm>
     <connection>scm:git:git://git.eclipse.org/gitroot/scout/maven-master.git</connection>
-    <tag>v1.6.4</tag>
+    <tag>master</tag>
     <url>https://git.eclipse.org/c/scout/maven-master.git/</url>
   </scm>
 
