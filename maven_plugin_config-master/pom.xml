@@ -285,8 +285,13 @@
             <includePomProjects>true</includePomProjects>
             <ignoredResourcePatterns>
               <ignoredResourcePattern>.*ico$</ignoredResourcePattern>
+              <ignoredResourcePattern>.*png$</ignoredResourcePattern>
+              <ignoredResourcePattern>.*gif$</ignoredResourcePattern>
               <ignoredResourcePattern>.*html$</ignoredResourcePattern>
               <ignoredResourcePattern>.*xml$</ignoredResourcePattern>
+              <ignoredResourcePattern>.*txt$</ignoredResourcePattern>
+              <ignoredResourcePattern>.*.api_description$</ignoredResourcePattern>
+              <ignoredResourcePattern>.*options$</ignoredResourcePattern>
               <ignoredResourcePattern>.*properties$</ignoredResourcePattern>
               <ignoredResourcePattern>.*gitkeep$</ignoredResourcePattern>
               <ignoredResourcePattern>.*sql$</ignoredResourcePattern>
