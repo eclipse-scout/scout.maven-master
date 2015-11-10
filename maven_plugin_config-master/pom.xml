@@ -55,7 +55,7 @@
     <master_test_forkCount>0.5C</master_test_forkCount>
     <master_test_reuseVm>true</master_test_reuseVm>
     <master_test_timeout>30</master_test_timeout>
-    <master_test_jvmMemory>-Xms512m -Xmx2048m -XX:MaxPermSize=256m</master_test_jvmMemory>
+    <master_test_jvmMemory>-Xms512m -Xmx2048m</master_test_jvmMemory>
     <master_test_remoteDebugPort>8000</master_test_remoteDebugPort>
     <master_test_debugArgLine>-Xdebug
       -Xrunjdwp:transport=dt_socket,address=${master_test_remoteDebugPort},server=y,suspend=n</master_test_debugArgLine>
