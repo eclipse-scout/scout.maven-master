@@ -460,8 +460,7 @@
           </executions>
         </plugin>
 
-        <!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build
-          itself. -->
+        <!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself. -->
         <plugin>
           <groupId>org.eclipse.m2e</groupId>
           <artifactId>lifecycle-mapping</artifactId>
@@ -473,9 +472,22 @@
                   <pluginExecutionFilter>
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>flatten-maven-plugin</artifactId>
-                    <versionRange>[1.0.0-beta-5,)</versionRange>
+                    <versionRange>[${master_plugin_flatten_version},)</versionRange>
                     <goals>
                       <goal>flatten</goal>
+                    </goals>
+                  </pluginExecutionFilter>
+                  <action>
+                    <ignore />
+                  </action>
+                </pluginExecution>
+                <pluginExecution>
+                  <pluginExecutionFilter>
+                    <groupId>pl.project13.maven</groupId>
+                    <artifactId>git-commit-id-plugin</artifactId>
+                    <versionRange>[${master_plugin_git-commit-id_version},)</versionRange>
+                    <goals>
+                      <goal>revision</goal>
                     </goals>
                   </pluginExecutionFilter>
                   <action>
