@@ -84,9 +84,9 @@
                 <Bundle-ManifestVersion>2</Bundle-ManifestVersion>
                 <Bundle-Name>${project.name}</Bundle-Name>
                 <Bundle-SymbolicName>${bundle.symbolicName}.source</Bundle-SymbolicName>
-                <Bundle-Vendor>${organization.name}</Bundle-Vendor>
-                <Bundle-Version>${parsedVersion.majorVersion}.${parsedVersion.minorVersion}.${parsedVersion.incrementalVersion}.${build.timestamp}</Bundle-Version>
-                <Eclipse-SourceBundle>${parsedVersion.majorVersion}.${parsedVersion.minorVersion}.${parsedVersion.incrementalVersion}.${build.timestamp}";roots:="."</Eclipse-SourceBundle>
+                <Bundle-Vendor>${project.organization.name}</Bundle-Vendor>
+                <Bundle-Version>${parsedVersion.osgiVersion}</Bundle-Version>
+                <Eclipse-SourceBundle>${bundle.symbolicName};version="${parsedVersion.osgiVersion}";roots:="."</Eclipse-SourceBundle>
               </manifestEntries>
             </archive>
           </configuration>
