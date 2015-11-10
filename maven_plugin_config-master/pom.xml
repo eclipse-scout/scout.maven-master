@@ -50,7 +50,8 @@
     <master_git-id_failNoGit>false</master_git-id_failNoGit>
     <master_git-id_useNative>false</master_git-id_useNative>
 
-    <!-- Surefire/Failsafe Fork Control -->
+    <!-- Surefire/Failsafe Fork/Order/Config Control -->
+    <master_test_runOrder>failedfirst</master_test_runOrder>
     <master_test_forkCount>0.5C</master_test_forkCount>
     <master_test_reuseVm>true</master_test_reuseVm>
     <master_test_timeout>30</master_test_timeout>
@@ -134,7 +135,7 @@
               <java.awt.headless>true</java.awt.headless>
               <java.util.logging.SimpleFormatter.format>%1$tY-%1$tm-%1$td %1$tH:%1$tM:%1$tS %4$s %5$s%6$s%n</java.util.logging.SimpleFormatter.format>
             </systemPropertyVariables>
-            <runOrder>failedfirst</runOrder>
+            <runOrder>${master_test_runOrder}</runOrder>
             <forkCount>${master_test_forkCount}</forkCount>
             <reuseForks>${master_test_reuseVm}</reuseForks>
             <forkedProcessTimeoutInSeconds>${master_test_timeout}</forkedProcessTimeoutInSeconds>
@@ -157,7 +158,7 @@
               <java.awt.headless>true</java.awt.headless>
               <java.util.logging.SimpleFormatter.format>%1$tY-%1$tm-%1$td %1$tH:%1$tM:%1$tS %4$s %5$s%6$s%n</java.util.logging.SimpleFormatter.format>
             </systemPropertyVariables>
-            <runOrder>failedfirst</runOrder>
+            <runOrder>${master_test_runOrder}</runOrder>
             <!-- failsafe must be forked into its own process in order to enable jacoco's java agent -->
             <forkCount>${master_test_forkCount}</forkCount>
             <reuseForks>${master_test_reuseVm}</reuseForks>
