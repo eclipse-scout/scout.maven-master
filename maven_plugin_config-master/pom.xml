@@ -935,6 +935,7 @@
             <configuration>
               <connectionType>developerConnection</connectionType>
               <tag>${master_release_tagName}</tag>
+              <pushChanges>${master_release_pushChanges}</pushChanges>
             </configuration>
           </plugin>
         </plugins>
