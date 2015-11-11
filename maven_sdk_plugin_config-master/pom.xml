@@ -23,8 +23,7 @@
   <packaging>pom</packaging>
 
   <properties>
-    <build.timestamp>${maven.build.timestamp}</build.timestamp>
-    <maven.build.timestamp.format>yyyyMMdd-HHmm</maven.build.timestamp.format>
+    <master_build_timestamp>${maven.build.timestamp}</master_build_timestamp>
   </properties>
 
   <build>
@@ -64,7 +63,7 @@
               <!-- Include sources -->
               <_sources>false</_sources>
               <!-- Replacement for the .SNAPSHOT qualifier used in maven. -->
-              <_snapshot>${build.timestamp}</_snapshot>
+              <_snapshot>${master_build_timestamp}</_snapshot>
             </instructions>
             <obrRepository>NONE</obrRepository>
           </configuration>
@@ -146,7 +145,7 @@
               <name>osgi.osgiVersion</name>
               <value>${osgi.osgiVersion}</value>
               <regex>SNAPSHOT</regex>
-              <replacement>${build.timestamp}</replacement>
+              <replacement>${master_build_timestamp}</replacement>
               <failIfNoMatch>false</failIfNoMatch>
             </configuration>
           </execution>

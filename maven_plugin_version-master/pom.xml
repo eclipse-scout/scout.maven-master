@@ -22,8 +22,6 @@
   </prerequisites>
 
   <properties>
-    <jarsigner.version>1.1.2</jarsigner.version>
-
     <master_deploy_ReleaseId>repo.eclipse.org</master_deploy_ReleaseId>
     <master_deploy_ReleaseUrl>https://repo.eclipse.org/content/repositories/scout-releases/</master_deploy_ReleaseUrl>
     <master_deploy_SnapshotId>repo.eclipse.org</master_deploy_SnapshotId>
@@ -157,6 +155,8 @@
     <!-- must be 0.22.0 because version 0.23.x has an issue with target resolving and mirrors -->
     <master_plugin_tycho_version>0.22.0</master_plugin_tycho_version>
     <master_plugin_tycho-extras_version>${master_plugin_tycho_version}</master_plugin_tycho-extras_version>
+
+    <master_plugin_jarsigner_version>1.1.2</master_plugin_jarsigner_version>
   </properties>
 
   <build>
@@ -419,7 +419,7 @@
         <plugin>
           <groupId>org.eclipse.cbi.maven.plugins</groupId>
           <artifactId>eclipse-jarsigner-plugin</artifactId>
-          <version>${jarsigner.version}</version>
+          <version>${master_plugin_jarsigner_version}</version>
         </plugin>
 
         <plugin>
