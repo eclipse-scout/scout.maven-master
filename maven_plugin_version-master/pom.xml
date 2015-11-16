@@ -14,7 +14,7 @@
 
   <groupId>org.eclipse.scout</groupId>
   <artifactId>maven_plugin_version-master</artifactId>
-  <version>1.6.7-SNAPSHOT</version>
+  <version>1.7-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <prerequisites>
