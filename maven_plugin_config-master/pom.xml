@@ -296,6 +296,7 @@
               <ignoredResourcePattern>.*properties$</ignoredResourcePattern>
               <ignoredResourcePattern>.*gitkeep$</ignoredResourcePattern>
               <ignoredResourcePattern>.*sql$</ignoredResourcePattern>
+              <ignoredResourcePattern>.*xjb$</ignoredResourcePattern>
             </ignoredResourcePatterns>
           </configuration>
         </plugin>
