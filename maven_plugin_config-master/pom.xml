@@ -51,6 +51,7 @@
     <master_git-id_useNative>false</master_git-id_useNative>
 
     <!-- Surefire/Failsafe Fork/Order/Config Control -->
+    <master_coverage_jacoco_destFile>${basedir}/../target/jacoco-all.exec</master_coverage_jacoco_destFile>
     <master_test_runOrder>failedfirst</master_test_runOrder>
     <master_test_forkCount>0.5C</master_test_forkCount>
     <master_test_reuseVm>true</master_test_reuseVm>
@@ -306,7 +307,7 @@
           <artifactId>jacoco-maven-plugin</artifactId>
           <configuration>
             <skip>${master_coverage_skip}</skip>
-            <destFile>${basedir}/../target/jacoco-all.exec</destFile>
+            <destFile>${master_coverage_jacoco_destFile}</destFile>
             <propertyName>master_test_jacocoArgLine</propertyName>
           </configuration>
         </plugin>
