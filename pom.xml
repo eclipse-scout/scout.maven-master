@@ -50,6 +50,21 @@
             <url>${master_deploy_SnapshotUrl}</url>
           </configuration>
         </plugin>
+        <!-- Sign artifacts using gpg for oss upload -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-gpg-plugin</artifactId>
+          <configuration>
+            <!-- sign-and-deploy-file -->
+            <groupId>${project.groupId}</groupId>
+            <generatePom>false</generatePom>
+            <packaging>pom</packaging>
+            <version>${project.version}</version>
+            <repositoryId>${master_deploy_SnapshotId}</repositoryId>
+            <url>${master_deploy_SnapshotUrl}</url>
+            <!-- sign-and-deploy-file -->
+          </configuration>
+        </plugin>
       </plugins>
     </pluginManagement>
     <plugins>
@@ -254,7 +269,7 @@
     </profile>
 
     <profile>
-      <id>signed-deploy</id>
+      <id>release-deploy</id>
       <build>
         <pluginManagement>
           <plugins>
@@ -263,19 +278,19 @@
               <groupId>org.apache.maven.plugins</groupId>
               <artifactId>maven-gpg-plugin</artifactId>
               <configuration>
-                <!-- sign-and-deploy-file -->
-                <groupId>${project.groupId}</groupId>
-                <generatePom>false</generatePom>
-                <packaging>pom</packaging>
-                <version>${project.version}</version>
                 <repositoryId>${master_deploy_ReleaseId}</repositoryId>
                 <url>${master_deploy_ReleaseUrl}</url>
                 <updateReleaseInfo>true</updateReleaseInfo>
-                <!-- sign-and-deploy-file -->
               </configuration>
             </plugin>
           </plugins>
         </pluginManagement>
+      </build>
+    </profile>
+
+    <profile>
+      <id>signed-deploy</id>
+      <build>
         <plugins>
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
