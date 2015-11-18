@@ -49,63 +49,21 @@
             <repositoryId>${master_deploy_SnapshotId}</repositoryId>
             <url>${master_deploy_SnapshotUrl}</url>
           </configuration>
-          <executions>
-            <execution>
-              <id>maven_plugin_version-master</id>
-              <goals>
-                <goal>deploy-file</goal>
-              </goals>
-              <phase>deploy</phase>
-              <configuration>
-                <artifactId>maven_plugin_version-master</artifactId>
-                <file>${basedir}/maven_plugin_version-master/pom.xml</file>
-              </configuration>
-            </execution>
-            <execution>
-              <id>maven_plugin_config-master</id>
-              <goals>
-                <goal>deploy-file</goal>
-              </goals>
-              <phase>deploy</phase>
-              <configuration>
-                <artifactId>maven_plugin_config-master</artifactId>
-                <file>${basedir}/maven_plugin_config-master/pom.xml</file>
-              </configuration>
-            </execution>
-            <execution>
-              <id>maven_rt_plugin_config-master</id>
-              <goals>
-                <goal>deploy-file</goal>
-              </goals>
-              <phase>deploy</phase>
-              <configuration>
-                <artifactId>maven_rt_plugin_config-master</artifactId>
-                <file>${basedir}/maven_rt_plugin_config-master/pom.xml</file>
-              </configuration>
-            </execution>
-            <execution>
-              <id>maven_sdk_plugin_config-master</id>
-              <goals>
-                <goal>deploy-file</goal>
-              </goals>
-              <phase>deploy</phase>
-              <configuration>
-                <artifactId>maven_sdk_plugin_config-master</artifactId>
-                <file>${basedir}/maven_sdk_plugin_config-master/pom.xml</file>
-              </configuration>
-            </execution>
-            <execution>
-              <id>maven_sdk_p2_plugin_config-master</id>
-              <goals>
-                <goal>deploy-file</goal>
-              </goals>
-              <phase>deploy</phase>
-              <configuration>
-                <artifactId>maven_sdk_p2_plugin_config-master</artifactId>
-                <file>${basedir}/maven_sdk_p2_plugin_config-master/pom.xml</file>
-              </configuration>
-            </execution>
-          </executions>
+        </plugin>
+        <!-- Sign artifacts using gpg for oss upload -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-gpg-plugin</artifactId>
+          <configuration>
+            <!-- sign-and-deploy-file -->
+            <groupId>${project.groupId}</groupId>
+            <generatePom>false</generatePom>
+            <packaging>pom</packaging>
+            <version>${project.version}</version>
+            <repositoryId>${master_deploy_SnapshotId}</repositoryId>
+            <url>${master_deploy_SnapshotUrl}</url>
+            <!-- sign-and-deploy-file -->
+          </configuration>
         </plugin>
       </plugins>
     </pluginManagement>
@@ -171,6 +129,23 @@
           </execution>
         </executions>
       </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-deploy-plugin</artifactId>
+        <inherited>false</inherited>
+        <executions>
+          <execution>
+            <id>default-deploy</id>
+            <goals>
+              <goal>deploy</goal>
+            </goals>
+            <phase>deploy</phase>
+            <configuration>
+              <skip>true</skip>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
     </plugins>
   </build>
 
@@ -211,6 +186,78 @@
 
   <profiles>
     <profile>
+      <id>unsigned-deploy</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-deploy-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>maven_plugin_version-master</id>
+                <goals>
+                  <goal>deploy-file</goal>
+                </goals>
+                <phase>deploy</phase>
+                <configuration>
+                  <artifactId>maven_plugin_version-master</artifactId>
+                  <file>${basedir}/maven_plugin_version-master/pom.xml</file>
+                </configuration>
+              </execution>
+              <execution>
+                <id>maven_plugin_config-master</id>
+                <goals>
+                  <goal>deploy-file</goal>
+                </goals>
+                <phase>deploy</phase>
+                <configuration>
+                  <artifactId>maven_plugin_config-master</artifactId>
+                  <file>${basedir}/maven_plugin_config-master/pom.xml</file>
+                </configuration>
+              </execution>
+              <execution>
+                <id>maven_rt_plugin_config-master</id>
+                <goals>
+                  <goal>deploy-file</goal>
+                </goals>
+                <phase>deploy</phase>
+                <configuration>
+                  <artifactId>maven_rt_plugin_config-master</artifactId>
+                  <file>${basedir}/maven_rt_plugin_config-master/pom.xml</file>
+                </configuration>
+              </execution>
+              <execution>
+                <id>maven_sdk_plugin_config-master</id>
+                <goals>
+                  <goal>deploy-file</goal>
+                </goals>
+                <phase>deploy</phase>
+                <configuration>
+                  <artifactId>maven_sdk_plugin_config-master</artifactId>
+                  <file>${basedir}/maven_sdk_plugin_config-master/pom.xml</file>
+                </configuration>
+              </execution>
+              <execution>
+                <id>maven_sdk_p2_plugin_config-master</id>
+                <goals>
+                  <goal>deploy-file</goal>
+                </goals>
+                <phase>deploy</phase>
+                <configuration>
+                  <artifactId>maven_sdk_p2_plugin_config-master</artifactId>
+                  <file>${basedir}/maven_sdk_p2_plugin_config-master/pom.xml</file>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <profile>
       <id>release</id>
       <modules>
         <module>maven_plugin_version-master</module>
@@ -220,26 +267,93 @@
         <module>maven_sdk_p2_plugin_config-master</module>
       </modules>
     </profile>
+
     <profile>
       <id>release-deploy</id>
       <build>
         <pluginManagement>
           <plugins>
+            <!-- Sign artifacts using gpg for oss upload -->
             <plugin>
               <groupId>org.apache.maven.plugins</groupId>
-              <artifactId>maven-deploy-plugin</artifactId>
+              <artifactId>maven-gpg-plugin</artifactId>
               <configuration>
-                <!-- for deploy-file -->
-                <groupId>${project.groupId}</groupId>
-                <generatePom>false</generatePom>
-                <packaging>pom</packaging>
-                <version>${project.version}</version>
                 <repositoryId>${master_deploy_ReleaseId}</repositoryId>
                 <url>${master_deploy_ReleaseUrl}</url>
+                <updateReleaseInfo>true</updateReleaseInfo>
               </configuration>
             </plugin>
           </plugins>
         </pluginManagement>
+      </build>
+    </profile>
+
+    <profile>
+      <id>signed-deploy</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-gpg-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>maven_plugin_version-master</id>
+                <goals>
+                  <goal>sign-and-deploy-file</goal>
+                </goals>
+                <phase>deploy</phase>
+                <configuration>
+                  <artifactId>maven_plugin_version-master</artifactId>
+                  <file>${basedir}/maven_plugin_version-master/pom.xml</file>
+                </configuration>
+              </execution>
+              <execution>
+                <id>maven_plugin_config-master</id>
+                <goals>
+                  <goal>sign-and-deploy-file</goal>
+                </goals>
+                <phase>deploy</phase>
+                <configuration>
+                  <artifactId>maven_plugin_config-master</artifactId>
+                  <file>${basedir}/maven_plugin_config-master/pom.xml</file>
+                </configuration>
+              </execution>
+              <execution>
+                <id>maven_rt_plugin_config-master</id>
+                <goals>
+                  <goal>sign-and-deploy-file</goal>
+                </goals>
+                <phase>deploy</phase>
+                <configuration>
+                  <artifactId>maven_rt_plugin_config-master</artifactId>
+                  <file>${basedir}/maven_rt_plugin_config-master/pom.xml</file>
+                </configuration>
+              </execution>
+              <execution>
+                <id>maven_sdk_plugin_config-master</id>
+                <goals>
+                  <goal>sign-and-deploy-file</goal>
+                </goals>
+                <phase>deploy</phase>
+                <configuration>
+                  <artifactId>maven_sdk_plugin_config-master</artifactId>
+                  <file>${basedir}/maven_sdk_plugin_config-master/pom.xml</file>
+                </configuration>
+              </execution>
+              <execution>
+                <id>maven_sdk_p2_plugin_config-master</id>
+                <goals>
+                  <goal>sign-and-deploy-file</goal>
+                </goals>
+                <phase>deploy</phase>
+                <configuration>
+                  <artifactId>maven_sdk_p2_plugin_config-master</artifactId>
+                  <file>${basedir}/maven_sdk_p2_plugin_config-master/pom.xml</file>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
       </build>
     </profile>
 
