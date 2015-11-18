@@ -120,7 +120,7 @@
         <inherited>false</inherited>
         <executions>
           <execution>
-            <id>maven-master</id>
+            <id>default-deploy</id>
             <goals>
               <goal>deploy</goal>
             </goals>
