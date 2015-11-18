@@ -698,7 +698,7 @@
       <id>flatten_pom</id>
       <activation>
         <property>
-          <name>${master_flatten_skip}</name>
+          <name>master_flatten_skip</name>
           <value>false</value>
         </property>
       </activation>
