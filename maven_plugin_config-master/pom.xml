@@ -291,6 +291,7 @@
             <includePomProjects>true</includePomProjects>
             <ignoredResourcePatterns>
               <ignoredResourcePattern>.*ico$</ignoredResourcePattern>
+              <ignoredResourcePattern>.*jpg$</ignoredResourcePattern>
               <ignoredResourcePattern>.*png$</ignoredResourcePattern>
               <ignoredResourcePattern>.*gif$</ignoredResourcePattern>
               <ignoredResourcePattern>.*html$</ignoredResourcePattern>
@@ -302,6 +303,7 @@
               <ignoredResourcePattern>.*gitkeep$</ignoredResourcePattern>
               <ignoredResourcePattern>.*sql$</ignoredResourcePattern>
               <ignoredResourcePattern>.*xjb$</ignoredResourcePattern>
+              <ignoredResourcePattern>.*about.ini$</ignoredResourcePattern>
             </ignoredResourcePatterns>
           </configuration>
         </plugin>
