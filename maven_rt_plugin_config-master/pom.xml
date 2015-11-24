@@ -21,6 +21,7 @@
 
   <artifactId>maven_rt_plugin_config-master</artifactId>
   <packaging>pom</packaging>
+  <name>Maven Master Plugin Build Configuration - RT</name>
 
   <properties />
 

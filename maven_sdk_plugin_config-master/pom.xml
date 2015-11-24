@@ -21,6 +21,7 @@
 
   <artifactId>maven_sdk_plugin_config-master</artifactId>
   <packaging>pom</packaging>
+  <name>Maven Master Plugin Build Configuration - SDK</name>
 
   <properties>
     <build.timestamp>${maven.build.timestamp}</build.timestamp>

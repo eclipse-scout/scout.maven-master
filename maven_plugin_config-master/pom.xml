@@ -21,6 +21,7 @@
 
   <artifactId>maven_plugin_config-master</artifactId>
   <packaging>pom</packaging>
+  <name>Maven Master Plugin Build Configuration - General</name>
 
   <prerequisites>
     <!-- Note that "prerequisites" not inherited, but used by versions-maven-plugin -->
