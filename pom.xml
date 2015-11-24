@@ -21,6 +21,7 @@
 
   <artifactId>maven-master</artifactId>
   <packaging>pom</packaging>
+  <name>Maven Master Root Module</name>
 
   <build>
     <pluginManagement>

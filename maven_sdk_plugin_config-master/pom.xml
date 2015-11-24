@@ -21,6 +21,7 @@
 
   <artifactId>maven_sdk_plugin_config-master</artifactId>
   <packaging>pom</packaging>
+  <name>Maven Master Plugin Build Configuration - SDK</name>
 
   <properties>
     <master_build_timestamp>${maven.build.timestamp}</master_build_timestamp>
@@ -109,7 +110,7 @@
                     </goals>
                   </pluginExecutionFilter>
                   <action>
-                    <ignore />
+                    <ignore></ignore>
                   </action>
                 </pluginExecution>
               </pluginExecutions>
@@ -127,20 +128,20 @@
         <executions>
           <execution>
             <id>initialize-parse-version</id>
-            <phase>initialize</phase>
             <goals>
               <goal>parse-version</goal>
             </goals>
+            <phase>initialize</phase>
             <configuration>
               <propertyPrefix>osgi</propertyPrefix>
             </configuration>
           </execution>
           <execution>
             <id>initialize-regex</id>
-            <phase>initialize</phase>
             <goals>
               <goal>regex-property</goal>
             </goals>
+            <phase>initialize</phase>
             <configuration>
               <name>osgi.osgiVersion</name>
               <value>${osgi.osgiVersion}</value>
@@ -170,7 +171,7 @@
   </build>
 
   <reporting>
-    <plugins />
+    <plugins></plugins>
   </reporting>
 
   <profiles>

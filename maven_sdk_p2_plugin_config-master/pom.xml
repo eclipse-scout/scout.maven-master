@@ -21,6 +21,7 @@
 
   <artifactId>maven_sdk_p2_plugin_config-master</artifactId>
   <packaging>pom</packaging>
+  <name>Maven Master Plugin Build Configuration - SDK-P2</name>
 
   <build>
     <pluginManagement>
@@ -34,7 +35,7 @@
               <filter>
                 <type>p2-installable-unit</type>
                 <id>org.eclipse.equinox.servletbridge.extensionbundle</id>
-                <removeAll />
+                <removeAll></removeAll>
               </filter>
             </filters>
             <resolver>p2</resolver>
@@ -111,7 +112,7 @@
   </build>
 
   <reporting>
-    <plugins />
+    <plugins></plugins>
   </reporting>
 
   <profiles>
