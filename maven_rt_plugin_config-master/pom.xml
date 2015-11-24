@@ -366,8 +366,8 @@
           <!-- WSIMPORT (stub generation) -->
           <!-- Note: The stub is only re-generated if the hash of 'wsartifact-hash' changed. -->
           <plugin>
-	        <groupId>org.codehaus.mojo</groupId>
-	        <artifactId>jaxws-maven-plugin</artifactId>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>jaxws-maven-plugin</artifactId>
             <configuration>
               <wsdlDirectory>${basedir}/src/main/resources/WEB-INF/wsdl</wsdlDirectory>
               <wsdlLocation>WEB-INF/wsdl/${jaxws.wsdl.file}</wsdlLocation>
@@ -389,13 +389,13 @@
               </vmArgs>
             </configuration>
             <!-- to use a specific version of JAX-WS to build against -->
-	        <dependencies>
-	          <dependency>
-	            <groupId>com.sun.xml.ws</groupId>
-	            <artifactId>jaxws-tools</artifactId>
-	            <version>${master_dependency_jaxws_version}</version>
-	          </dependency>
-	        </dependencies>
+            <dependencies>
+              <dependency>
+                <groupId>com.sun.xml.ws</groupId>
+                <artifactId>jaxws-tools</artifactId>
+                <version>${master_dependency_jaxws_version}</version>
+              </dependency>
+            </dependencies>
             <executions>
               <execution>
                 <id>wsimport-1</id>

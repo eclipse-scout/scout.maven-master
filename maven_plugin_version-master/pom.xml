@@ -112,7 +112,7 @@
     <!-- http://www.mojohaus.org/jaxws-maven-plugin/ -->
     <master_plugin_jaxws_version>2.4</master_plugin_jaxws_version>
 
-    <!-- Version to generate JAX-WS artifacts  -->
+    <!-- Version to generate JAX-WS artifacts -->
     <!-- https://jax-ws.java.net/2.2.10/ -->
     <!-- http://www.mojohaus.org/jaxws-maven-plugin/ -->
     <master_dependency_jaxws_version>2.2.10</master_dependency_jaxws_version>
@@ -334,12 +334,6 @@
           <groupId>org.codehaus.mojo</groupId>
           <artifactId>jaxws-maven-plugin</artifactId>
           <version>${master_plugin_jaxws_version}</version>
-        </plugin>
-
-        <plugin>
-	      <groupId>com.sun.xml.ws</groupId>
-	      <artifactId>jaxws-tools</artifactId>
-          <version>${master_dependency_jaxws_version}</version>
         </plugin>
 
         <plugin>
