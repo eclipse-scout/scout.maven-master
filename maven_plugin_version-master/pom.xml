@@ -157,6 +157,9 @@
     <!-- <master_plugin_replacer_version>1.6.2</master_plugin_replacer_version> -->
     <master_plugin_replacer_version>1.5.3</master_plugin_replacer_version>
 
+    <!-- https://github.com/sonatype/nexus-maven-plugins/tree/master/staging/maven-plugin -->
+    <master_plugin_nexus-staging_version>1.6.6</master_plugin_nexus-staging_version>
+
     <!-- https://wiki.eclipse.org/Tycho -->
     <master_dependency_tycho-compiler_version>0.23.1</master_dependency_tycho-compiler_version>
     <!-- version of Tycho used by org.eclipse.scout.sdk.core.releng build and profiles eclipse-sign and eclipse-pack -->
@@ -404,6 +407,12 @@
           <!-- <groupId>com.github.dtracers</groupId> -->
           <!-- <artifactId>maven-replacer-plugin</artifactId> -->
           <version>${master_plugin_replacer_version}</version>
+        </plugin>
+
+        <plugin>
+          <groupId>org.sonatype.plugins</groupId>
+          <artifactId>nexus-staging-maven-plugin</artifactId>
+          <version>${master_plugin_nexus-staging_version}</version>
         </plugin>
 
         <plugin>
