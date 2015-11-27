@@ -233,8 +233,6 @@
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-jar-plugin</artifactId>
           <configuration>
-            <!-- do not build an empty jar if the project is e.g. a pom project -->
-            <skipIfEmpty>true</skipIfEmpty>
             <archive>
               <manifest>
                 <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
