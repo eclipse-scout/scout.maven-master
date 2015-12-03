@@ -340,9 +340,9 @@
           <groupId>com.mycila</groupId>
           <artifactId>license-maven-plugin</artifactId>
           <configuration>
-            <header>${project.basedir}/license_files/copyright.txt</header>
+            <header>${project.basedir}/../license_files/copyright.txt</header>
             <headerDefinitions>
-              <headerDefinition>${project.basedir}/license_files/scoutLicenceHeaderJava.xml</headerDefinition>
+              <headerDefinition>${project.basedir}/../license_files/scoutLicenceHeaderJava.xml</headerDefinition>
             </headerDefinitions>
             <failIfMissing>true</failIfMissing>
             <strictCheck>true</strictCheck>
@@ -370,6 +370,7 @@
               <exclude>**/pom.xml.releaseBackup</exclude>
               <exclude>**/*.sh</exclude>
               <exclude>tests/**</exclude>
+              <exclude>**/src/main/resources/WebContent/res/**</exclude>
             </excludes>
             <mapping>
               <java>SCOUT_JAVADOC_STYLE</java>
