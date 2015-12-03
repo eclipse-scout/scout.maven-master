@@ -47,7 +47,7 @@
     <master_coverage_skip>false</master_coverage_skip>
 
     <!-- Flatten POM Control -->
-    <master_flatten_skip>false</master_flatten_skip>
+    <!-- To skip flattening of pom use -Dmaster_flatten_skip=true -->
     <master_flatten_mode>oss</master_flatten_mode>
 
     <!-- Git Information Control -->
@@ -449,24 +449,6 @@
             <lineLength>999</lineLength>
             <updatePomFile>true</updatePomFile>
           </configuration>
-          <executions>
-            <!-- enable flattening -->
-            <execution>
-              <id>flatten</id>
-              <goals>
-                <goal>flatten</goal>
-              </goals>
-              <phase>process-resources</phase>
-            </execution>
-            <!-- ensure proper cleanup -->
-            <execution>
-              <id>flatten.clean</id>
-              <goals>
-                <goal>clean</goal>
-              </goals>
-              <phase>clean</phase>
-            </execution>
-          </executions>
         </plugin>
 
         <!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself. -->
@@ -613,6 +595,29 @@
         </executions>
       </plugin>
 
+      <!-- <plugin> -->
+      <!-- <groupId>org.codehaus.mojo</groupId> -->
+      <!-- <artifactId>flatten-maven-plugin</artifactId> -->
+      <!-- <executions> -->
+      <!-- enable flattening -->
+      <!-- <execution> -->
+      <!-- <id>flatten</id> -->
+      <!-- <goals> -->
+      <!-- <goal>flatten</goal> -->
+      <!-- </goals> -->
+      <!-- <phase>process-resources</phase> -->
+      <!-- </execution> -->
+      <!-- ensure proper cleanup -->
+      <!-- <execution> -->
+      <!-- <id>flatten.clean</id> -->
+      <!-- <goals> -->
+      <!-- <goal>clean</goal> -->
+      <!-- </goals> -->
+      <!-- <phase>clean</phase> -->
+      <!-- </execution> -->
+      <!-- </executions> -->
+      <!-- </plugin> -->
+
       <plugin>
         <!-- until there is a automatic nightly build include sources in every build (snapshot and release). Default would
           be only to include sources in the release profile. -->
@@ -704,7 +709,7 @@
       <activation>
         <property>
           <name>master_flatten_skip</name>
-          <value>false</value>
+          <value>!true</value>
         </property>
       </activation>
       <build>
