@@ -349,11 +349,6 @@
             <aggregate>true</aggregate>
             <useDefaultExcludes>false</useDefaultExcludes>
             <includes>
-              <include>**/*scout*/src/main/java/**</include>
-              <include>**/*scout*/src/main/js/**</include>
-              <include>**/*scout*/src/main/less/**</include>
-              <include>**/*scout*/src/test/java/**</include>
-              <include>**/*scout*/src/test/js/**</include>
               <include>**/pom.xml</include>
               <include>**/*.properties</include>
               <include>**/*.java</include>
@@ -371,6 +366,7 @@
               <exclude>**/*.sh</exclude>
               <exclude>tests/**</exclude>
               <exclude>**/src/main/resources/WebContent/res/**</exclude>
+              <exclude>**/src/main/ws-stub/**</exclude>
             </excludes>
             <mapping>
               <java>SCOUT_JAVADOC_STYLE</java>
