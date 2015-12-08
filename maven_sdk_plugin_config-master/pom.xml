@@ -110,7 +110,7 @@
                     </goals>
                   </pluginExecutionFilter>
                   <action>
-                    <ignore />
+                    <ignore></ignore>
                   </action>
                 </pluginExecution>
               </pluginExecutions>
@@ -171,7 +171,7 @@
   </build>
 
   <reporting>
-    <plugins />
+    <plugins></plugins>
   </reporting>
 
   <profiles>

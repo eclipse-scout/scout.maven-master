@@ -23,7 +23,7 @@
   <packaging>pom</packaging>
   <name>Maven Master Plugin Build Configuration - RT</name>
 
-  <properties />
+  <properties></properties>
 
   <build>
     <pluginManagement>
@@ -80,7 +80,7 @@
                     </goals>
                   </pluginExecutionFilter>
                   <action>
-                    <ignore />
+                    <ignore></ignore>
                   </action>
                 </pluginExecution>
                 <pluginExecution>
@@ -93,7 +93,7 @@
                     </goals>
                   </pluginExecutionFilter>
                   <action>
-                    <ignore />
+                    <ignore></ignore>
                   </action>
                 </pluginExecution>
                 <!-- WS-STUB generation: Instrument 'm2e' to generate webservice stub in Eclipse IDE (does not affect standalone Maven build) -->
@@ -126,7 +126,7 @@
   </build>
 
   <reporting>
-    <plugins />
+    <plugins></plugins>
   </reporting>
 
   <profiles>
@@ -347,7 +347,7 @@
         <!-- Destination directory for generated APT artifacts. -->
         <jaxws.apt.directory>${project.build.directory}/generated-sources/annotations</jaxws.apt.directory>
         <!-- WSDL file name to set the 'wsdl-location' in @WebService and @WebServiceClient annotation -->
-        <jaxws.wsdl.file />
+        <jaxws.wsdl.file></jaxws.wsdl.file>
       </properties>
 
       <build>
