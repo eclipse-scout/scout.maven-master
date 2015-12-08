@@ -29,6 +29,13 @@
     <master_deploy_SnapshotId>repo.eclipse.org</master_deploy_SnapshotId>
     <master_deploy_SnapshotUrl>https://repo.eclipse.org/content/repositories/scout-snapshots/</master_deploy_SnapshotUrl>
 
+    <!-- Release Control -->
+    <master_release_pushChanges>false</master_release_pushChanges>
+    <master_release_milestoneVersion>I</master_release_milestoneVersion>
+    <master_release_newVersion>${base.version}.${master_release_milestoneVersion}</master_release_newVersion>
+    <master_release_tagName>${master_release_newVersion}</master_release_tagName>
+    <master_release_checkinMessage>[release] version updated to ${project.version}</master_release_checkinMessage>
+
     <!-- ####################################################################### -->
     <!-- Maven Plugin versions, ordered like http://maven.apache.org/plugins/ -->
     <!-- ####################################################################### -->
@@ -561,6 +568,7 @@
 
   <scm>
     <connection>scm:git:git://git.eclipse.org/gitroot/scout/maven-master.git</connection>
+    <developerConnection>scm:git:ssh://${eclipse_gerrit_username}@git.eclipse.org:29418/scout/maven-master.git</developerConnection>
     <tag>master</tag>
     <url>https://git.eclipse.org/c/scout/maven-master.git/</url>
   </scm>
@@ -643,6 +651,100 @@
                 </goals>
               </execution>
             </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <profile>
+      <id>release.setversion</id>
+      <activation>
+        <activeByDefault>false</activeByDefault>
+      </activation>
+      <properties>
+        <enforcer.skip>true</enforcer.skip>
+      </properties>
+      <build>
+        <defaultGoal>org.codehaus.mojo:versions-maven-plugin:set generate-resources</defaultGoal>
+        <plugins>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>versions-maven-plugin</artifactId>
+            <configuration>
+              <newVersion>${master_release_newVersion}</newVersion>
+              <generateBackupPoms>false</generateBackupPoms>
+            </configuration>
+          </plugin>
+
+          <plugin>
+            <groupId>com.google.code.maven-replacer-plugin</groupId>
+            <artifactId>replacer</artifactId>
+            <executions>
+              <execution>
+                <id>replace_tag</id>
+                <goals>
+                  <goal>replace</goal>
+                </goals>
+                <phase>generate-resources</phase>
+                <configuration>
+                  <basedir>${project.basedir}</basedir>
+                  <includes>
+                    <include>pom.xml</include>
+                  </includes>
+                  <!-- token finds the <scm><tag> and places the ${master_release_tagName} string there -->
+                  <token>(\\x3cscm\\x3e[a-zA-Z0-9\\x3c\\x3e:/@\\s\\.\\{\\}_\\-$]*\\x3ctag\\x3e).*(\\x3c/tag\\x3e[a-zA-Z0-9\\x3c\\x3e:/@\\s\\.\\-?=%;]*\\x3c/scm\\x3e)</token>
+                  <value>$1${master_release_tagName}$2</value>
+                  <unescape>true</unescape>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <profile>
+      <id>release.checkin</id>
+      <activation>
+        <activeByDefault>false</activeByDefault>
+      </activation>
+      <build>
+        <defaultGoal>scm:add scm:checkin</defaultGoal>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-scm-plugin</artifactId>
+            <configuration>
+              <connectionType>developerConnection</connectionType>
+              <message>${master_release_checkinMessage}</message>
+              <basedir>${project.basedir}/..</basedir>
+              <includes>pom.xml,*/pom.xml</includes>
+              <pushChanges>${master_release_pushChanges}</pushChanges>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <profile>
+      <id>release.tag</id>
+      <activation>
+        <activeByDefault>false</activeByDefault>
+      </activation>
+      <properties>
+        <master_release_tagName>${project.version}</master_release_tagName>
+      </properties>
+      <build>
+        <defaultGoal>scm:tag</defaultGoal>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-scm-plugin</artifactId>
+            <configuration>
+              <connectionType>developerConnection</connectionType>
+              <tag>${master_release_tagName}</tag>
+              <pushChanges>${master_release_pushChanges}</pushChanges>
+            </configuration>
           </plugin>
         </plugins>
       </build>
