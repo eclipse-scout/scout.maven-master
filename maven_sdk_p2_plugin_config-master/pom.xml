@@ -15,7 +15,7 @@
   <parent>
     <groupId>org.eclipse.scout</groupId>
     <artifactId>maven_sdk_plugin_config-master</artifactId>
-    <version>1.7-SNAPSHOT</version>
+    <version>1.7</version>
     <relativePath>../maven_sdk_plugin_config-master</relativePath>
   </parent>
 
@@ -35,7 +35,7 @@
               <filter>
                 <type>p2-installable-unit</type>
                 <id>org.eclipse.equinox.servletbridge.extensionbundle</id>
-                <removeAll></removeAll>
+                <removeAll />
               </filter>
             </filters>
             <resolver>p2</resolver>
@@ -112,7 +112,7 @@
   </build>
 
   <reporting>
-    <plugins></plugins>
+    <plugins />
   </reporting>
 
   <profiles>

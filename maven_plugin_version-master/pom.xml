@@ -14,7 +14,7 @@
 
   <groupId>org.eclipse.scout</groupId>
   <artifactId>maven_plugin_version-master</artifactId>
-  <version>1.7-SNAPSHOT</version>
+  <version>1.7</version>
   <packaging>pom</packaging>
   <name>Maven Master Plugin Version Configuration</name>
   <description>Maven Master hosted at Eclipse Scout</description>
@@ -561,7 +561,7 @@
 
   <scm>
     <connection>scm:git:git://git.eclipse.org/gitroot/scout/maven-master.git</connection>
-    <tag>master</tag>
+    <tag>v1.7</tag>
     <url>https://git.eclipse.org/c/scout/maven-master.git/</url>
   </scm>
 
@@ -572,7 +572,7 @@
 
   <repositories>
     <repository>
-      <snapshots></snapshots>
+      <snapshots />
       <id>eclipse.snapshot</id>
       <name>eclipse-snapshot-repo</name>
       <url>https://repo.eclipse.org/content/groups/snapshots/</url>
@@ -581,7 +581,7 @@
 
   <pluginRepositories>
     <pluginRepository>
-      <snapshots></snapshots>
+      <snapshots />
       <id>eclipse.snapshot</id>
       <name>eclipse-snapshot-repo</name>
       <url>https://repo.eclipse.org/content/groups/snapshots/</url>
