@@ -44,7 +44,7 @@
     <!-- ####################################################################### -->
     <master_plugin_clean_version>3.0.0</master_plugin_clean_version>
     <master_plugin_compiler_version>3.3</master_plugin_compiler_version>
-    <master_plugin_deploy_version>2.8.2</master_plugin_deploy_version>
+    <master_plugin_deploy_version>3.0.0-SNAPSHOT</master_plugin_deploy_version>
     <master_plugin_failsafe_version>2.19</master_plugin_failsafe_version>
     <master_plugin_install_version>2.5.2</master_plugin_install_version>
     <master_plugin_resources_version>2.7</master_plugin_resources_version>
@@ -619,7 +619,7 @@
       <name>eclipse-snapshot-repo</name>
       <url>https://repo.eclipse.org/content/groups/snapshots/</url>
     </pluginRepository>
-    <!-- Bintray Repository for test-release of https://github.com/mojohaus/flatten-maven-plugin/pull/13 -->
+    <!-- Bintray Repository for for snapshots of https://github.com/mojohaus/animal-sniffer -->
     <pluginRepository>
       <snapshots>
         <enabled>false</enabled>
