@@ -14,7 +14,7 @@
 
   <groupId>org.eclipse.scout</groupId>
   <artifactId>maven_plugin_version-master</artifactId>
-  <version>1.7.1-SNAPSHOT</version>
+  <version>2.0-SNAPSHOT</version>
   <packaging>pom</packaging>
   <name>Maven Master Plugin Version Configuration</name>
   <description>Maven Master hosted at Eclipse Scout</description>
@@ -83,6 +83,11 @@
     <!-- <master_plugin_invoker_version>2.0.0</master_plugin_invoker_version> -->
     <master_plugin_release_version>2.5.3</master_plugin_release_version>
     <master_plugin_scm_version>1.9.4</master_plugin_scm_version>
+
+    <!-- ####################################################################### -->
+    <!-- Retired -->
+    <!-- ####################################################################### -->
+    <master_plugin_eclipse_version>2.10</master_plugin_eclipse_version>
 
     <!-- ####################################################################### -->
     <!-- Outside The Maven Land (List at http://maven.apache.org/plugins/) -->
@@ -165,6 +170,10 @@
 
     <!-- https://github.com/sonatype/nexus-maven-plugins/tree/master/staging/maven-plugin -->
     <master_plugin_nexus-staging_version>1.6.6</master_plugin_nexus-staging_version>
+
+    <!-- https://github.com/BSI-Business-Systems-Integration-AG/eclipse-settings-maven-plugin -->
+    <master_plugin_eclipse-settings_version>3.0.1</master_plugin_eclipse-settings_version>
+    <eclipse-settings_masterVersion>2.0-SNAPSHOT</eclipse-settings_masterVersion>
 
     <!-- https://wiki.eclipse.org/Tycho -->
     <master_dependency_tycho-compiler_version>0.23.1</master_dependency_tycho-compiler_version>
@@ -273,6 +282,12 @@
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-project-info-reports-plugin</artifactId>
           <version>${master_plugin_project-info-reports_version}</version>
+        </plugin>
+
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-eclipse-plugin</artifactId>
+          <version>${master_plugin_eclipse_version}</version>
         </plugin>
 
         <plugin>
@@ -514,6 +529,12 @@
           <groupId>org.eclipse.tycho</groupId>
           <artifactId>tycho-p2-publisher-plugin</artifactId>
           <version>${master_plugin_tycho_version}</version>
+        </plugin>
+
+        <plugin>
+          <groupId>org.eclipse.scout</groupId>
+          <artifactId>eclipse-settings-maven-plugin</artifactId>
+          <version>${master_plugin_eclipse-settings_version}</version>
         </plugin>
       </plugins>
     </pluginManagement>
