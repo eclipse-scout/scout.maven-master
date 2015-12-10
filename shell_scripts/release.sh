@@ -80,7 +80,7 @@ processError
 mvn -Prelease.checkin -Declipse_gerrit_username=$GIT_USERNAME -f maven_plugin_version-master $_MAVEN_OPTS
 processError
 
-mvn -Prelease.tag -Declipse_gerrit_username=$GIT_USERNAME -Dmaster_release_pushChanges=true $_MAVEN_OPTS
+mvn -Prelease.tag -Declipse_gerrit_username=$GIT_USERNAME -Dmaster_release_pushChanges=true -f maven_plugin_version-master $_MAVEN_OPTS
 processError
 
 mvn -Prelease.setversion -Dmaster_release_newVersion=$NEXT_DEVELOPMENT -f maven_plugin_version-master -N $_MAVEN_OPTS -Dmaster_release_tagName="master"
