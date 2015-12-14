@@ -1,7 +1,7 @@
 #Build *Scout Maven Master*
 
 ##Perform the release - push tag and branch to Eclipse Gerrit
-  shell_scripts/release.sh -u sleicht -r 2.0 -d 2.0.1-SNAPSHOT -t v2.0
+  shell_scripts/release.sh -u sleicht -r 2.0 -d 2.0.1-SNAPSHOT -t v2.0_1
 
 ##Change Version
   mvn versions:set -DnewVersion=2.0-SNAPSHOT
