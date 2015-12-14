@@ -14,7 +14,7 @@
 
   <groupId>org.eclipse.scout</groupId>
   <artifactId>maven_plugin_version-master</artifactId>
-  <version>2.0</version>
+  <version>2.0.1-SNAPSHOT</version>
   <packaging>pom</packaging>
   <name>Maven Master Plugin Version Configuration</name>
   <description>Maven Master hosted at Eclipse Scout</description>
@@ -607,7 +607,7 @@
   <scm>
     <connection>scm:git:git://git.eclipse.org/gitroot/scout/maven-master.git</connection>
     <developerConnection>scm:git:ssh://${eclipse_gerrit_username}@git.eclipse.org:29418/scout/maven-master.git</developerConnection>
-    <tag>v2.0_1</tag>
+    <tag>master</tag>
     <url>https://git.eclipse.org/c/scout/maven-master.git/</url>
   </scm>
 
