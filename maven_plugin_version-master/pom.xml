@@ -173,7 +173,7 @@
 
     <!-- https://github.com/BSI-Business-Systems-Integration-AG/eclipse-settings-maven-plugin -->
     <master_plugin_eclipse-settings_version>3.0.1</master_plugin_eclipse-settings_version>
-    <eclipse-settings_masterVersion>2.0-SNAPSHOT</eclipse-settings_masterVersion>
+    <master_dependency_eclipseSettings_master_version>1.0</master_dependency_eclipseSettings_master_version>
 
     <!-- https://wiki.eclipse.org/Tycho -->
     <master_dependency_tycho-compiler_version>0.23.1</master_dependency_tycho-compiler_version>

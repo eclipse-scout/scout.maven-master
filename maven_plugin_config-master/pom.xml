@@ -447,7 +447,7 @@
             <dependency>
               <groupId>org.eclipse.scout</groupId>
               <artifactId>eclipse-settings_master</artifactId>
-              <version>${eclipse-settings_masterVersion}</version>
+              <version>${master_dependency_eclipseSettings_master_version}</version>
             </dependency>
           </dependencies>
           <configuration>
