@@ -173,7 +173,7 @@
 
     <!-- https://github.com/BSI-Business-Systems-Integration-AG/eclipse-settings-maven-plugin -->
     <master_plugin_eclipse-settings_version>3.0.1</master_plugin_eclipse-settings_version>
-    <master_dependency_eclipseSettings_master_version>1.0</master_dependency_eclipseSettings_master_version>
+    <master_dependency_eclipseSettings_master_version>2.0.2-SNAPSHOT</master_dependency_eclipseSettings_master_version>
 
     <!-- https://wiki.eclipse.org/Tycho -->
     <master_dependency_tycho-compiler_version>0.23.1</master_dependency_tycho-compiler_version>
@@ -740,6 +740,23 @@
                   <!-- token finds the <scm><tag> and places the ${master_release_tagName} string there -->
                   <token>(\\x3cscm\\x3e[a-zA-Z0-9\\x3c\\x3e:/@\\s\\.\\{\\}_\\-$]*\\x3ctag\\x3e).*(\\x3c/tag\\x3e[a-zA-Z0-9\\x3c\\x3e:/@\\s\\.\\-?=%;]*\\x3c/scm\\x3e)</token>
                   <value>$1${master_release_tagName}$2</value>
+                  <unescape>true</unescape>
+                </configuration>
+              </execution>
+              <execution>
+                <id>settings-version</id>
+                <goals>
+                  <goal>replace</goal>
+                </goals>
+                <phase>generate-resources</phase>
+                <configuration>
+                  <basedir>${project.basedir}</basedir>
+                  <includes>
+                    <include>pom.xml</include>
+                  </includes>
+                  <!-- token finds the <scm><tag> and places the ${master_release_tagName} string there -->
+                  <token>(\\x3cmaster_dependency_eclipseSettings_master_version\\x3e).*(\\x3c/master_dependency_eclipseSettings_master_version\\x3e)</token>
+                  <value>$1${master_release_newVersion}$2</value>
                   <unescape>true</unescape>
                 </configuration>
               </execution>

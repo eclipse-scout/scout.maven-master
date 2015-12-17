@@ -20,7 +20,6 @@
   </parent>
 
   <artifactId>eclipse-settings_aptEnabled_master</artifactId>
-  <version>${master_dependency_eclipseSettings_master_version}</version>
   <packaging>jar</packaging>
 
   <prerequisites>
