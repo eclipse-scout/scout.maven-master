@@ -57,7 +57,8 @@
 
     <!-- Surefire/Failsafe Fork/Order/Config Control -->
     <master_coverage_jacoco_destFile>${basedir}/../target/jacoco-all.exec</master_coverage_jacoco_destFile>
-    <master_test_runOrder>failedfirst</master_test_runOrder>
+    <!-- https://maven.apache.org/surefire/maven-surefire-plugin/test-mojo.html#runOrder -->
+    <master_test_runOrder>hourly</master_test_runOrder>
     <master_test_forkCount>0.5C</master_test_forkCount>
     <master_test_reuseVm>true</master_test_reuseVm>
     <master_test_timeout>30</master_test_timeout>
