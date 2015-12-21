@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project name="Eclipse Sout - Maven Master">
+  <skin>
+    <groupId>org.apache.maven.skins</groupId>
+    <artifactId>maven-fluido-skin</artifactId>
+    <version>1.4</version>
+  </skin>
+  <custom>
+    <fluidoSkin>
+      <copyrightClass>pull-right</copyrightClass>
+      <sourceLineNumbersEnabled>true</sourceLineNumbersEnabled>
+      <ohloh>
+        <projectId>eclipsescout</projectId>
+        <widget>partner-badge</widget>
+      </ohloh>
+    </fluidoSkin>
+  </custom>
+  <bannerLeft>
+    <name>Eclipse Scout - Maven Master</name>
+    <src>https://www.eclipse.org/downloads/images/scout.jpg</src>
+    <href>https://www.eclipse.org/scout/</href>
+    <height>50</height>
+  </bannerLeft>
+  <body>
+    <links>
+      <item name="Eclipse" href="https://www.eclipse.org/" />
+      <item name="Eclipse Scout" href="https://www.eclipse.org/scout/"/>
+    </links>
+
+    <menu ref="reports"/>
+
+  </body>
+</project>
