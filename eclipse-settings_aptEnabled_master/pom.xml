@@ -21,6 +21,8 @@
 
   <artifactId>eclipse-settings_aptEnabled_master</artifactId>
   <packaging>jar</packaging>
+  <name>Maven Master Eclipse Settings - APT Variant</name>
+  <description>Maven Master hosted at Eclipse Scout</description>
 
   <prerequisites>
     <!-- Note that "prerequisites" not inherited, but used by versions-maven-plugin -->

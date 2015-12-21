@@ -1,0 +1,43 @@
+ ------
+ Maven Master
+ ------
+ Eclipse Scout Committers
+ ------
+ 2015-12-21
+ ------
+
+~~
+~~ Copyright (c) 2015 BSI Business Systems Integration AG.
+~~ All rights reserved. This program and the accompanying materials
+~~ are made available under the terms of the Eclipse Public License v1.0
+~~ which accompanies this distribution, and is available at
+~~ http://www.eclipse.org/legal/epl-v10.html
+
+~~ Contributors:
+~~ BSI Business Systems Integration AG - initial API and implementation
+
+~~ NOTE: For help with the syntax of this file, see:
+~~ http://maven.apache.org/doxia/references/apt-format.html
+
+Maven Master
+
+  **Eclipse Scout Maven Master** contains the master POMs for Eclipse Scout projects.
+
+  It is composed by:
+
+
+  * {{{../../}<<<maven_plugin_version-master>>>}}: the Maven Master Plugin Version Configuration,
+
+  * {{{../}<<<maven_plugin_config-master>>>}}: the Maven Master Plugin Build Configuration - General,
+
+  * {{{../maven_rt_plugin_config-master/}<<<maven_rt_plugin_config-master>>>}}: the Maven Master Plugin Build Configuration - RT,
+
+  * {{{../maven_sdk_plugin_config-master/}<<<maven_sdk_plugin_config-master>>>}}: the Maven Master Plugin Build Configuration - SDK,
+
+  * {{{../maven_sdk_p2_plugin_config-master/}<<<maven_sdk_p2_plugin_config-master>>>}}: the Maven Master Plugin Build Configuration - SDK-P2,
+
+  * {{{../eclipse-settings_master/}<<<eclipse-settings_master>>>}}: the Maven Master Eclipse Settings,
+
+  * {{{../eclipse-settings_aptEnabled_master/}<<<eclipse-settings_aptEnabled_master>>>}}: the Maven Master Eclipse Settings - APT Variant.
+
+  []

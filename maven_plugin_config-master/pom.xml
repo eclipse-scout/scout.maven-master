@@ -68,6 +68,9 @@
       -Xrunjdwp:transport=dt_socket,address=${master_test_remoteDebugPort},server=y,suspend=n</master_test_debugArgLine>
     <master_test_argLine>${master_test_jacocoArgLine} ${master_test_jvmMemory}
       -Dfile.encoding=${project.build.sourceEncoding}</master_test_argLine>
+
+    <!-- Javadoc Control -->
+    <master_javadoc_opts></master_javadoc_opts>
   </properties>
 
   <build>
@@ -508,6 +511,18 @@
           </configuration>
         </plugin>
 
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-javadoc-plugin</artifactId>
+          <configuration>
+            <failOnError>false</failOnError>
+            <source>${jdk.source.version}</source>
+            <target>${jdk.source.version}</target>
+            <encoding>${project.build.sourceEncoding}</encoding>
+            <additionalparam>${master_javadoc_opts}</additionalparam>
+          </configuration>
+        </plugin>
+
         <!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself. -->
         <plugin>
           <groupId>org.eclipse.m2e</groupId>
@@ -805,6 +820,16 @@
     </profile>
 
     <profile>
+      <id>doclint-java8-disable</id>
+      <activation>
+        <jdk>[1.8,)</jdk>
+      </activation>
+      <properties>
+        <master_javadoc_opts>-Xdoclint:none</master_javadoc_opts>
+      </properties>
+    </profile>
+
+    <profile>
       <!-- sign jars -->
       <id>sign</id>
       <build>
@@ -872,14 +897,6 @@
                 <goals>
                   <goal>jar</goal>
                 </goals>
-                <configuration>
-                  <failOnError>false</failOnError>
-                  <source>${jdk.source.version}</source>
-                  <target>${jdk.source.version}</target>
-                  <encoding>${project.build.sourceEncoding}</encoding>
-                  <quiet>true</quiet>
-                  <additionalparam>-quiet</additionalparam>
-                </configuration>
               </execution>
             </executions>
           </plugin>
