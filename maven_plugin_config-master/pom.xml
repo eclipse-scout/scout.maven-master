@@ -110,6 +110,9 @@
             <compilerArgs>
               <arg>-proc:none</arg>
             </compilerArgs>
+            <compilerArguments>
+              <properties>${project.basedir}/.settings/org.eclipse.jdt.core.prefs</properties>
+            </compilerArguments>
           </configuration>
           <dependencies>
             <dependency>
