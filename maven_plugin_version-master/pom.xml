@@ -119,7 +119,7 @@
     <master_plugin_duplicate-finder_version>1.2.1</master_plugin_duplicate-finder_version>
 
     <!-- https://github.com/wildfly/jandex-maven-plugin -->
-    <master_plugin_jandex_version>1.0.1</master_plugin_jandex_version>
+    <master_plugin_jandex_version>1.0.3</master_plugin_jandex_version>
 
     <!-- Plugin version of 'jaxws-maven-plugin' to generate webservice stub. -->
     <!-- http://www.mojohaus.org/jaxws-maven-plugin/ -->
