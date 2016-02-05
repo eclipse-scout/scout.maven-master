@@ -243,6 +243,16 @@
           <plugin>
             <groupId>org.eclipse.tycho.extras</groupId>
             <artifactId>tycho-pack200a-plugin</artifactId>
+            <configuration>
+              <supportedProjectTypes>
+                <!-- Project type bundle not enabled in default configuration of 0.22-->
+                <supportedProjectType>bundle</supportedProjectType>
+                <!-- These project types are supported in default configuration -->
+                <supportedProjectType>jar</supportedProjectType>
+                <supportedProjectType>eclipse-plugin</supportedProjectType>
+                <supportedProjectType>eclipse-test-plugin</supportedProjectType>
+              </supportedProjectTypes>
+            </configuration>
             <executions>
               <execution>
                 <id>pack200-normalize</id>
@@ -271,6 +281,16 @@
           <plugin>
             <groupId>org.eclipse.tycho.extras</groupId>
             <artifactId>tycho-pack200b-plugin</artifactId>
+            <configuration>
+              <supportedProjectTypes>
+                <!-- Project type bundle not enabled in default configuration of 0.22-->
+                <supportedProjectType>bundle</supportedProjectType>
+                <!-- These project types are supported in default configuration -->
+                <supportedProjectType>jar</supportedProjectType>
+                <supportedProjectType>eclipse-plugin</supportedProjectType>
+                <supportedProjectType>eclipse-test-plugin</supportedProjectType>
+              </supportedProjectTypes>
+            </configuration>
             <executions>
               <execution>
                 <id>pack200-pack</id>
