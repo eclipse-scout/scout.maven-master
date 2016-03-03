@@ -364,6 +364,8 @@
               <exclude>**/release.properties</exclude>
               <exclude>**/pom.xml.releaseBackup</exclude>
               <exclude>**/*.sh</exclude>
+              <exclude>**/*-module.js</exclude>
+              <exclude>**/*-module.css</exclude>
               <exclude>tests/**</exclude>
               <exclude>**/src/main/resources/WebContent/res/**</exclude>
               <exclude>**/src/main/ws-stub/**</exclude>
