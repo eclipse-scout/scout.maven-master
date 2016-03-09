@@ -113,9 +113,6 @@
             <compilerArgs>
               <arg>-proc:none</arg>
             </compilerArgs>
-            <compilerArguments>
-              <properties>${project.basedir}/.settings/org.eclipse.jdt.core.prefs</properties>
-            </compilerArguments>
           </configuration>
           <dependencies>
             <dependency>
@@ -919,5 +916,29 @@
         </plugins>
       </build>
     </profile>
+
+    <profile>
+      <!-- Add the jdt.core.prefs compiler argument only if the file exists -->
+      <id>use-jdt-core-prefs-file</id>
+      <activation>
+        <file>
+          <exists>${basedir}/.settings/org.eclipse.jdt.core.prefs</exists>
+        </file>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <configuration>
+              <compilerArguments>
+                <properties>${project.basedir}/.settings/org.eclipse.jdt.core.prefs</properties>
+              </compilerArguments>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
   </profiles>
 </project>
