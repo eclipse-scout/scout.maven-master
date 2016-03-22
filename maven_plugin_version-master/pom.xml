@@ -35,6 +35,7 @@
     <master_release_newVersion>${base.version}.${master_release_milestoneVersion}</master_release_newVersion>
     <master_release_tagName>${master_release_newVersion}</master_release_tagName>
     <master_release_checkinMessage>[release] version updated to ${project.version}</master_release_checkinMessage>
+    <master_ossrh_autoReleaseAfterClose>false</master_ossrh_autoReleaseAfterClose>
 
     <!-- ####################################################################### -->
     <!-- Maven Plugin versions, ordered like http://maven.apache.org/plugins/ -->
@@ -925,7 +926,7 @@
             <configuration>
               <serverId>ossrh</serverId>
               <nexusUrl>https://oss.sonatype.org/</nexusUrl>
-              <autoReleaseAfterClose>true</autoReleaseAfterClose>
+              <autoReleaseAfterClose>${master_ossrh_autoReleaseAfterClose}</autoReleaseAfterClose>
             </configuration>
           </plugin>
         </plugins>
