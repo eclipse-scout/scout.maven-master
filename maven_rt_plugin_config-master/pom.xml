@@ -381,7 +381,7 @@
               <xdisableAuthenticator>true</xdisableAuthenticator>
               <xdebug>true</xdebug>
               <verbose>true</verbose>
-              <target>2.0</target>
+              <target>2.1</target> <!-- min 2.1 is required for object extension by sub-classing (requires XmlSeeAlso annotation) -->
               <keep>true</keep>
               <staleFile>${jaxws.stale.directory}</staleFile>
               <vmArgs>
