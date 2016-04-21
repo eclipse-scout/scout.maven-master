@@ -236,7 +236,7 @@
             <groupId>org.eclipse.tycho</groupId>
             <artifactId>target-platform-configuration</artifactId>
             <configuration>
-              <includePackedArtifacts>false</includePackedArtifacts>
+              <includePackedArtifacts>true</includePackedArtifacts>
             </configuration>
           </plugin>
 
