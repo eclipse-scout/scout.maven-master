@@ -299,6 +299,7 @@
               <ignoredResourcePattern>.*gitkeep$</ignoredResourcePattern>
               <ignoredResourcePattern>.*sql$</ignoredResourcePattern>
               <ignoredResourcePattern>.*xjb$</ignoredResourcePattern>
+			  <ignoredResourcePattern>.*exsd$</ignoredResourcePattern>
               <ignoredResourcePattern>.*about.ini$</ignoredResourcePattern>
             </ignoredResourcePatterns>
           </configuration>
