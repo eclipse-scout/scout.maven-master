@@ -94,7 +94,7 @@
     <!-- ####################################################################### -->
     <!-- http://www.mojohaus.org/animal-sniffer/ -->
     <!-- https://github.com/mojohaus/animal-sniffer -->
-    <master_plugin_animal-sniffer_version>1.14</master_plugin_animal-sniffer_version>
+    <master_plugin_animal-sniffer_version>1.15</master_plugin_animal-sniffer_version>
 
     <!-- http://www.mojohaus.org/build-helper-maven-plugin -->
     <!-- https://github.com/mojohaus/build-helper-maven-plugin -->
