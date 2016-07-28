@@ -25,6 +25,8 @@
 
   <properties>
     <master_build_timestamp>${maven.build.timestamp}</master_build_timestamp>
+    <jdk.min.version>1.8</jdk.min.version>
+    <jdk.source.version>1.8</jdk.source.version>
   </properties>
 
   <build>
@@ -56,7 +58,7 @@
               <Bundle-SymbolicName>${bundle.symbolicName};singleton:=true</Bundle-SymbolicName>
               <Bundle-Name>${project.name}</Bundle-Name>
               <Bundle-Version>${project.version}</Bundle-Version>
-              <Bundle-RequiredExecutionEnvironment>JavaSE-1.7</Bundle-RequiredExecutionEnvironment>
+              <Bundle-RequiredExecutionEnvironment>JavaSE-${jdk.min.version}</Bundle-RequiredExecutionEnvironment>
               <Export-Package>${bundle.namespace}.*;version="${bundle.version}"</Export-Package>
               <Bundle-ActivationPolicy>lazy</Bundle-ActivationPolicy>
               <!-- Do not calculate the uses: directive. -->
