@@ -137,6 +137,15 @@
               <user.timezone>UTC</user.timezone>
               <java.awt.headless>true</java.awt.headless>
               <java.util.logging.SimpleFormatter.format>%1$tY-%1$tm-%1$td %1$tH:%1$tM:%1$tS %4$s %5$s%6$s%n</java.util.logging.SimpleFormatter.format>
+              <!-- Inherit proxy settings of parent process when forking -->
+              <http.proxyHost>${http.proxyHost}</http.proxyHost>
+              <http.proxyPort>${http.proxyPort}</http.proxyPort>
+              <http.nonProxyHosts>${http.nonProxyHosts}</http.nonProxyHosts>
+              <https.proxyHost>${https.proxyHost}</https.proxyHost>
+              <https.proxyPort>${https.proxyPort}</https.proxyPort>
+              <ftp.proxyHost>${ftp.proxyHost}</ftp.proxyHost>
+              <ftp.proxyPort>${ftp.proxyPort}</ftp.proxyPort>
+              <ftp.nonProxyHosts>${ftp.nonProxyHosts}</ftp.nonProxyHosts>
             </systemPropertyVariables>
             <runOrder>${master_test_runOrder}</runOrder>
             <forkCount>${master_test_forkCount}</forkCount>
