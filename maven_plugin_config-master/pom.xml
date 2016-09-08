@@ -91,6 +91,10 @@
             <nonFilteredFileExtensions>
               <nonFilteredFileExtension>ico</nonFilteredFileExtension>
               <nonFilteredFileExtension>png</nonFilteredFileExtension>
+              <nonFilteredFileExtension>tif</nonFilteredFileExtension>
+              <nonFilteredFileExtension>tiff</nonFilteredFileExtension>
+              <nonFilteredFileExtension>jpg</nonFilteredFileExtension>
+              <nonFilteredFileExtension>jpeg</nonFilteredFileExtension>
               <nonFilteredFileExtension>pdf</nonFilteredFileExtension>
               <nonFilteredFileExtension>jar</nonFilteredFileExtension>
               <nonFilteredFileExtension>doc</nonFilteredFileExtension>
@@ -309,7 +313,7 @@
               <ignoredResourcePattern>.*gitkeep$</ignoredResourcePattern>
               <ignoredResourcePattern>.*sql$</ignoredResourcePattern>
               <ignoredResourcePattern>.*xjb$</ignoredResourcePattern>
-			  <ignoredResourcePattern>.*exsd$</ignoredResourcePattern>
+              <ignoredResourcePattern>.*exsd$</ignoredResourcePattern>
               <ignoredResourcePattern>.*about.ini$</ignoredResourcePattern>
             </ignoredResourcePatterns>
           </configuration>
