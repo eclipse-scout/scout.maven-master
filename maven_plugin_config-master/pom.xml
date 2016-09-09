@@ -130,6 +130,7 @@
             <failIfNoTests>false</failIfNoTests>
             <testFailureIgnore>${master_unitTest_failureIgnore}</testFailureIgnore>
             <skipTests>${master_unitTest_skip}</skipTests>
+            <trimStackTrace>false</trimStackTrace>
             <!-- inject debug arguments (triggered by system property debugTests from jenkins) -->
             <argLine>${master_test_argLine}</argLine>
             <systemPropertyVariables>
