@@ -265,39 +265,6 @@
     </profile>
 
     <profile>
-      <id>webapp_folder</id>
-      <activation>
-        <file>
-          <exists>${basedir}/src/main/webapp</exists>
-        </file>
-      </activation>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.codehaus.mojo</groupId>
-            <artifactId>build-helper-maven-plugin</artifactId>
-            <executions>
-              <execution>
-                <id>add-resource</id>
-                <goals>
-                  <goal>add-resource</goal>
-                </goals>
-                <phase>generate-resources</phase>
-                <configuration>
-                  <resources>
-                    <resource>
-                      <directory>src/main/webapp</directory>
-                    </resource>
-                  </resources>
-                </configuration>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-
-    <profile>
       <id>generated_java_folder</id>
       <activation>
         <file>
