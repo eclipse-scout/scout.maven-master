@@ -364,6 +364,7 @@
               <include>**/*.java</include>
               <include>**/*.js</include>
               <include>**/*.css</include>
+              <include>**/*.less</include>
               <include>**/*.xml</include>
               <include>**/*.xsd</include>
             </includes>
@@ -376,6 +377,7 @@
               <exclude>**/*.sh</exclude>
               <exclude>**/*-module.js</exclude>
               <exclude>**/*-module.css</exclude>
+              <exclude>**/*-module.less</exclude>
               <exclude>tests/**</exclude>
               <exclude>**/src/main/resources/WebContent/res/**</exclude>
               <exclude>**/src/main/ws-stub/**</exclude>
