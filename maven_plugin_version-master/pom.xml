@@ -74,7 +74,7 @@
     <!-- Tools -->
     <!-- These are miscellaneous tools available through Maven by default. -->
     <!-- ####################################################################### -->
-    <master_plugin_ant_version>2.4</master_plugin_ant_version>
+    <master_plugin_ant_version>1.10.1</master_plugin_ant_version>
     <master_plugin_antrun_version>1.8</master_plugin_antrun_version>
     <master_plugin_assembly_version>2.6</master_plugin_assembly_version>
     <master_plugin_dependency_version>2.10</master_plugin_dependency_version>
@@ -318,6 +318,14 @@
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-antrun-plugin</artifactId>
           <version>${master_plugin_antrun_version}</version>
+          <dependencies>
+            <dependency>
+              <groupId>org.apache.ant</groupId>
+              <artifactId>ant</artifactId>
+              <version>${master_plugin_ant_version}</version>
+            </dependency>
+          </dependencies>
+
         </plugin>
 
         <plugin>
