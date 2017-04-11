@@ -498,12 +498,20 @@
                 <location>/org.eclipse.jdt.core.prefs</location>
               </file>
               <file>
+                <name>.settings/org.eclipse.jdt.launching.prefs</name>
+                <location>/org.eclipse.jdt.launching.prefs</location>
+              </file>
+              <file>
                 <name>.settings/org.eclipse.jdt.ui.prefs</name>
                 <location>/org.eclipse.jdt.ui.prefs</location>
               </file>
               <file>
                 <name>.settings/org.eclipse.m2e.core.prefs</name>
                 <location>/org.eclipse.m2e.core.prefs</location>
+              </file>
+              <file>
+                <name>.settings/org.eclipse.wst.html.core.prefs</name>
+                <location>/org.eclipse.wst.html.core.prefs</location>
               </file>
               <file>
                 <name>.settings/org.eclipse.wst.jsdt.core.prefs</name>
@@ -520,6 +528,14 @@
               <file>
                 <name>.settings/org.eclipse.wst.jsdt.ui.superType.name</name>
                 <location>/org.eclipse.wst.jsdt.ui.superType.name</location>
+              </file>
+              <file>
+                <name>.settings/org.eclipse.wst.validation.prefs</name>
+                <location>/org.eclipse.wst.validation.prefs</location>
+              </file>
+              <file>
+                <name>.settings/org.eclipse.wst.xml.core.prefs</name>
+                <location>/org.eclipse.wst.xml.core.prefs</location>
               </file>
             </additionalConfig>
           </configuration>
