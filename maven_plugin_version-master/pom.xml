@@ -74,7 +74,7 @@
     <!-- Tools -->
     <!-- These are miscellaneous tools available through Maven by default. -->
     <!-- ####################################################################### -->
-    <master_plugin_ant_version>1.10.1</master_plugin_ant_version>
+    <master_plugin_ant_version>1.9.9</master_plugin_ant_version>
     <master_plugin_antrun_version>1.8</master_plugin_antrun_version>
     <master_plugin_assembly_version>2.6</master_plugin_assembly_version>
     <master_plugin_dependency_version>2.10</master_plugin_dependency_version>
