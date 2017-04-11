@@ -324,8 +324,12 @@
               <artifactId>ant</artifactId>
               <version>${master_plugin_ant_version}</version>
             </dependency>
+            <dependency>
+              <groupId>org.apache.ant</groupId>
+              <artifactId>ant-launcher</artifactId>
+              <version>${master_plugin_ant_version}</version>
+            </dependency>
           </dependencies>
-
         </plugin>
 
         <plugin>
