@@ -901,6 +901,10 @@
       </build>
     </profile>
 
+    <!-- TODO avd: Delete release profile in a future version
+         gpg signing is now explicitly done in eclipse-sign profile for sdk and
+         in the sign profile for rt.
+      -->
     <profile>
       <id>release</id>
       <activation>
