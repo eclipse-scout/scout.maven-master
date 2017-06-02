@@ -705,7 +705,12 @@
 
   <repositories>
     <repository>
-      <snapshots></snapshots>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+      <releases>
+        <enabled>false</enabled>
+      </releases>
       <id>eclipse.snapshot</id>
       <name>eclipse-snapshot-repo</name>
       <url>https://repo.eclipse.org/content/groups/snapshots/</url>
@@ -717,12 +722,20 @@
       <snapshots>
         <enabled>false</enabled>
       </snapshots>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
       <id>eclipse.release</id>
       <name>eclipse-release-repo</name>
       <url>https://repo.eclipse.org/content/groups/releases/</url>
     </pluginRepository>
     <pluginRepository>
-      <snapshots></snapshots>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+      <releases>
+        <enabled>false</enabled>
+      </releases>
       <id>eclipse.snapshot</id>
       <name>eclipse-snapshot-repo</name>
       <url>https://repo.eclipse.org/content/groups/snapshots/</url>
@@ -732,6 +745,9 @@
       <snapshots>
         <enabled>false</enabled>
       </snapshots>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
       <id>bintray-bsi-business-systems-integration-ag-scout-eclipse-org</id>
       <name>bintray-plugins</name>
       <url>http://dl.bintray.com/bsi-business-systems-integration-ag/scout-eclipse-org</url>
