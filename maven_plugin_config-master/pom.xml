@@ -336,12 +336,6 @@
               <artifactId>java17</artifactId>
               <version>1.0</version>
             </signature>
-            <!-- for java18 signature check. @see https://github.com/ianbrandt/animal-sniffer-signatures -->
-            <!-- <signature> -->
-            <!-- <groupId>org.kaazing.mojo.signature</groupId> -->
-            <!-- <artifactId>java18</artifactId> -->
-            <!-- <version>1.0</version> -->
-            <!-- </signature> -->
             <skip>${master_sanityCheck_skip}</skip>
           </configuration>
         </plugin>
