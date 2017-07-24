@@ -123,9 +123,8 @@
           <groupId>org.codehaus.mojo</groupId>
           <artifactId>animal-sniffer-maven-plugin</artifactId>
           <configuration>
-            <!-- for java18 signature check. @see https://github.com/ianbrandt/animal-sniffer-signatures -->
             <signature>
-              <groupId>org.kaazing.mojo.signature</groupId>
+              <groupId>org.codehaus.mojo.signature</groupId>
               <artifactId>java18</artifactId>
               <version>1.0</version>
             </signature>
