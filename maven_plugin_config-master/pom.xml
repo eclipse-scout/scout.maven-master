@@ -29,8 +29,8 @@
   </prerequisites>
 
   <properties>
-    <jdk.min.version>1.7</jdk.min.version>
-    <jdk.source.version>1.7</jdk.source.version>
+    <jdk.min.version>1.8</jdk.min.version>
+    <jdk.source.version>1.8</jdk.source.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <maven.build.timestamp.format>yyyyMMdd-HHmmss</maven.build.timestamp.format>
@@ -333,7 +333,7 @@
           <configuration>
             <signature>
               <groupId>org.codehaus.mojo.signature</groupId>
-              <artifactId>java17</artifactId>
+              <artifactId>java18</artifactId>
               <version>1.0</version>
             </signature>
             <skip>${master_sanityCheck_skip}</skip>
