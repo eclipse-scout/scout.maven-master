@@ -136,7 +136,7 @@
     <master_dependency_phantomjs_version>2.1.1</master_dependency_phantomjs_version>
 
     <!-- http://searls.github.io/jasmine-maven-plugin/ -->
-    <master_plugin_jasmine_version>2.2</master_plugin_jasmine_version>
+    <master_plugin_jasmine_version>2.1</master_plugin_jasmine_version>
 
     <!-- http://site.kuali.org/maven/plugins/properties-maven-plugin/latest/ -->
     <master_plugin_properties_version>2.0.1</master_plugin_properties_version>
