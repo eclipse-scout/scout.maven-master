@@ -59,6 +59,7 @@
               <Bundle-RequiredExecutionEnvironment>JavaSE-${jdk.min.version}</Bundle-RequiredExecutionEnvironment>
               <Export-Package>${bundle.namespace}.*;version="${bundle.version}"</Export-Package>
               <Bundle-ActivationPolicy>lazy</Bundle-ActivationPolicy>
+              <Automatic-Module-Name>${project.name}</Automatic-Module-Name>
               <!-- Do not calculate the uses: directive. -->
               <_nouses>true</_nouses>
               <!-- Include sources -->
