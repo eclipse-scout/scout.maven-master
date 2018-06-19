@@ -97,10 +97,16 @@
               <nonFilteredFileExtension>jpeg</nonFilteredFileExtension>
               <nonFilteredFileExtension>pdf</nonFilteredFileExtension>
               <nonFilteredFileExtension>jar</nonFilteredFileExtension>
+              <!-- office documents -->
               <nonFilteredFileExtension>doc</nonFilteredFileExtension>
               <nonFilteredFileExtension>docx</nonFilteredFileExtension>
               <nonFilteredFileExtension>xls</nonFilteredFileExtension>
               <nonFilteredFileExtension>xlsx</nonFilteredFileExtension>
+              <!-- font files -->
+              <nonFilteredFileExtension>woff</nonFilteredFileExtension>
+              <nonFilteredFileExtension>woff2</nonFilteredFileExtension>
+              <nonFilteredFileExtension>otf</nonFilteredFileExtension>
+              <nonFilteredFileExtension>ttf</nonFilteredFileExtension>
             </nonFilteredFileExtensions>
           </configuration>
         </plugin>
