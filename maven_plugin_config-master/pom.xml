@@ -15,7 +15,7 @@
   <parent>
     <groupId>org.eclipse.scout</groupId>
     <artifactId>maven_plugin_version-master</artifactId>
-    <version>3.0.1-SNAPSHOT</version>
+    <version>3.1.0-SNAPSHOT</version>
     <relativePath>../maven_plugin_version-master</relativePath>
   </parent>
 
@@ -34,11 +34,12 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <maven.build.timestamp.format>yyyyMMdd-HHmmss</maven.build.timestamp.format>
-    <maven.min.version>3.2.1</maven.min.version>
-    <maven.api.version>3.2.1</maven.api.version>
+    <maven.min.version>3.5.3</maven.min.version>
+    <maven.api.version>3.5.3</maven.api.version>
 
     <master_deployAtEnd>true</master_deployAtEnd>
     <master_sanityCheck_skip>false</master_sanityCheck_skip>
+    <master_signatureCheck_skip>${master_sanityCheck_skip}</master_signatureCheck_skip>
 
     <!-- Test Control -->
     <master_unitTest_skip>false</master_unitTest_skip>
@@ -129,6 +130,18 @@
               <groupId>org.eclipse.tycho</groupId>
               <artifactId>tycho-compiler-jdt</artifactId>
               <version>${master_dependency_tycho-compiler_version}</version>
+              <exclusions>
+                <!-- Exclude ecj that comes with Tycho so that we can add our version (see below) -->
+                <exclusion>
+                  <groupId>org.eclipse.jdt</groupId>
+                  <artifactId>ecj</artifactId>
+                </exclusion>
+              </exclusions>
+            </dependency>
+            <dependency>
+              <groupId>org.eclipse.jdt</groupId>
+              <artifactId>ecj</artifactId>
+              <version>${master_ecj-compiler_version}</version>
             </dependency>
           </dependencies>
         </plugin>
@@ -306,9 +319,11 @@
             <ignoredResourcePatterns>
               <ignoredResourcePattern>.*ico$</ignoredResourcePattern>
               <ignoredResourcePattern>.*jpg$</ignoredResourcePattern>
+              <ignoredResourcePattern>.*jpeg$</ignoredResourcePattern>
               <ignoredResourcePattern>.*png$</ignoredResourcePattern>
               <ignoredResourcePattern>.*gif$</ignoredResourcePattern>
               <ignoredResourcePattern>.*html$</ignoredResourcePattern>
+              <ignoredResourcePattern>.*htm$</ignoredResourcePattern>
               <ignoredResourcePattern>.*xml$</ignoredResourcePattern>
               <ignoredResourcePattern>.*txt$</ignoredResourcePattern>
               <ignoredResourcePattern>.*.api_description$</ignoredResourcePattern>
@@ -320,6 +335,9 @@
               <ignoredResourcePattern>.*exsd$</ignoredResourcePattern>
               <ignoredResourcePattern>.*about.ini$</ignoredResourcePattern>
             </ignoredResourcePatterns>
+            <ignoredClassPatterns>
+              <ignoredClassPattern>.*module-info.*</ignoredClassPattern>
+            </ignoredClassPatterns>
           </configuration>
         </plugin>
 
@@ -342,7 +360,7 @@
               <artifactId>java18</artifactId>
               <version>1.0</version>
             </signature>
-            <skip>${master_sanityCheck_skip}</skip>
+            <skip>${master_signatureCheck_skip}</skip>
           </configuration>
         </plugin>
 

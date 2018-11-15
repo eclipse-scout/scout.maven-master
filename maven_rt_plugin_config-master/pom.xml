@@ -15,7 +15,7 @@
   <parent>
     <groupId>org.eclipse.scout</groupId>
     <artifactId>maven_plugin_config-master</artifactId>
-    <version>3.0.1-SNAPSHOT</version>
+    <version>3.1.0-SNAPSHOT</version>
     <relativePath>../maven_plugin_config-master</relativePath>
   </parent>
 
@@ -101,7 +101,7 @@
                 <!-- Note: Do not move into 'jaxws' profile because ignored by 'm2e' otherwise. -->
                 <pluginExecution>
                   <pluginExecutionFilter>
-                    <groupId>org.codehaus.mojo</groupId>
+                    <groupId>com.helger.maven</groupId>
                     <artifactId>jaxws-maven-plugin</artifactId>
                     <versionRange>[${master_plugin_jaxws_version},)</versionRange>
                     <goals>
@@ -334,7 +334,7 @@
           <!-- WSIMPORT (stub generation) -->
           <!-- Note: The stub is only re-generated if the hash of 'wsartifact-hash' changed. -->
           <plugin>
-            <groupId>org.codehaus.mojo</groupId>
+            <groupId>com.helger.maven</groupId>
             <artifactId>jaxws-maven-plugin</artifactId>
             <configuration>
               <wsdlDirectory>${basedir}/src/main/resources/WEB-INF/wsdl</wsdlDirectory>
@@ -360,6 +360,11 @@
               <dependency>
                 <groupId>com.sun.xml.ws</groupId>
                 <artifactId>jaxws-tools</artifactId>
+                <version>${master_dependency_jaxws_version}</version>
+              </dependency>
+              <dependency>
+                <groupId>com.sun.xml.ws</groupId>
+                <artifactId>jaxws-rt</artifactId>
                 <version>${master_dependency_jaxws_version}</version>
               </dependency>
             </dependencies>
