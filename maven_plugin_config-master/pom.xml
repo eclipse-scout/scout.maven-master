@@ -40,6 +40,7 @@
     <master_deployAtEnd>true</master_deployAtEnd>
     <master_sanityCheck_skip>false</master_sanityCheck_skip>
     <master_signatureCheck_skip>${master_sanityCheck_skip}</master_signatureCheck_skip>
+    <master_enforcerCheck_skip>${master_sanityCheck_skip}</master_enforcerCheck_skip>
 
     <!-- Test Control -->
     <master_unitTest_skip>false</master_unitTest_skip>
@@ -422,7 +423,7 @@
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-enforcer-plugin</artifactId>
           <configuration>
-            <skip>${master_sanityCheck_skip}</skip>
+            <skip>${master_enforcerCheck_skip}</skip>
             <rules>
               <requirePluginVersions>
                 <message>Build reproducibility : always define plugin versions</message>
