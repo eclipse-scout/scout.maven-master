@@ -24,11 +24,6 @@
   <name>Maven Master Eclipse Settings</name>
   <description>Maven Master hosted at Eclipse Scout</description>
 
-  <prerequisites>
-    <!-- Note that "prerequisites" not inherited, but used by versions-maven-plugin -->
-    <maven>${maven.min.version}</maven>
-  </prerequisites>
-
   <build>
     <defaultGoal>package</defaultGoal>
     <resources>

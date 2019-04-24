@@ -23,11 +23,6 @@
   <packaging>pom</packaging>
   <name>Maven Master Plugin Build Configuration - General</name>
 
-  <prerequisites>
-    <!-- Note that "prerequisites" not inherited, but used by versions-maven-plugin -->
-    <maven>${maven.min.version}</maven>
-  </prerequisites>
-
   <properties>
     <jdk.min.version>1.8</jdk.min.version>
     <jdk.source.version>1.8</jdk.source.version>
