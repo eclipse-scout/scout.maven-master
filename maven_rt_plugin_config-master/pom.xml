@@ -362,6 +362,12 @@
                 <artifactId>jaxws-tools</artifactId>
                 <version>${master_dependency_jaxws_version}</version>
               </dependency>
+              <dependency>
+                <!-- this dependency is required for Java 1.8 compatibility! -->
+                <groupId>com.sun.xml.ws</groupId>
+                <artifactId>jaxws-rt</artifactId>
+                <version>${master_dependency_jaxws_version}</version>
+              </dependency>
             </dependencies>
             <executions>
               <execution>
