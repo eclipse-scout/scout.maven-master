@@ -362,11 +362,6 @@
                 <artifactId>jaxws-tools</artifactId>
                 <version>${master_dependency_jaxws_version}</version>
               </dependency>
-              <dependency>
-                <groupId>com.sun.xml.ws</groupId>
-                <artifactId>jaxws-rt</artifactId>
-                <version>${master_dependency_jaxws_version}</version>
-              </dependency>
             </dependencies>
             <executions>
               <execution>
@@ -374,7 +369,7 @@
                 <goals>
                   <goal>wsimport</goal>
                 </goals>
-                <phase>generate-sources</phase>
+                <phase>validate</phase>
               </execution>
             </executions>
           </plugin>
