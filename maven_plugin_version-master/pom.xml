@@ -126,7 +126,7 @@
     <!-- Version to generate JAX-WS artifacts -->
     <!-- https://github.com/javaee/metro-jax-ws -->
     <!-- http://www.mojohaus.org/jaxws-maven-plugin/ -->
-    <master_dependency_jaxws_version>2.3.2</master_dependency_jaxws_version>
+    <master_dependency_jaxws_version>2.3.1</master_dependency_jaxws_version>
 
     <!-- https://github.com/klieber/phantomjs-maven-plugin -->
     <!-- http://kylelieber.com/phantomjs-maven-plugin/ -->
