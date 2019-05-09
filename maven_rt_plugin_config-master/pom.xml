@@ -375,7 +375,7 @@
                 <goals>
                   <goal>wsimport</goal>
                 </goals>
-                <phase>validate</phase>
+                <phase>generate-sources</phase>
               </execution>
             </executions>
           </plugin>
