@@ -25,6 +25,9 @@
     <master_deploy_SnapshotId>repo.eclipse.org</master_deploy_SnapshotId>
     <master_deploy_SnapshotUrl>https://repo.eclipse.org/content/repositories/scout-snapshots/</master_deploy_SnapshotUrl>
 
+    <master_node_version>v12.2.0</master_node_version>
+    <master_pnpm_version>3.4.1</master_pnpm_version>
+
     <!-- Release Control -->
     <master_release_pushChanges>false</master_release_pushChanges>
     <master_release_milestoneVersion>I</master_release_milestoneVersion>
@@ -185,8 +188,11 @@
     <!-- https://www.eclipse.org/tycho/sitedocs-extras/index.html -->
     <master_plugin_tycho-extras_version>${master_plugin_tycho_version}</master_plugin_tycho-extras_version>
 
-	<!-- https://www.eclipse.org/cbi/sitedocs/eclipse-jarsigner-plugin/ -->
+    <!-- https://www.eclipse.org/cbi/sitedocs/eclipse-jarsigner-plugin/ -->
     <master_plugin_jarsigner_version>1.1.5</master_plugin_jarsigner_version>
+
+    <!-- https://github.com/eirslett/frontend-maven-plugin -->
+    <master_plugin_frontend_version>1.7.6</master_plugin_frontend_version>
   </properties>
 
   <build>
@@ -561,6 +567,12 @@
           <groupId>org.eclipse.scout</groupId>
           <artifactId>eclipse-settings-maven-plugin</artifactId>
           <version>${master_plugin_eclipse-settings_version}</version>
+        </plugin>
+
+        <plugin>
+          <groupId>com.github.eirslett</groupId>
+          <artifactId>frontend-maven-plugin</artifactId>
+          <version>${master_plugin_frontend_version}</version>
         </plugin>
       </plugins>
     </pluginManagement>

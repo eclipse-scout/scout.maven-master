@@ -23,7 +23,10 @@
   <packaging>pom</packaging>
   <name>Maven Master Plugin Build Configuration - RT</name>
 
-  <properties></properties>
+  <properties>
+    <master_skip_pnpm_install_dev>false</master_skip_pnpm_install_dev>
+    <master_skip_pnpm_install_prod>false</master_skip_pnpm_install_prod>
+  </properties>
 
   <build>
     <pluginManagement>
@@ -115,6 +118,33 @@
                       <!-- to run once a JAX-WS module is imported into workspace -->
                       <runOnConfiguration>true</runOnConfiguration>
                     </execute>
+                  </action>
+                </pluginExecution>
+                <pluginExecution>
+                  <pluginExecutionFilter>
+                    <groupId>com.github.eirslett</groupId>
+                    <artifactId>frontend-maven-plugin</artifactId>
+                    <versionRange>[${master_plugin_frontend_version},)</versionRange>
+                    <goals>
+                      <goal>install-node-and-npm</goal>
+                      <goal>npm</goal>
+                    </goals>
+                  </pluginExecutionFilter>
+                  <action>
+                    <ignore></ignore>
+                  </action>
+                </pluginExecution>
+                <pluginExecution>
+                  <pluginExecutionFilter>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>exec-maven-plugin</artifactId>
+                    <versionRange>[${master_plugin_exec_version},)</versionRange>
+                    <goals>
+                      <goal>exec</goal>
+                    </goals>
+                  </pluginExecutionFilter>
+                  <action>
+                    <ignore></ignore>
                   </action>
                 </pluginExecution>
               </pluginExecutions>
@@ -495,6 +525,155 @@
                       <directory>${basedir}/src/main/resources/WEB-INF/wsdl</directory>
                     </resource>
                   </resources>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+<!-- profiles used for pnpm build -->
+    <profile>
+      <id>npm-root-dir-win</id>
+      <activation>
+        <os>
+          <family>windows</family>
+        </os>
+      </activation>
+      <properties>
+        <master_npm_subdir>/node_modules</master_npm_subdir>
+      </properties>
+    </profile>
+    <profile>
+      <id>npm-root-dir-linux</id>
+      <activation>
+        <os>
+          <family>linux</family>
+        </os>
+      </activation>
+      <properties>
+        <master_npm_subdir>/lib/node_modules</master_npm_subdir>
+      </properties>
+    </profile>
+    <profile>
+      <id>npm-root-dir-mac</id>
+      <activation>
+        <os>
+          <family>mac</family>
+        </os>
+      </activation>
+      <properties>
+        <master_npm_subdir>/lib/node_modules</master_npm_subdir>
+      </properties>
+    </profile>
+    <profile>
+      <id>pnpm multi install</id>
+      <activation>
+        <file>
+          <exists>${basedir}/package.json</exists>
+        </file>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>build-helper-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>add-dist-resource</id>
+                <goals>
+                  <goal>add-resource</goal>
+                </goals>
+                <phase>generate-resources</phase>
+                <configuration>
+                  <resources>
+                    <resource>
+                      <directory>dist</directory>
+                    </resource>
+                  </resources>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>com.github.eirslett</groupId>
+            <artifactId>frontend-maven-plugin</artifactId>
+            <configuration>
+              <installDirectory>target</installDirectory>
+            </configuration>
+            <executions>
+              <execution>
+                <id>install-node-and-npm</id>
+                <goals>
+                  <goal>install-node-and-npm</goal>
+                </goals>
+                <phase>initialize</phase>
+                <configuration>
+                  <nodeVersion>${master_node_version}</nodeVersion>
+                </configuration>
+              </execution>
+              <execution>
+                <id>install-pnpm</id>
+                <goals>
+                  <goal>npm</goal>
+                </goals>
+                <phase>generate-sources</phase>
+                <configuration>
+                  <arguments>install -g --prefix ./target/node pnpm@${master_pnpm_version}</arguments> <!-- explicitly specify pnpm version to use -->
+                </configuration>
+              </execution>
+              <execution>
+                <id>npm-run-build:prod</id>
+                <goals>
+                  <goal>npm</goal>
+                </goals>
+                <phase>compile</phase>
+                <configuration>
+                  <skip>${master_skip_pnpm_install_dev}</skip>
+                  <arguments>run build:prod</arguments>
+                </configuration>
+              </execution>
+              <execution>
+                <id>npm-run-build:dev</id>
+                <goals>
+                  <goal>npm</goal>
+                </goals>
+                <phase>compile</phase>
+                <configuration>
+                  <skip>${master_skip_pnpm_install_prod}</skip>
+                  <arguments>run build:dev</arguments>
+                </configuration>
+              </execution>
+              <execution>
+                <id>javascript-test</id>
+                <goals>
+                  <goal>npm</goal>
+                </goals>
+                <phase>test</phase>
+                <configuration>
+                  <skip>${master_webTest_skip}</skip>
+                  <arguments>run test:ci</arguments>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>exec-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>pnpm-install</id>
+                <phase>generate-resources</phase>
+                <goals>
+                  <goal>exec</goal>
+                </goals>
+                <configuration>
+                  <executable>${basedir}/target/node/node</executable>
+                  <arguments>
+                    <argument>${basedir}/target/node${master_npm_subdir}/pnpm/bin/pnpm.js</argument>
+                    <argument>install</argument>
+                  </arguments>
                 </configuration>
               </execution>
             </executions>
