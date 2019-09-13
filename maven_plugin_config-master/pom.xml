@@ -63,8 +63,7 @@
     <master_test_timeout>300</master_test_timeout>
     <master_test_jvmMemory>-Xms512m -Xmx2048m</master_test_jvmMemory>
     <master_test_remoteDebugPort>8000</master_test_remoteDebugPort>
-    <master_test_debugArgLine>-Xdebug
-      -Xrunjdwp:transport=dt_socket,address=${master_test_remoteDebugPort},server=y,suspend=n</master_test_debugArgLine>
+    <master_test_debugArgLine>-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:${master_test_remoteDebugPort}</master_test_debugArgLine>
     <master_test_argLine>${master_test_jacocoArgLine} ${master_test_jvmMemory}
       -Dfile.encoding=${project.build.sourceEncoding}</master_test_argLine>
 
