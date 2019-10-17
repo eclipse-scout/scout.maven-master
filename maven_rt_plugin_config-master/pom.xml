@@ -653,7 +653,8 @@
                   <executable>${basedir}/target/node/node</executable>
                   <arguments>
                     <argument>${basedir}/target/node${master_npm_subdir}/pnpm/bin/pnpm.js</argument>
-                    <argument>install --force</argument>
+                    <argument>install</argument>
+                    <argument>--force</argument>
                   </arguments>
                 </configuration>
               </execution>
