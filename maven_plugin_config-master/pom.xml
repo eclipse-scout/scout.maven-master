@@ -741,6 +741,38 @@
 
   <profiles>
     <profile>
+      <!-- run security check on all dependencies using owasp dependency check -->
+      <id>security.check</id>
+      <activation>
+        <property>
+          <name>securityCheck</name>
+        </property>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.owasp</groupId>
+            <artifactId>dependency-check-maven</artifactId>
+            <configuration>
+              <formats>
+                <format>html</format>
+                <format>xml</format>
+              </formats>
+              <skipTestScope>true</skipTestScope>
+            </configuration>
+            <executions>
+              <execution>
+                <goals>
+                  <goal>aggregate</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <profile>
       <!-- disable all tests -->
       <id>skipTests</id>
       <activation>

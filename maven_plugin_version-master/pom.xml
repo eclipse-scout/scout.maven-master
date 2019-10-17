@@ -81,6 +81,7 @@
     <master_plugin_gpg_version>1.6</master_plugin_gpg_version>
     <master_plugin_release_version>2.5.3</master_plugin_release_version>
     <master_plugin_scm_version>1.11.1</master_plugin_scm_version>
+    <master_plugin_security_dependency_check_version>5.2.2</master_plugin_security_dependency_check_version>
 
     <!-- ####################################################################### -->
     <!-- Retired -->
@@ -573,6 +574,12 @@
           <groupId>com.github.eirslett</groupId>
           <artifactId>frontend-maven-plugin</artifactId>
           <version>${master_plugin_frontend_version}</version>
+        </plugin>
+
+        <plugin>
+          <groupId>org.owasp</groupId>
+          <artifactId>dependency-check-maven</artifactId>
+          <version>${master_plugin_security_dependency_check_version}</version>
         </plugin>
       </plugins>
     </pluginManagement>
