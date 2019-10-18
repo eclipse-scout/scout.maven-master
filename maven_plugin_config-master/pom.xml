@@ -331,6 +331,7 @@
               <ignoredResourcePattern>.*xjb$</ignoredResourcePattern>
               <ignoredResourcePattern>.*exsd$</ignoredResourcePattern>
               <ignoredResourcePattern>.*about.ini$</ignoredResourcePattern>
+              <ignoredResourcePattern>.*file-list$</ignoredResourcePattern>
             </ignoredResourcePatterns>
             <ignoredClassPatterns>
               <ignoredClassPattern>.*module-info.*</ignoredClassPattern>
