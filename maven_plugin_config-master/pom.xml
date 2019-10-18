@@ -742,7 +742,12 @@
 
   <profiles>
     <profile>
-      <!-- run security check on all dependencies using owasp dependency check -->
+      <!--
+      run security check on all dependencies using owasp dependency check
+      https://jeremylong.github.io/DependencyCheck/dependency-check-maven/
+      https://jeremylong.github.io/DependencyCheck/dependency-check-cli/arguments.html
+      https://jeremylong.github.io/DependencyCheck/general/internals.html
+      -->
       <id>security.check</id>
       <activation>
         <property>
