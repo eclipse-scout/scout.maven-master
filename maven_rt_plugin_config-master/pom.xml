@@ -28,6 +28,7 @@
     <master_skip_pnpm_install_prod>false</master_skip_pnpm_install_prod>
     <master_skip_karma_test>${master_webTest_skip}</master_skip_karma_test>
     <master_skip_copy_webpack_build_output>false</master_skip_copy_webpack_build_output>
+    <master_nodeDownloadRoot>https://nodejs.org/dist/</master_nodeDownloadRoot>
   </properties>
 
   <build>
@@ -583,6 +584,7 @@
             <artifactId>frontend-maven-plugin</artifactId>
             <configuration>
               <installDirectory>target</installDirectory>
+              <nodeDownloadRoot>${master_nodeDownloadRoot}</nodeDownloadRoot>
             </configuration>
             <executions>
               <execution>
