@@ -14,7 +14,7 @@
 
   <groupId>org.eclipse.scout</groupId>
   <artifactId>maven_plugin_version-master</artifactId>
-  <version>3.2.0</version>
+  <version>3.3.0-SNAPSHOT</version>
   <packaging>pom</packaging>
   <name>Maven Master Plugin Version Configuration</name>
   <description>Maven Master hosted at Eclipse Scout</description>
@@ -174,7 +174,7 @@
 
     <!-- https://github.com/BSI-Business-Systems-Integration-AG/eclipse-settings-maven-plugin -->
     <master_plugin_eclipse-settings_version>3.0.3</master_plugin_eclipse-settings_version>
-    <master_dependency_eclipseSettings_master_version>3.2.0</master_dependency_eclipseSettings_master_version>
+    <master_dependency_eclipseSettings_master_version>3.3.0-SNAPSHOT</master_dependency_eclipseSettings_master_version>
 
     <!-- https://www.eclipse.org/tycho/sitedocs/index.html -->
     <!-- version of Tycho used by org.eclipse.scout.sdk.core.releng build and profiles eclipse-sign and eclipse-pack -->
@@ -715,7 +715,7 @@
   <scm>
     <connection>scm:git:git://git.eclipse.org/gitroot/scout/maven-master.git</connection>
     <developerConnection>scm:git:ssh://${eclipse_gerrit_username}@git.eclipse.org:29418/scout/maven-master.git</developerConnection>
-    <tag>3.2.0</tag>
+    <tag>master</tag>
     <url>https://git.eclipse.org/c/scout/maven-master.git/</url>
   </scm>
 
