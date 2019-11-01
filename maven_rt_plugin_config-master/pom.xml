@@ -34,39 +34,6 @@
   <build>
     <pluginManagement>
       <plugins>
-        <plugin>
-          <!-- Loads phantomjs executable, necessary for jasmine plugin -->
-          <groupId>com.github.klieber</groupId>
-          <artifactId>phantomjs-maven-plugin</artifactId>
-          <configuration>
-            <version>${master_dependency_phantomjs_version}</version>
-          </configuration>
-        </plugin>
-
-        <!-- JS testing with Jasmine -->
-        <plugin>
-          <groupId>com.github.searls</groupId>
-          <artifactId>jasmine-maven-plugin</artifactId>
-          <configuration>
-            <!-- do not break build when Jasmine tests fail -->
-            <haltOnFailure>false</haltOnFailure>
-            <jsTestSrcDir>${project.basedir}/src/test/js</jsTestSrcDir>
-            <customRunnerTemplate>${project.basedir}/src/test/js/SpecRunnerMaven.html</customRunnerTemplate>
-            <sourceExcludes>
-              <!-- jasmine files are explicitly included in SpecRunnerMaven.html
-                because the need to be before actual sources -->
-              <sourceExclude>**/jasmine/*.js</sourceExclude>
-            </sourceExcludes>
-            <!-- HtmlUnitDriver does not work with jQuery 2.1.0, throws exception -->
-            <webDriverClassName>org.openqa.selenium.phantomjs.PhantomJSDriver</webDriverClassName>
-            <webDriverCapabilities>
-              <capability>
-                <name>phantomjs.binary.path</name>
-                <value>${phantomjs.binary}</value>
-              </capability>
-            </webDriverCapabilities>
-          </configuration>
-        </plugin>
 
         <!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself. -->
         <plugin>
@@ -83,19 +50,6 @@
                     <versionRange>[1.0.1,)</versionRange>
                     <goals>
                       <goal>jandex</goal>
-                    </goals>
-                  </pluginExecutionFilter>
-                  <action>
-                    <ignore></ignore>
-                  </action>
-                </pluginExecution>
-                <pluginExecution>
-                  <pluginExecutionFilter>
-                    <groupId>com.github.klieber</groupId>
-                    <artifactId>phantomjs-maven-plugin</artifactId>
-                    <versionRange>[0.7,)</versionRange>
-                    <goals>
-                      <goal>install</goal>
                     </goals>
                   </pluginExecutionFilter>
                   <action>
@@ -223,72 +177,6 @@
                       <directory>${project.build.directory}/test-classes/</directory>
                     </fileSet>
                   </fileSets>
-                </configuration>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-
-    <profile>
-      <id>javascript_src_folder</id>
-      <activation>
-        <file>
-          <exists>${basedir}/src/main/js</exists>
-        </file>
-      </activation>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.codehaus.mojo</groupId>
-            <artifactId>build-helper-maven-plugin</artifactId>
-            <executions>
-              <execution>
-                <id>add-js-resource</id>
-                <goals>
-                  <goal>add-resource</goal>
-                </goals>
-                <phase>generate-resources</phase>
-                <configuration>
-                  <resources>
-                    <resource>
-                      <directory>src/main/js</directory>
-                    </resource>
-                  </resources>
-                </configuration>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-
-    <profile>
-      <id>javascript_test_folder</id>
-      <activation>
-        <file>
-          <exists>${basedir}/src/test/js</exists>
-        </file>
-      </activation>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.codehaus.mojo</groupId>
-            <artifactId>build-helper-maven-plugin</artifactId>
-            <executions>
-              <execution>
-                <id>add-js-test-resource</id>
-                <goals>
-                  <goal>add-test-resource</goal>
-                </goals>
-                <phase>generate-test-resources</phase>
-                <configuration>
-                  <resources>
-                    <resource>
-                      <directory>src/test/js</directory>
-                    </resource>
-                  </resources>
                 </configuration>
               </execution>
             </executions>

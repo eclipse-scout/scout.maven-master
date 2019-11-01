@@ -132,15 +132,6 @@
     <!-- http://www.mojohaus.org/jaxws-maven-plugin/ -->
     <master_dependency_jaxws_version>2.3.1</master_dependency_jaxws_version>
 
-    <!-- https://github.com/klieber/phantomjs-maven-plugin -->
-    <!-- http://kylelieber.com/phantomjs-maven-plugin/ -->
-    <master_plugin_phantomjs_version>0.7</master_plugin_phantomjs_version>
-    <master_dependency_phantomjs_version>2.1.1</master_dependency_phantomjs_version>
-
-    <!-- http://searls.github.io/jasmine-maven-plugin/ -->
-    <!-- Version 2.2 has introduced a bug, that test results are not shown anymore (https://github.com/searls/jasmine-maven-plugin/issues/320), use 2.1 instead -->
-    <master_plugin_jasmine_version>2.1</master_plugin_jasmine_version>
-
     <!-- http://site.kuali.org/maven/plugins/properties-maven-plugin/latest/index.html -->
     <master_plugin_properties_version>2.0.1</master_plugin_properties_version>
 
@@ -412,18 +403,6 @@
           <groupId>com.helger.maven</groupId>
           <artifactId>jaxws-maven-plugin</artifactId>
           <version>${master_plugin_jaxws_version}</version>
-        </plugin>
-
-        <plugin>
-          <groupId>com.github.klieber</groupId>
-          <artifactId>phantomjs-maven-plugin</artifactId>
-          <version>${master_plugin_phantomjs_version}</version>
-        </plugin>
-
-        <plugin>
-          <groupId>com.github.searls</groupId>
-          <artifactId>jasmine-maven-plugin</artifactId>
-          <version>${master_plugin_jasmine_version}</version>
         </plugin>
 
         <plugin>
