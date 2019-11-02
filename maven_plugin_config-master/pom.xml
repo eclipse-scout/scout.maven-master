@@ -563,9 +563,9 @@
           <configuration>
             <failOnError>false</failOnError>
             <source>${jdk.source.version}</source>
-            <target>${jdk.source.version}</target>
             <encoding>${project.build.sourceEncoding}</encoding>
-            <additionalparam>${master_javadoc_opts}</additionalparam>
+            <additionalOptions>${master_javadoc_opts}</additionalOptions>
+            <doclint>none</doclint>
           </configuration>
         </plugin>
 
@@ -900,16 +900,6 @@
           </plugin>
         </plugins>
       </build>
-    </profile>
-
-    <profile>
-      <id>doclint-java8-disable</id>
-      <activation>
-        <jdk>[1.8,)</jdk>
-      </activation>
-      <properties>
-        <master_javadoc_opts>-Xdoclint:none</master_javadoc_opts>
-      </properties>
     </profile>
 
     <profile>
