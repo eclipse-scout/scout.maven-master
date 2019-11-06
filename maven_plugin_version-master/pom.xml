@@ -31,7 +31,7 @@
     <!-- Release Control -->
     <master_release_pushChanges>false</master_release_pushChanges>
     <master_release_milestoneVersion>I</master_release_milestoneVersion>
-    <master_release_newVersion>${base.version}.${master_release_milestoneVersion}</master_release_newVersion>
+    <master_release_newVersion>${base.version}-${master_release_milestoneVersion}</master_release_newVersion>
     <master_release_tagName>${master_release_newVersion}</master_release_tagName>
     <master_release_checkinMessage>[release] version updated to ${project.version}</master_release_checkinMessage>
     <master_ossrh_autoReleaseAfterClose>false</master_ossrh_autoReleaseAfterClose>
