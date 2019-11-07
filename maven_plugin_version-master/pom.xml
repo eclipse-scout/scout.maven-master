@@ -884,7 +884,7 @@
               <connectionType>developerConnection</connectionType>
               <message>${master_release_checkinMessage}</message>
               <basedir>${project.basedir}/..</basedir>
-              <includes>pom.xml,*/pom.xml</includes>
+              <includes>pom.xml,*/pom.xml,package.json,*/package.json</includes>
               <pushChanges>${master_release_pushChanges}</pushChanges>
             </configuration>
           </plugin>
