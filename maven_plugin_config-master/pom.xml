@@ -395,7 +395,7 @@
               <exclude>**/*-module.css</exclude>
               <exclude>**/*-module.less</exclude>
               <exclude>tests/**</exclude>
-              <exclude>**/src/main/resources/WebContent/res/**</exclude>
+              <exclude>**/src/main/resources/WebContent/**</exclude>
               <exclude>**/src/main/ws-stub/**</exclude>
             </excludes>
             <mapping>
