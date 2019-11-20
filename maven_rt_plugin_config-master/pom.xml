@@ -556,50 +556,6 @@
                 </configuration>
               </execution>
               <execution>
-                <id>npm-run-snapshot-predependency</id>
-                <goals>
-                  <goal>npm</goal>
-                </goals>
-                <phase>process-sources</phase>
-                <configuration>
-                  <skip>${master_skip_snapshot_predependency}</skip>
-                  <arguments>run snapshot-predependency</arguments>
-                </configuration>
-              </execution>
-              <execution>
-                <id>npm-run-snapshot-postdependency</id>
-                <goals>
-                  <goal>npm</goal>
-                </goals>
-                <phase>process-resources</phase>
-                <configuration>
-                  <skip>${master_skip_snapshot_postdependency}</skip>
-                  <arguments>run snapshot-postdependency</arguments>
-                </configuration>
-              </execution>
-              <execution>
-                <id>npm-run-release-predependency</id>
-                <goals>
-                  <goal>npm</goal>
-                </goals>
-                <phase>process-sources</phase>
-                <configuration>
-                  <skip>${master_skip_release_predependency}</skip>
-                  <arguments>run release-predependency -- ${master_js_releaseDependencyMapping}</arguments>
-                </configuration>
-              </execution>
-              <execution>
-                <id>npm-run-release-postdependency</id>
-                <goals>
-                  <goal>npm</goal>
-                </goals>
-                <phase>process-sources</phase> <!-- for release use process-source instead of resources. post-dependency is therefore executed BEFORE the pnpm update (in snapshot it is executed afterwards) -->
-                <configuration>
-                  <skip>${master_skip_release_postdependency}</skip>
-                  <arguments>run release-postdependency -- --newVersion=${master_release_newVersion}</arguments>
-                </configuration>
-              </execution>
-              <execution>
                 <id>npm-run-build:prod</id>
                 <goals>
                   <goal>npm</goal>
@@ -649,6 +605,64 @@
                   <arguments>
                     <argument>${basedir}/target/node${master_npm_subdir}/pnpm/bin/pnpm.js</argument>
                     <argument>update</argument>
+                  </arguments>
+                </configuration>
+              </execution>
+              <execution>
+                <id>scout-releng-snapshot-install-dependency</id>
+                <phase>process-sources</phase>
+                <goals>
+                  <goal>exec</goal>
+                </goals>
+                <configuration>
+                  <skip>${master_skip_snapshot_predependency}</skip>
+                  <executable>${basedir}/target/node/node</executable>
+                  <arguments>
+                    <argument>${basedir}/target/node${master_npm_subdir}/@eclipse-scout/releng/bin/releng-scripts.js</argument>
+                    <argument>snapshot-install-dependency</argument>
+                  </arguments>
+                </configuration>
+              </execution>
+              <execution>
+                <id>scout-releng-snapshot-publish-dependency</id>
+                <phase>process-resources</phase>
+                <goals>
+                  <goal>exec</goal>
+                </goals>
+                <configuration>
+                  <skip>${master_skip_snapshot_postdependency}</skip>
+                  <executable>${basedir}/target/node/node</executable>
+                  <arguments>
+                    <argument>${basedir}/target/node${master_npm_subdir}/@eclipse-scout/releng/bin/releng-scripts.js</argument>
+                    <argument>snapshot-publish-dependency</argument>
+                  </arguments>
+                </configuration>
+              </execution>
+              <execution>
+                <id>scout-releng-release-install-dependency</id>
+                <phase>process-sources</phase>
+                <goals>
+                  <goal>exec</goal>
+                </goals>
+                <configuration>
+                  <skip>${master_skip_release_predependency}</skip>
+                  <executable>${basedir}/target/node/node</executable>
+                  <commandlineArgs>${basedir}/target/node${master_npm_subdir}/@eclipse-scout/releng/bin/releng-scripts.js release-install-dependency ${master_js_releaseDependencyMapping}</commandlineArgs>
+                </configuration>
+              </execution>
+              <execution>
+                <id>scout-releng-release-publish-dependency</id>
+                <phase>process-sources</phase> <!-- for release use process-source instead of resources. post-dependency is therefore executed BEFORE the pnpm update (in snapshot it is executed afterwards) -->
+                <goals>
+                  <goal>exec</goal>
+                </goals>
+                <configuration>
+                  <skip>${master_skip_release_postdependency}</skip>
+                  <executable>${basedir}/target/node/node</executable>
+                  <arguments>
+                    <argument>${basedir}/target/node${master_npm_subdir}/@eclipse-scout/releng/bin/releng-scripts.js</argument>
+                    <argument>release-publish-dependency</argument>
+                    <argument>--newVersion=${master_release_newVersion}</argument>
                   </arguments>
                 </configuration>
               </execution>
