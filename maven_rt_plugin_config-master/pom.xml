@@ -647,7 +647,7 @@
                 <configuration>
                   <skip>${master_skip_release_predependency}</skip>
                   <executable>${basedir}/target/node/node</executable>
-                  <commandlineArgs>${basedir}/target/node${master_npm_subdir}/@eclipse-scout/releng/bin/releng-scripts.js release-install-dependency ${master_js_releaseDependencyMapping}</commandlineArgs>
+                  <commandlineArgs>${basedir}/target/node${master_npm_subdir}/@eclipse-scout/releng/bin/releng-scripts.js release-install-dependency ${master_npm_release_dependency_mapping}</commandlineArgs>
                 </configuration>
               </execution>
               <execution>
