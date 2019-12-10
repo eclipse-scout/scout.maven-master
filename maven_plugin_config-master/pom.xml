@@ -386,15 +386,14 @@
             </includes>
             <excludes>
               <exclude>**/target/**</exclude>
+              <exclude>**/node_modules/**</exclude>
+              <exclude>**/test-results/**</exclude>
+              <exclude>**/dist/**</exclude>
               <exclude>**/.*</exclude>
               <exclude>**/.settings/**</exclude>
               <exclude>**/release.properties</exclude>
               <exclude>**/pom.xml.releaseBackup</exclude>
               <exclude>**/*.sh</exclude>
-              <exclude>**/*-module.js</exclude>
-              <exclude>**/*-module.css</exclude>
-              <exclude>**/*-module.less</exclude>
-              <exclude>tests/**</exclude>
               <exclude>**/src/main/resources/WebContent/**</exclude>
               <exclude>**/src/main/ws-stub/**</exclude>
             </excludes>
