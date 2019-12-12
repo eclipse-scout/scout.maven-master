@@ -623,13 +623,6 @@
               </includes>
               <followSymlinks>false</followSymlinks>
             </fileset>
-            <fileset>
-              <directory>${basedir}</directory>
-              <includes>
-                <include>node_modules/**</include>
-              </includes>
-              <followSymlinks>false</followSymlinks>
-            </fileset>
           </filesets>
         </configuration>
       </plugin>
