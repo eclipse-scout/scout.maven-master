@@ -24,8 +24,8 @@
   <name>Maven Master Plugin Build Configuration - RT</name>
 
   <properties>
-    <master_skip_pnpm_install_dev>false</master_skip_pnpm_install_dev>
-    <master_skip_pnpm_install_prod>false</master_skip_pnpm_install_prod>
+    <master_skip_npm_build_dev>false</master_skip_npm_build_dev>
+    <master_skip_npm_build_prod>false</master_skip_npm_build_prod>
     <master_skip_karma_test>${master_webTest_skip}</master_skip_karma_test>
     <master_skip_copy_webpack_build_output>false</master_skip_copy_webpack_build_output>
     <master_skip_snapshot_predependency>true</master_skip_snapshot_predependency>
@@ -562,7 +562,7 @@
                 </goals>
                 <phase>compile</phase>
                 <configuration>
-                  <skip>${master_skip_pnpm_install_dev}</skip>
+                  <skip>${master_skip_npm_build_prod}</skip>
                   <arguments>run build:prod</arguments>
                 </configuration>
               </execution>
@@ -573,7 +573,7 @@
                 </goals>
                 <phase>compile</phase>
                 <configuration>
-                  <skip>${master_skip_pnpm_install_prod}</skip>
+                  <skip>${master_skip_npm_build_dev}</skip>
                   <arguments>run build:dev</arguments>
                 </configuration>
               </execution>
