@@ -130,7 +130,16 @@
     <!-- Version to generate JAX-WS artifacts -->
     <!-- https://github.com/javaee/metro-jax-ws -->
     <!-- http://www.mojohaus.org/jaxws-maven-plugin/ -->
-    <master_dependency_jaxws_version>2.3.1</master_dependency_jaxws_version>
+    <!-- javax.xml.ws:jaxws-api -->
+    <master_dependency_jaxws_api_version>2.3.1</master_dependency_jaxws_api_version>
+
+    <!-- Version to generate JAX-WS artifacts -->
+    <!-- https://github.com/javaee/metro-jax-ws -->
+    <!-- http://www.mojohaus.org/jaxws-maven-plugin/ -->
+    <!-- com.sun.xml.ws:jaxws-rt -->
+    <!-- org.glassfish.jaxb:txw2 -->
+    <!-- com.sun.xml.ws:jaxws-tools -->
+    <master_dependency_jaxws_rt_version>2.3.2</master_dependency_jaxws_rt_version>
 
     <!-- http://site.kuali.org/maven/plugins/properties-maven-plugin/latest/index.html -->
     <master_plugin_properties_version>2.0.1</master_plugin_properties_version>
@@ -154,7 +163,7 @@
 
     <!-- http://www.mojohaus.org/flatten-maven-plugin/ -->
     <!-- https://github.com/mojohaus/flatten-maven-plugin -->
-    <master_plugin_flatten_version>1.0.1</master_plugin_flatten_version>
+    <master_plugin_flatten_version>1.1.0</master_plugin_flatten_version>
 
     <!-- https://code.google.com/archive/p/maven-replacer-plugin/ -->
     <!-- https://github.com/dtracers/maven-replacer-plugin -->

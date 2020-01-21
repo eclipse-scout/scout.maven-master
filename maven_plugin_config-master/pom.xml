@@ -471,7 +471,17 @@
           <configuration>
             <flattenMode>${master_flatten_mode}</flattenMode>
             <lineLength>999</lineLength>
+            <!--
+            Do not set to true: By default modules with packaging 'jar' use a flattened pom that replaces the original pom for better performance.
+            When using true here then also modules with packaging 'pom' will be replaced by their flattened pom of flattenMode set above. This may
+            result in truncated or incomplete pom.xml as the flattened pom does not contain all contents of the original pom.
+
+            A module with packaging 'pom' that represents a BOM will have to use the flattenMode 'bom' and then also copies the flattened pom to the pom.
+            See also the profiles flatten_bom and flatten_pom. In Scout a BOM is defined as a module with package 'pom' and no 'src' folder.
+            -->
+            <!--
             <updatePomFile>true</updatePomFile>
+             -->
           </configuration>
         </plugin>
 
