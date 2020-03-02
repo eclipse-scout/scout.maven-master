@@ -158,9 +158,6 @@
     <!-- https://www.eclemma.org/jacoco/trunk/doc/maven.html -->
     <master_plugin_jacoco_version>0.8.2</master_plugin_jacoco_version>
 
-    <!-- https://github.com/Ekryd/sortpom -->
-    <master_plugin_sortpom_version>2.10.0</master_plugin_sortpom_version>
-
     <!-- http://www.mojohaus.org/flatten-maven-plugin/ -->
     <!-- https://github.com/mojohaus/flatten-maven-plugin -->
     <master_plugin_flatten_version>1.1.0</master_plugin_flatten_version>
@@ -451,12 +448,6 @@
         </plugin>
 
         <plugin>
-          <groupId>com.github.ekryd.sortpom</groupId>
-          <artifactId>sortpom-maven-plugin</artifactId>
-          <version>${master_plugin_sortpom_version}</version>
-        </plugin>
-
-        <plugin>
           <groupId>org.codehaus.mojo</groupId>
           <artifactId>flatten-maven-plugin</artifactId>
           <version>${master_plugin_flatten_version}</version>
@@ -703,37 +694,6 @@
   </distributionManagement>
 
   <profiles>
-    <profile>
-      <id>sortpom</id>
-      <activation>
-        <property>
-          <name>sort</name>
-        </property>
-      </activation>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>com.github.ekryd.sortpom</groupId>
-            <artifactId>sortpom-maven-plugin</artifactId>
-            <configuration>
-              <createBackupFile>false</createBackupFile>
-              <predefinedSortOrder>custom_1</predefinedSortOrder>
-              <lineSeparator>\n</lineSeparator>
-              <keepBlankLines>true</keepBlankLines>
-            </configuration>
-            <executions>
-              <execution>
-                <id>sort</id>
-                <goals>
-                  <goal>sort</goal>
-                </goals>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-
     <profile>
       <id>release.setversion</id>
       <activation>
