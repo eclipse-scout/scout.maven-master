@@ -32,7 +32,9 @@
     <master_skip_snapshot_postdependency>true</master_skip_snapshot_postdependency>
     <master_skip_release_predependency>true</master_skip_release_predependency>
     <master_skip_release_postdependency>true</master_skip_release_postdependency>
+    <master_node_dir>${project.basedir}${file.separator}${project.parent.relativePath}${file.separator}target${file.separator}node</master_node_dir>
     <master_nodeDownloadRoot>https://nodejs.org/dist/</master_nodeDownloadRoot>
+    <master_npm_workspace_dir>${project.basedir}${file.separator}${project.parent.relativePath}${file.separator}..</master_npm_workspace_dir>
   </properties>
 
   <build>
@@ -57,7 +59,7 @@
                     </goals>
                   </pluginExecutionFilter>
                   <action>
-                    <ignore></ignore>
+                    <ignore/>
                   </action>
                 </pluginExecution>
                 <!-- WS-STUB generation: Instrument 'm2e' to generate webservice stub in Eclipse IDE (does not affect standalone Maven build) -->
@@ -92,7 +94,7 @@
                     </goals>
                   </pluginExecutionFilter>
                   <action>
-                    <ignore></ignore>
+                    <ignore/>
                   </action>
                 </pluginExecution>
                 <pluginExecution>
@@ -105,11 +107,34 @@
                     </goals>
                   </pluginExecutionFilter>
                   <action>
-                    <ignore></ignore>
+                    <ignore/>
+                  </action>
+                </pluginExecution>
+                <pluginExecution>
+                  <pluginExecutionFilter>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-antrun-plugin</artifactId>
+                    <versionRange>[${master_plugin_antrun_version},)</versionRange>
+                    <goals>
+                      <goal>run</goal>
+                    </goals>
+                  </pluginExecutionFilter>
+                  <action>
+                    <ignore/>
                   </action>
                 </pluginExecution>
               </pluginExecutions>
             </lifecycleMappingMetadata>
+          </configuration>
+        </plugin>
+
+        <plugin>
+          <groupId>com.github.eirslett</groupId>
+          <artifactId>frontend-maven-plugin</artifactId>
+          <configuration>
+            <installDirectory>${master_node_dir}${file.separator}..</installDirectory>
+            <nodeDownloadRoot>${master_nodeDownloadRoot}</nodeDownloadRoot>
+            <nodeVersion>${master_node_version}</nodeVersion>
           </configuration>
         </plugin>
       </plugins>
@@ -424,7 +449,7 @@
       </build>
     </profile>
 
-    <!-- profiles used for pnpm build -->
+    <!-- profiles used for npm build -->
     <profile>
       <id>npm-root-dir-win</id>
       <activation>
@@ -433,7 +458,7 @@
         </os>
       </activation>
       <properties>
-        <master_npm_subdir>/node_modules</master_npm_subdir>
+        <master_node_modules_dir>${master_node_dir}/node_modules</master_node_modules_dir>
       </properties>
     </profile>
     <profile>
@@ -444,7 +469,7 @@
         </os>
       </activation>
       <properties>
-        <master_npm_subdir>/lib/node_modules</master_npm_subdir>
+        <master_node_modules_dir>${master_node_dir}/lib/node_modules</master_node_modules_dir>
       </properties>
     </profile>
     <profile>
@@ -455,7 +480,7 @@
         </os>
       </activation>
       <properties>
-        <master_npm_subdir>/lib/node_modules</master_npm_subdir>
+        <master_node_modules_dir>${master_node_dir}/lib/node_modules</master_node_modules_dir>
       </properties>
     </profile>
     <profile>
@@ -504,53 +529,172 @@
         <master_skip_release_postdependency>false</master_skip_release_postdependency>
       </properties>
     </profile>
+
+    <!-- First module with a package.json file will install node if necessary -->
     <profile>
-      <id>npm-run-full-build</id>
+      <id>npm-install-node</id>
       <activation>
         <file>
           <exists>${basedir}/package.json</exists>
+          <!-- in fact we like to check <missing>${master_node_dir}</missing> / not possible -->
         </file>
       </activation>
+
       <build>
         <plugins>
+
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-antrun-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>check-node-install</id>
+                <goals>
+                  <goal>run</goal>
+                </goals>
+                <phase>initialize</phase>
+                <configuration>
+                  <exportAntProperties>true</exportAntProperties>
+                  <target>
+                    <available file="${master_node_dir}" property="master_skip_install_node"/>
+                  </target>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+
           <plugin>
             <groupId>com.github.eirslett</groupId>
             <artifactId>frontend-maven-plugin</artifactId>
-            <configuration>
-              <installDirectory>target</installDirectory>
-              <nodeDownloadRoot>${master_nodeDownloadRoot}</nodeDownloadRoot>
-            </configuration>
             <executions>
               <execution>
                 <id>install-node-and-npm</id>
                 <goals>
                   <goal>install-node-and-npm</goal>
                 </goals>
-                <phase>initialize</phase>
+                <phase>generate-sources</phase>
                 <configuration>
-                  <nodeVersion>${master_node_version}</nodeVersion>
+                  <skip>${master_skip_install_node}</skip>
                 </configuration>
               </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <!-- First module with a package.json file will install npm workspace if no node_modules exists -->
+    <profile>
+      <id>npm-install-workspace</id>
+      <activation>
+        <file>
+          <exists>${basedir}/package.json</exists>
+        </file>
+      </activation>
+
+      <build>
+        <plugins>
+
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-antrun-plugin</artifactId>
+            <executions>
               <execution>
-                <id>install-pnpm</id>
+                <id>check-npm-install-workspace</id>
+                <goals>
+                  <goal>run</goal>
+                </goals>
+                <phase>generate-sources</phase>
+                <configuration>
+                  <exportAntProperties>true</exportAntProperties>
+                  <target>
+                    <available file="${master_node_modules_dir}/@eclipse-scout" property="master_skip_init_node"/>
+                    <available file="${project.basedir}/node_modules" property="master_skip_npm_update"/>
+                  </target>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+
+          <!-- install tools for node in node execution directory -->
+          <plugin>
+            <groupId>com.github.eirslett</groupId>
+            <artifactId>frontend-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>install-node-tools</id>
                 <goals>
                   <goal>npm</goal>
                 </goals>
                 <phase>generate-sources</phase>
                 <configuration>
-                  <arguments>install -g --prefix ./target/node pnpm@${master_pnpm_version}</arguments> <!-- explicitly specify pnpm version to use -->
+                  <skip>${master_skip_init_node}</skip>
+                  <arguments>install -g --prefix ${master_node_dir} pnpm@${master_pnpm_version} @eclipse-scout/releng@${master_scout_releng_version}</arguments>
                 </configuration>
               </execution>
+            </executions>
+          </plugin>
+
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>exec-maven-plugin</artifactId>
+            <executions>
               <execution>
-                <id>install-scout-releng</id>
+                <id>npm-update</id>
                 <goals>
-                  <goal>npm</goal>
+                  <goal>exec</goal>
                 </goals>
-                <phase>generate-sources</phase>
+                <phase>generate-resources</phase>
                 <configuration>
-                  <arguments>install -g --prefix ./target/node @eclipse-scout/releng@${master_scout_releng_version}</arguments>
+                  <executable>${master_node_dir}/node</executable>
+                  <workingDirectory>${master_npm_workspace_dir}</workingDirectory>
+                  <skip>${master_skip_npm_update}</skip>
+                  <arguments>
+                    <argument>${master_node_modules_dir}/pnpm/bin/pnpm.js</argument>
+                    <argument>recursive</argument>
+                    <argument>update</argument>
+                  </arguments>
                 </configuration>
               </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <profile>
+      <id>npm-build-webpack</id>
+      <activation>
+        <file>
+          <exists>${basedir}/webpack.config.js</exists>
+        </file>
+      </activation>
+
+      <build>
+        <pluginManagement>
+          <plugins>
+            <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-clean-plugin</artifactId>
+              <configuration>
+                <filesets>
+                  <fileset>
+                    <directory>${basedir}</directory>
+                    <includes>
+                      <include>dist/**</include>
+                    </includes>
+                  </fileset>
+                </filesets>
+              </configuration>
+            </plugin>
+          </plugins>
+        </pluginManagement>
+
+        <plugins>
+          <plugin>
+            <groupId>com.github.eirslett</groupId>
+            <artifactId>frontend-maven-plugin</artifactId>
+            <executions>
               <execution>
                 <id>npm-run-build:prod</id>
                 <goals>
@@ -559,7 +703,7 @@
                 <phase>compile</phase>
                 <configuration>
                   <skip>${master_skip_npm_build_prod}</skip>
-                  <arguments>run build:prod</arguments>
+                  <arguments>--scripts-prepend-node-path=true run build:prod</arguments>
                 </configuration>
               </execution>
               <execution>
@@ -570,118 +714,143 @@
                 <phase>compile</phase>
                 <configuration>
                   <skip>${master_skip_npm_build_dev}</skip>
-                  <arguments>run build:dev</arguments>
+                  <arguments>--scripts-prepend-node-path=true run build:dev</arguments>
                 </configuration>
               </execution>
+            </executions>
+          </plugin>
+
+          <plugin>
+            <artifactId>maven-resources-plugin</artifactId>
+            <executions>
               <execution>
-                <id>javascript-test</id>
+                <id>copy-webpack-build-output</id>
+                <goals>
+                  <goal>copy-resources</goal>
+                </goals>
+                <phase>process-classes</phase>
+                <configuration>
+                  <skip>${master_skip_copy_webpack_build_output}</skip>
+                  <outputDirectory>${project.build.outputDirectory}</outputDirectory>
+                  <resources>
+                    <resource>
+                      <directory>${basedir}/dist</directory>
+                      <filtering>false</filtering>
+                    </resource>
+                  </resources>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <profile>
+      <id>npm-test-karma</id>
+      <activation>
+        <file>
+          <exists>${basedir}/karma.conf.js</exists>
+        </file>
+      </activation>
+
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>com.github.eirslett</groupId>
+            <artifactId>frontend-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>npm-test-karma</id>
                 <goals>
                   <goal>npm</goal>
                 </goals>
                 <phase>test</phase>
                 <configuration>
                   <skip>${master_skip_karma_test}</skip>
-                  <arguments>run test:ci</arguments>
+                  <arguments>--scripts-prepend-node-path=true run test:ci</arguments>
                 </configuration>
               </execution>
             </executions>
           </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <profile>
+      <id>npm-deploy</id>
+      <activation>
+        <file>
+          <exists>${basedir}/package.json</exists>
+        </file>
+      </activation>
+
+      <build>
+        <plugins>
           <plugin>
             <groupId>org.codehaus.mojo</groupId>
             <artifactId>exec-maven-plugin</artifactId>
             <executions>
               <execution>
-                <id>pnpm-update</id>
-                <phase>generate-resources</phase>
-                <goals>
-                  <goal>exec</goal>
-                </goals>
-                <configuration>
-                  <executable>${basedir}/target/node/node</executable>
-                  <arguments>
-                    <argument>${basedir}/target/node${master_npm_subdir}/pnpm/bin/pnpm.js</argument>
-                    <argument>update</argument>
-                  </arguments>
-                </configuration>
-              </execution>
-              <execution>
                 <id>scout-releng-snapshot-install-dependency</id>
-                <phase>process-sources</phase>
                 <goals>
                   <goal>exec</goal>
                 </goals>
+                <phase>process-sources</phase>
                 <configuration>
                   <skip>${master_skip_snapshot_predependency}</skip>
-                  <executable>${basedir}/target/node/node</executable>
+                  <executable>${master_node_dir}/node</executable>
                   <arguments>
-                    <argument>${basedir}/target/node${master_npm_subdir}/@eclipse-scout/releng/bin/releng-scripts.js</argument>
+                    <argument>${master_node_modules_dir}/@eclipse-scout/releng/bin/releng-scripts.js</argument>
                     <argument>snapshot-install-dependency</argument>
                   </arguments>
                 </configuration>
               </execution>
               <execution>
                 <id>scout-releng-snapshot-publish-dependency</id>
-                <phase>process-resources</phase>
                 <goals>
                   <goal>exec</goal>
                 </goals>
+                <phase>process-resources</phase>
                 <configuration>
                   <skip>${master_skip_snapshot_postdependency}</skip>
-                  <executable>${basedir}/target/node/node</executable>
+                  <executable>${master_node_dir}/node</executable>
                   <arguments>
-                    <argument>${basedir}/target/node${master_npm_subdir}/@eclipse-scout/releng/bin/releng-scripts.js</argument>
+                    <argument>${master_node_modules_dir}/@eclipse-scout/releng/bin/releng-scripts.js</argument>
                     <argument>snapshot-publish-dependency</argument>
                   </arguments>
                 </configuration>
               </execution>
               <execution>
                 <id>scout-releng-release-install-dependency</id>
-                <phase>process-sources</phase>
                 <goals>
                   <goal>exec</goal>
                 </goals>
+                <phase>process-sources</phase>
                 <configuration>
                   <skip>${master_skip_release_predependency}</skip>
-                  <executable>${basedir}/target/node/node</executable>
-                  <commandlineArgs>${basedir}/target/node${master_npm_subdir}/@eclipse-scout/releng/bin/releng-scripts.js release-install-dependency ${master_npm_release_dependency_mapping}</commandlineArgs>
+                  <executable>${master_node_dir}/node</executable>
+                  <arguments>
+                    <argument>${master_node_modules_dir}/@eclipse-scout/releng/bin/releng-scripts.js</argument>
+                    <argument>release-install-dependency</argument>
+                    <argument>${master_npm_release_dependency_mapping}</argument>
+                  </arguments>
                 </configuration>
               </execution>
               <execution>
                 <id>scout-releng-release-publish-dependency</id>
-                <phase>process-sources</phase> <!-- for release use process-source instead of resources. post-dependency is therefore executed BEFORE the pnpm update (in snapshot it is executed afterwards) -->
                 <goals>
                   <goal>exec</goal>
                 </goals>
+                <phase>process-sources</phase> <!-- for release use process-source instead of resources. post-dependency is therefore executed BEFORE the pnpm update (in snapshot it is executed afterwards) -->
                 <configuration>
                   <skip>${master_skip_release_postdependency}</skip>
-                  <executable>${basedir}/target/node/node</executable>
+                  <executable>${master_node_dir}/node</executable>
                   <arguments>
-                    <argument>${basedir}/target/node${master_npm_subdir}/@eclipse-scout/releng/bin/releng-scripts.js</argument>
+                    <argument>${master_node_modules_dir}/@eclipse-scout/releng/bin/releng-scripts.js</argument>
                     <argument>release-publish-dependency</argument>
                     <argument>--newVersion=${master_release_newVersion}</argument>
                   </arguments>
-                </configuration>
-              </execution>
-            </executions>
-          </plugin>
-          <plugin>
-            <artifactId>maven-resources-plugin</artifactId>
-            <executions>
-              <execution>
-                <id>copy-webpack-build-output</id>
-                <phase>prepare-package</phase>
-                <goals>
-                  <goal>copy-resources</goal>
-                </goals>
-                <configuration>
-                  <skip>${master_skip_copy_webpack_build_output}</skip>
-                  <outputDirectory>${basedir}/target/classes</outputDirectory>
-                  <resources>
-                    <resource>
-                      <directory>dist</directory>
-                      <filtering>false</filtering>
-                    </resource>
-                  </resources>
                 </configuration>
               </execution>
             </executions>
