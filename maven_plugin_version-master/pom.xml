@@ -169,7 +169,7 @@
 
     <!-- http://www.mojohaus.org/flatten-maven-plugin/ -->
     <!-- https://github.com/mojohaus/flatten-maven-plugin -->
-    <master_plugin_flatten_version>1.1.0</master_plugin_flatten_version>
+    <master_plugin_flatten_version>1.2.1</master_plugin_flatten_version>
 
     <!-- https://code.google.com/archive/p/maven-replacer-plugin/ -->
     <!-- https://github.com/dtracers/maven-replacer-plugin -->

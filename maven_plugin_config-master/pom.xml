@@ -45,10 +45,6 @@
     <master_webTest_skip>false</master_webTest_skip>
     <master_coverage_skip>false</master_coverage_skip>
 
-    <!-- Flatten POM Control -->
-    <!-- To skip flattening of pom use -Dmaster_flatten_skip=true -->
-    <master_flatten_mode>oss</master_flatten_mode>
-
     <!-- Git Information Control -->
     <master_git-id_skip>false</master_git-id_skip>
     <master_git-id_failNoGit>false</master_git-id_failNoGit>
@@ -466,26 +462,6 @@
         </plugin>
 
         <plugin>
-          <groupId>org.codehaus.mojo</groupId>
-          <artifactId>flatten-maven-plugin</artifactId>
-          <configuration>
-            <flattenMode>${master_flatten_mode}</flattenMode>
-            <lineLength>999</lineLength>
-            <!--
-            Do not set to true: By default modules with packaging 'jar' use a flattened pom that replaces the original pom for better performance.
-            When using true here then also modules with packaging 'pom' will be replaced by their flattened pom of flattenMode set above. This may
-            result in truncated or incomplete pom.xml as the flattened pom does not contain all contents of the original pom.
-
-            A module with packaging 'pom' that represents a BOM will have to use the flattenMode 'bom' and then also copies the flattened pom to the pom.
-            See also the profiles flatten_bom and flatten_pom. In Scout a BOM is defined as a module with package 'pom' and no 'src' folder.
-            -->
-            <!--
-            <updatePomFile>true</updatePomFile>
-             -->
-          </configuration>
-        </plugin>
-
-        <plugin>
           <groupId>org.eclipse.scout</groupId>
           <artifactId>eclipse-settings-maven-plugin</artifactId>
           <dependencies>
@@ -822,63 +798,6 @@
           -Dfile.encoding=${project.build.sourceEncoding}</master_test_argLine>
         <master_test_forkCount>1</master_test_forkCount>
       </properties>
-    </profile>
-
-    <profile>
-      <id>flatten_pom</id>
-      <activation>
-        <property>
-          <name>master_flatten_skip</name>
-          <value>!true</value>
-        </property>
-      </activation>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.codehaus.mojo</groupId>
-            <artifactId>flatten-maven-plugin</artifactId>
-            <executions>
-              <!-- enable flattening -->
-              <execution>
-                <id>flatten</id>
-                <goals>
-                  <goal>flatten</goal>
-                </goals>
-                <phase>process-resources</phase>
-              </execution>
-              <!-- ensure proper cleanup -->
-              <execution>
-                <id>flatten.clean</id>
-                <goals>
-                  <goal>clean</goal>
-                </goals>
-                <phase>clean</phase>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-
-    <profile>
-      <id>flatten_bom</id>
-      <activation>
-        <file>
-          <missing>src</missing>
-        </file>
-      </activation>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.codehaus.mojo</groupId>
-            <artifactId>flatten-maven-plugin</artifactId>
-            <configuration>
-              <flattenMode>bom</flattenMode>
-              <updatePomFile>true</updatePomFile>
-            </configuration>
-          </plugin>
-        </plugins>
-      </build>
     </profile>
 
     <profile>

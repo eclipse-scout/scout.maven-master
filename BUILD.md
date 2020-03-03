@@ -1,7 +1,5 @@
 # Build *Scout Maven Master*
 
-Add mvn build property -Dmaster_flatten_skip=true to build this maven master.
-
 ## Perform the release - push tag and branch to Eclipse Gerrit
   shell_scripts/release.sh -u avandorp -r 2.0.9 -d 2.0.10-SNAPSHOT -t v2.0.9
 
