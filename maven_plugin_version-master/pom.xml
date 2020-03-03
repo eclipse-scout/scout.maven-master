@@ -130,8 +130,17 @@
     <!-- Version to generate JAX-WS artifacts -->
     <!-- https://github.com/javaee/metro-jax-ws -->
     <!-- http://www.mojohaus.org/jaxws-maven-plugin/ -->
+    <!-- default of javax.xml.ws:jaxws-api -->
+    <!-- default of com.sun.xml.ws:jaxws-rt -->
+    <!-- default of org.glassfish.jaxb:txw2 -->
+    <!-- default of com.sun.xml.ws:jaxws-tools -->
+    <master_dependency_jaxws_version>2.3.1</master_dependency_jaxws_version>
+
+    <!-- Version to generate JAX-WS artifacts -->
+    <!-- https://github.com/javaee/metro-jax-ws -->
+    <!-- http://www.mojohaus.org/jaxws-maven-plugin/ -->
     <!-- javax.xml.ws:jaxws-api -->
-    <master_dependency_jaxws_api_version>2.3.1</master_dependency_jaxws_api_version>
+    <master_dependency_jaxws_api_version>${master_dependency_jaxws_version}</master_dependency_jaxws_api_version>
 
     <!-- Version to generate JAX-WS artifacts -->
     <!-- https://github.com/javaee/metro-jax-ws -->
@@ -139,7 +148,7 @@
     <!-- com.sun.xml.ws:jaxws-rt -->
     <!-- org.glassfish.jaxb:txw2 -->
     <!-- com.sun.xml.ws:jaxws-tools -->
-    <master_dependency_jaxws_rt_version>2.3.2</master_dependency_jaxws_rt_version>
+    <master_dependency_jaxws_rt_version>${master_dependency_jaxws_version}</master_dependency_jaxws_rt_version>
 
     <!-- http://site.kuali.org/maven/plugins/properties-maven-plugin/latest/index.html -->
     <master_plugin_properties_version>2.0.1</master_plugin_properties_version>
