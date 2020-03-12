@@ -35,8 +35,10 @@
       <item name="Eclipse" href="https://www.eclipse.org/" />
       <item name="Eclipse Scout" href="https://www.eclipse.org/scout/" />
     </links>
+    <menu name="Overview" inherit="top">
+      <item name="Introduction" href="index.html" />
+    </menu>
 
-    <menu ref="modules" />
     <menu ref="reports" />
   </body>
 </project>

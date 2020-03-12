@@ -112,10 +112,6 @@
     </plugins>
   </build>
 
-  <reporting>
-    <plugins></plugins>
-  </reporting>
-
   <profiles>
 
     <profile>

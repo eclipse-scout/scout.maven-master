@@ -42,7 +42,6 @@
           <configuration>
             <groupId>${project.groupId}</groupId>
             <generatePom>false</generatePom>
-            <createChecksum>true</createChecksum>
             <packaging>pom</packaging>
             <version>${project.version}</version>
           </configuration>
@@ -93,6 +92,29 @@
       </plugin>
     </plugins>
   </build>
+
+  <reporting>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-project-info-reports-plugin</artifactId>
+      </plugin>
+
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>versions-maven-plugin</artifactId>
+        <reportSets>
+          <reportSet>
+            <reports>
+              <report>dependency-updates-report</report>
+              <report>plugin-updates-report</report>
+              <report>property-updates-report</report>
+            </reports>
+          </reportSet>
+        </reportSets>
+      </plugin>
+    </plugins>
+  </reporting>
 
   <inceptionYear>2015</inceptionYear>
 

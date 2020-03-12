@@ -116,10 +116,6 @@
     </pluginManagement>
   </build>
 
-  <reporting>
-    <plugins></plugins>
-  </reporting>
-
   <profiles>
     <profile>
       <!-- Only create the jandex.idx when a scout.xml is found -->

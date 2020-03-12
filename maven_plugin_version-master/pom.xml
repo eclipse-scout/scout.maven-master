@@ -600,71 +600,9 @@
         <artifactId>maven-gpg-plugin</artifactId>
         <inherited>false</inherited>
       </plugin>
-
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-site-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>attach-descriptor</id>
-            <goals>
-              <goal>attach-descriptor</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
     </plugins>
   </build>
 
-  <reporting>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-project-info-reports-plugin</artifactId>
-      </plugin>
-
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>versions-maven-plugin</artifactId>
-        <reportSets>
-          <reportSet>
-            <reports>
-              <report>dependency-updates-report</report>
-              <report>plugin-updates-report</report>
-              <report>property-updates-report</report>
-            </reports>
-          </reportSet>
-        </reportSets>
-      </plugin>
-
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-jxr-plugin</artifactId>
-      </plugin>
-
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-changelog-plugin</artifactId>
-        <reportSets>
-          <reportSet>
-            <id>dual-report</id>
-            <configuration>
-              <type>range</type>
-              <range>30</range>
-              <displayFileDetailUrl>https://git.eclipse.org/c/scout/maven-master.git/tree/%FILE%</displayFileDetailUrl>
-              <displayFileRevDetailUrl>https://git.eclipse.org/c/scout/maven-master.git/tree/%FILE%?id=%REV%</displayFileRevDetailUrl>
-              <displayChangeSetDetailUrl>https://git.eclipse.org/c/scout/maven-master.git/commit/?id=%REV%</displayChangeSetDetailUrl>
-            </configuration>
-            <reports>
-              <report>changelog</report>
-              <report>file-activity</report>
-              <report>dev-activity</report>
-            </reports>
-          </reportSet>
-        </reportSets>
-      </plugin>
-    </plugins>
-  </reporting>
   <url>https://eclipse.org/scout</url>
 
   <inceptionYear>2015</inceptionYear>
@@ -762,12 +700,6 @@
       <name>Scout Repository - Snapshots</name>
       <url>${master_deploy_SnapshotUrl}</url>
     </snapshotRepository>
-    <site>
-      <id>eclipse.scout.site</id>
-      <name>Eclipse Scout Site</name>
-      <!-- >workaround for http://jira.codehaus.org/browse/MSITE-671 -->
-      <url>http://staging</url>
-    </site>
   </distributionManagement>
 
   <profiles>
