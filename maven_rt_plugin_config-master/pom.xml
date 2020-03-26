@@ -469,7 +469,7 @@
         </os>
       </activation>
       <properties>
-        <master_node_modules_dir>${master_node_dir}/lib/node_modules</master_node_modules_dir>
+        <master_node_modules_dir>${master_node_dir}/../lib/node_modules</master_node_modules_dir>
       </properties>
     </profile>
     <profile>
@@ -480,7 +480,7 @@
         </os>
       </activation>
       <properties>
-        <master_node_modules_dir>${master_node_dir}/lib/node_modules</master_node_modules_dir>
+        <master_node_modules_dir>${master_node_dir}/../lib/node_modules</master_node_modules_dir>
       </properties>
     </profile>
     <profile>
@@ -629,7 +629,7 @@
                 <phase>generate-sources</phase>
                 <configuration>
                   <skip>${master_skip_init_node}</skip>
-                  <arguments>install -g --prefix ${master_node_dir} pnpm@${master_pnpm_version} @eclipse-scout/releng@${master_scout_releng_version}</arguments>
+                  <arguments>install -g pnpm@${master_pnpm_version} @eclipse-scout/releng@${master_scout_releng_version}</arguments>
                 </configuration>
               </execution>
             </executions>
