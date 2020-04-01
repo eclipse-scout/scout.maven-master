@@ -830,11 +830,8 @@
                 <configuration>
                   <skip>${master_skip_release_predependency}</skip>
                   <executable>${master_node_dir}/node</executable>
-                  <arguments>
-                    <argument>${master_node_modules_dir}/@eclipse-scout/releng/bin/releng-scripts.js</argument>
-                    <argument>release-install-dependency</argument>
-                    <argument>${master_npm_release_dependency_mapping}</argument>
-                  </arguments>
+                  <!-- DO NOT USE 'arguments' - we use here 'commandlineArgs' as 'master_npm_release_dependency_mapping' may contain multiple arguments -->
+                  <commandlineArgs>${master_node_modules_dir}/@eclipse-scout/releng/bin/releng-scripts.js release-install-dependency ${master_npm_release_dependency_mapping}</commandlineArgs>
                 </configuration>
               </execution>
               <execution>
