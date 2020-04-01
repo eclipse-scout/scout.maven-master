@@ -15,7 +15,7 @@
   <parent>
     <groupId>org.eclipse.scout</groupId>
     <artifactId>maven_plugin_version-master</artifactId>
-    <version>3.12.1</version>
+    <version>3.12.2-SNAPSHOT</version>
     <relativePath>../maven_plugin_version-master</relativePath>
   </parent>
 
