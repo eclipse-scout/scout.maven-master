@@ -653,6 +653,7 @@
                     <argument>${master_node_modules_dir}/pnpm/bin/pnpm.js</argument>
                     <argument>recursive</argument>
                     <argument>update</argument>
+                    <argument>--ignore-scripts</argument>
                   </arguments>
                 </configuration>
               </execution>
