@@ -26,7 +26,7 @@
     <master_deploy_SnapshotUrl>https://repo.eclipse.org/content/repositories/scout-snapshots/</master_deploy_SnapshotUrl>
 
     <master_node_version>v12.12.0</master_node_version>
-    <master_pnpm_version>4.0.2</master_pnpm_version>
+    <master_pnpm_version>4.13.0</master_pnpm_version>
     <master_scout_releng_version>^10.0.0</master_scout_releng_version>
 
     <!-- Release Control -->
