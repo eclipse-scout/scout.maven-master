@@ -594,6 +594,10 @@
         </file>
       </activation>
 
+      <properties>
+        <npm_update_marker_file>${project.basedir}${file.separator}${project.parent.relativePath}${file.separator}target${file.separator}npm_update.marker</npm_update_marker_file>
+      </properties>
+
       <build>
         <plugins>
 
@@ -611,7 +615,8 @@
                   <exportAntProperties>true</exportAntProperties>
                   <target>
                     <available file="${master_node_modules_dir}/@eclipse-scout" property="master_skip_init_node"/>
-                    <available file="${project.basedir}/node_modules" property="master_skip_npm_update"/>
+                    <available file="${npm_update_marker_file}" property="master_skip_npm_update"/>
+                    <touch file="${npm_update_marker_file}" mkdirs="true"/>
                   </target>
                 </configuration>
               </execution>
