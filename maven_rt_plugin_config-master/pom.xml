@@ -35,6 +35,8 @@
     <master_node_dir>${project.basedir}${file.separator}${project.parent.relativePath}${file.separator}target${file.separator}node</master_node_dir>
     <master_nodeDownloadRoot>https://nodejs.org/dist/</master_nodeDownloadRoot>
     <master_npm_workspace_dir>${project.basedir}${file.separator}${project.parent.relativePath}${file.separator}..</master_npm_workspace_dir>
+    <master_webpack_options>--progress=false</master_webpack_options>
+    <master_karma_output_dir>target/karma-reports</master_karma_output_dir>
   </properties>
 
   <build>
@@ -704,7 +706,7 @@
                 <phase>compile</phase>
                 <configuration>
                   <skip>${master_skip_npm_build_prod}</skip>
-                  <arguments>--scripts-prepend-node-path=true run build:prod</arguments>
+                  <arguments>--scripts-prepend-node-path=true run build:prod -- ${master_webpack_options}</arguments>
                 </configuration>
               </execution>
               <execution>
@@ -715,7 +717,7 @@
                 <phase>compile</phase>
                 <configuration>
                   <skip>${master_skip_npm_build_dev}</skip>
-                  <arguments>--scripts-prepend-node-path=true run build:dev</arguments>
+                  <arguments>--scripts-prepend-node-path=true run build:dev -- ${master_webpack_options}</arguments>
                 </configuration>
               </execution>
             </executions>
@@ -769,7 +771,7 @@
                 <phase>test</phase>
                 <configuration>
                   <skip>${master_skip_karma_test}</skip>
-                  <arguments>--scripts-prepend-node-path=true run test:ci</arguments>
+                  <arguments>--scripts-prepend-node-path=true run test:ci -- --junitReporter.outputDir=${master_karma_output_dir}</arguments>
                 </configuration>
               </execution>
             </executions>
