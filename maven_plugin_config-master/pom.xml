@@ -123,18 +123,6 @@
               <groupId>org.eclipse.tycho</groupId>
               <artifactId>tycho-compiler-jdt</artifactId>
               <version>${master_dependency_tycho-compiler_version}</version>
-              <exclusions>
-                <!-- Exclude ecj that comes with Tycho so that we can add our version (see below) -->
-                <exclusion>
-                  <groupId>org.eclipse.jdt</groupId>
-                  <artifactId>ecj</artifactId>
-                </exclusion>
-              </exclusions>
-            </dependency>
-            <dependency>
-              <groupId>org.eclipse.jdt</groupId>
-              <artifactId>ecj</artifactId>
-              <version>${master_ecj-compiler_version}</version>
             </dependency>
           </dependencies>
         </plugin>
