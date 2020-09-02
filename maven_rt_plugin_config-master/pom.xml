@@ -69,7 +69,7 @@
                 <!-- Note: Do not move into 'jaxws' profile because ignored by 'm2e' otherwise. -->
                 <pluginExecution>
                   <pluginExecutionFilter>
-                    <groupId>com.helger.maven</groupId>
+                    <groupId>com.sun.xml.ws</groupId>
                     <artifactId>jaxws-maven-plugin</artifactId>
                     <versionRange>[${master_plugin_jaxws_version},)</versionRange>
                     <goals>
@@ -282,7 +282,7 @@
           <!-- WSIMPORT (stub generation) -->
           <!-- Note: The stub is only re-generated if the hash of 'wsartifact-hash' changed. -->
           <plugin>
-            <groupId>com.helger.maven</groupId>
+            <groupId>com.sun.xml.ws</groupId>
             <artifactId>jaxws-maven-plugin</artifactId>
             <configuration>
               <wsdlDirectory>${basedir}/src/main/resources/WEB-INF/wsdl</wsdlDirectory>
