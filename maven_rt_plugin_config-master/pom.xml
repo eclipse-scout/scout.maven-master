@@ -652,7 +652,7 @@
                   <skip>${master_skip_npm_update}</skip>
                   <arguments>
                     <argument>${master_node_modules_dir}/pnpm/bin/pnpm.js</argument>
-                    <argument>recursive</argument>
+                    <argument>--recursive</argument>
                     <argument>update</argument>
                     <argument>--no-save</argument> <!-- prevent pnpm to change any versions in package.json - versions managed by scout releng scripts -->
                     <argument>--ignore-scripts</argument>
