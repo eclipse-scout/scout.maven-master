@@ -345,7 +345,6 @@
                 <arg>-XprintProcessorInfo</arg>
                 <arg>-XprintRounds</arg>
               </compilerArgs>
-              <verbose>true</verbose>
               <generatedSourcesDirectory>${jaxws.apt.directory}</generatedSourcesDirectory>
             </configuration>
             <dependencies>

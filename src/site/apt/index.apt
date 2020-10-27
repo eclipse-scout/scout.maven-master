@@ -34,10 +34,6 @@ Maven Master
 
   * {{{../maven_sdk_plugin_config-master/}<<<maven_sdk_plugin_config-master>>>}}: the Maven Master Plugin Build Configuration - SDK,
 
-  * {{{../maven_sdk_p2_plugin_config-master/}<<<maven_sdk_p2_plugin_config-master>>>}}: the Maven Master Plugin Build Configuration - SDK-P2,
-
-  * {{{../eclipse-settings_master/}<<<eclipse-settings_master>>>}}: the Maven Master Eclipse Settings,
-
-  * {{{../eclipse-settings_aptEnabled_master/}<<<eclipse-settings_aptEnabled_master>>>}}: the Maven Master Eclipse Settings - APT Variant.
+  * {{{../maven_sdk_p2_plugin_config-master/}<<<maven_sdk_p2_plugin_config-master>>>}}: the Maven Master Plugin Build Configuration - SDK-P2.
 
   []

@@ -29,8 +29,6 @@
     <module>maven_rt_plugin_config-master</module>
     <module>maven_sdk_plugin_config-master</module>
     <module>maven_sdk_p2_plugin_config-master</module>
-    <module>eclipse-settings_master</module>
-    <module>eclipse-settings_aptEnabled_master</module>
   </modules>
 
   <build>

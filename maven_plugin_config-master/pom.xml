@@ -113,7 +113,6 @@
             <source>${jdk.source.version}</source>
             <target>${jdk.source.version}</target>
             <encoding>${project.build.sourceEncoding}</encoding>
-            <showWarnings>true</showWarnings>
             <compilerArgs>
               <arg>-proc:none</arg>
             </compilerArgs>
@@ -458,86 +457,6 @@
         </plugin>
 
         <plugin>
-          <groupId>org.eclipse.scout</groupId>
-          <artifactId>eclipse-settings-maven-plugin</artifactId>
-          <dependencies>
-            <dependency>
-              <groupId>org.eclipse.scout</groupId>
-              <artifactId>eclipse-settings_master</artifactId>
-              <version>${master_dependency_eclipseSettings_master_version}</version>
-            </dependency>
-          </dependencies>
-          <configuration>
-            <additionalConfig>
-              <file>
-                <name>.settings/.jsdtscope</name>
-                <location>/.jsdtscope</location>
-              </file>
-              <file>
-                <name>.settings/com.eclipsesource.jshint.ui.prefs</name>
-                <location>/com.eclipsesource.jshint.ui.prefs</location>
-              </file>
-              <file>
-                <name>.settings/de.loskutov.anyedit.AnyEditTools.prefs</name>
-                <location>/de.loskutov.anyedit.AnyEditTools.prefs</location>
-              </file>
-              <file>
-                <name>.settings/org.eclipse.core.resources.prefs</name>
-                <location>/org.eclipse.core.resources.prefs</location>
-              </file>
-              <file>
-                <name>.settings/org.eclipse.core.runtime.prefs</name>
-                <location>/org.eclipse.core.runtime.prefs</location>
-              </file>
-              <file>
-                <name>.settings/org.eclipse.jdt.core.prefs</name>
-                <location>/org.eclipse.jdt.core.prefs</location>
-              </file>
-              <file>
-                <name>.settings/org.eclipse.jdt.launching.prefs</name>
-                <location>/org.eclipse.jdt.launching.prefs</location>
-              </file>
-              <file>
-                <name>.settings/org.eclipse.jdt.ui.prefs</name>
-                <location>/org.eclipse.jdt.ui.prefs</location>
-              </file>
-              <file>
-                <name>.settings/org.eclipse.m2e.core.prefs</name>
-                <location>/org.eclipse.m2e.core.prefs</location>
-              </file>
-              <file>
-                <name>.settings/org.eclipse.wst.html.core.prefs</name>
-                <location>/org.eclipse.wst.html.core.prefs</location>
-              </file>
-              <file>
-                <name>.settings/org.eclipse.wst.jsdt.core.prefs</name>
-                <location>/org.eclipse.wst.jsdt.core.prefs</location>
-              </file>
-              <file>
-                <name>.settings/org.eclipse.wst.jsdt.ui.prefs</name>
-                <location>/org.eclipse.wst.jsdt.ui.prefs</location>
-              </file>
-              <file>
-                <name>.settings/org.eclipse.wst.jsdt.ui.superType.container</name>
-                <location>/org.eclipse.wst.jsdt.ui.superType.container</location>
-              </file>
-              <file>
-                <name>.settings/org.eclipse.wst.jsdt.ui.superType.name</name>
-                <location>/org.eclipse.wst.jsdt.ui.superType.name</location>
-              </file>
-              <file>
-                <name>.settings/org.eclipse.wst.validation.prefs</name>
-                <location>/org.eclipse.wst.validation.prefs</location>
-              </file>
-              <file>
-                <name>.settings/org.eclipse.wst.xml.core.prefs</name>
-                <location>/org.eclipse.wst.xml.core.prefs</location>
-              </file>
-            </additionalConfig>
-          </configuration>
-        </plugin>
-
-        <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-javadoc-plugin</artifactId>
           <configuration>
@@ -819,29 +738,6 @@
     </profile>
 
     <profile>
-      <!-- Add the jdt.core.prefs compiler argument only if the file exists -->
-      <id>use-jdt-core-prefs-file</id>
-      <activation>
-        <file>
-          <exists>${basedir}/.settings/org.eclipse.jdt.core.prefs</exists>
-        </file>
-      </activation>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-compiler-plugin</artifactId>
-            <configuration>
-              <compilerArguments>
-                <properties>${project.basedir}/.settings/org.eclipse.jdt.core.prefs</properties>
-              </compilerArguments>
-            </configuration>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-
-    <profile>
       <id>enforce-java-api-compatibility-profile</id>
       <activation>
         <jdk>1.8</jdk>
@@ -864,6 +760,5 @@
         </plugins>
       </build>
     </profile>
-
   </profiles>
 </project>
