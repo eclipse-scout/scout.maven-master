@@ -33,6 +33,7 @@
     <master_skip_release_predependency>true</master_skip_release_predependency>
     <master_skip_release_postdependency>true</master_skip_release_postdependency>
     <master_node_dir>${project.basedir}${file.separator}${project.parent.relativePath}${file.separator}target${file.separator}node</master_node_dir>
+    <master_node_modules_dir>${master_node_dir}/node_modules</master_node_modules_dir>
     <master_nodeDownloadRoot>https://nodejs.org/dist/</master_nodeDownloadRoot>
     <master_npm_workspace_dir>${project.basedir}${file.separator}${project.parent.relativePath}${file.separator}..</master_npm_workspace_dir>
     <master_webpack_options>--progress=false</master_webpack_options>
@@ -456,40 +457,6 @@
       </build>
     </profile>
 
-    <!-- profiles used for npm build -->
-    <profile>
-      <id>npm-root-dir-win</id>
-      <activation>
-        <os>
-          <family>windows</family>
-        </os>
-      </activation>
-      <properties>
-        <master_node_modules_dir>${master_node_dir}/node_modules</master_node_modules_dir>
-      </properties>
-    </profile>
-    <profile>
-      <id>npm-root-dir-linux</id>
-      <activation>
-        <os>
-          <family>linux</family>
-        </os>
-      </activation>
-      <properties>
-        <master_node_modules_dir>${master_node_dir}/../lib/node_modules</master_node_modules_dir>
-      </properties>
-    </profile>
-    <profile>
-      <id>npm-root-dir-mac</id>
-      <activation>
-        <os>
-          <family>mac</family>
-        </os>
-      </activation>
-      <properties>
-        <master_node_modules_dir>${master_node_dir}/../lib/node_modules</master_node_modules_dir>
-      </properties>
-    </profile>
     <profile>
       <id>npm-snapshot-predependency</id>
       <activation>
@@ -628,29 +595,35 @@
             </executions>
           </plugin>
 
-          <!-- install tools for node in node execution directory -->
-          <plugin>
-            <groupId>com.github.eirslett</groupId>
-            <artifactId>frontend-maven-plugin</artifactId>
-            <executions>
-              <execution>
-                <id>install-node-tools</id>
-                <goals>
-                  <goal>npm</goal>
-                </goals>
-                <phase>generate-sources</phase>
-                <configuration>
-                  <skip>${master_skip_init_node}</skip>
-                  <arguments>install -g pnpm@${master_pnpm_version} @eclipse-scout/releng@${master_scout_releng_version}</arguments>
-                </configuration>
-              </execution>
-            </executions>
-          </plugin>
-
           <plugin>
             <groupId>org.codehaus.mojo</groupId>
             <artifactId>exec-maven-plugin</artifactId>
             <executions>
+              <!-- install tools for node in node execution directory -->
+              <execution>
+                <id>install-node-tools</id>
+                <goals>
+                  <goal>exec</goal>
+                </goals>
+                <phase>generate-sources</phase>
+                <configuration>
+                  <executable>${master_node_dir}/node</executable>
+                  <workingDirectory>${master_node_dir}</workingDirectory>
+                  <skip>${master_skip_init_node}</skip>
+                  <arguments>
+                    <argument>${master_node_modules_dir}/npm/bin/npm-cli.js</argument>
+                    <argument>install</argument>
+                    <argument>--loglevel</argument>
+                    <argument>error</argument>
+                    <argument>--prefix</argument>
+                    <argument>${master_node_dir}</argument>
+                    <argument>pnpm@${master_pnpm_version}</argument>
+                    <argument>@eclipse-scout/releng@${master_scout_releng_version}</argument>
+                  </arguments>
+                </configuration>
+              </execution>
+
+              <!-- pnpm update recursive (install js dependencies) -->
               <execution>
                 <id>npm-update</id>
                 <goals>

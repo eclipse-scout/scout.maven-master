@@ -175,7 +175,7 @@
     <master_plugin_jarsigner_version>1.1.5</master_plugin_jarsigner_version>
 
     <!-- https://github.com/eirslett/frontend-maven-plugin -->
-    <master_plugin_frontend_version>1.10.0</master_plugin_frontend_version>
+    <master_plugin_frontend_version>1.10.3</master_plugin_frontend_version>
   </properties>
 
   <build>
