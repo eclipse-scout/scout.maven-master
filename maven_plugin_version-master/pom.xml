@@ -98,7 +98,7 @@
     <master_plugin_versions_version>2.8.1</master_plugin_versions_version>
 
     <!-- https://codehaus-cargo.github.io/cargo/Home.html -->
-    <master_plugin_cargo_version>1.8.0</master_plugin_cargo_version>
+    <master_plugin_cargo_version>1.8.4</master_plugin_cargo_version>
 
     <!-- http://tomcat.apache.org/maven-plugin.html -->
     <master_plugin_tomcat7_version>2.2</master_plugin_tomcat7_version>
