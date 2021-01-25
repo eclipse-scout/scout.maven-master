@@ -721,7 +721,7 @@
                   <outputDirectory>${project.build.outputDirectory}</outputDirectory>
                   <resources>
                     <resource>
-                      <directory>${basedir}/dist</directory>
+                      <directory>${basedir}/target/dist</directory>
                       <filtering>false</filtering>
                     </resource>
                   </resources>
