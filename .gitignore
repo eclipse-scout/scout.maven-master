@@ -15,6 +15,20 @@
 /.settings
 bin/**
 
+# IntelliJ IDEA #
+/.idea/**/workspace.xml
+/.idea/**/tasks.xml
+/.idea/**/usage.statistics.xml
+/.idea/**/dataSources.local.xml
+/.idea/**/jarRepositories.xml
+/.idea/**/shelf
+/.idea/sonarlint
+/.idea/**/dataSources/
+/.idea/httpRequests/
+/.idea/libraries/
+/.idea/artifacts/
+*.iml
+
 # Maven #
 target/
 /.mvn
