@@ -156,16 +156,6 @@
         </executions>
       </plugin>
 
-      <!-- SDK uses Java 11. As the target property of the compiler can check the compatibility, animal sniffer is not required -->
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>animal-sniffer-maven-plugin</artifactId>
-        <inherited>false</inherited>
-        <configuration>
-          <skip>true</skip>
-        </configuration>
-      </plugin>
-
       <!-- source maven plugin creates the source bundle and adds manifest -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>

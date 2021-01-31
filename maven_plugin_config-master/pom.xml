@@ -341,19 +341,6 @@
         </plugin>
 
         <plugin>
-          <groupId>org.codehaus.mojo</groupId>
-          <artifactId>animal-sniffer-maven-plugin</artifactId>
-          <configuration>
-            <signature>
-              <groupId>org.codehaus.mojo.signature</groupId>
-              <artifactId>java18</artifactId>
-              <version>1.0</version>
-            </signature>
-            <skip>${master_signatureCheck_skip}</skip>
-          </configuration>
-        </plugin>
-
-        <plugin>
           <groupId>com.mycila</groupId>
           <artifactId>license-maven-plugin</artifactId>
           <configuration>
@@ -738,27 +725,14 @@
     </profile>
 
     <profile>
-      <id>enforce-java-api-compatibility-profile</id>
+      <!-- Set maven.compiler.release when running a JDK > 8 (checks for API incompatibilities between JDKs) -->
+      <id>compiler_release</id>
       <activation>
-        <jdk>1.8</jdk>
+        <jdk>[9,)</jdk>
       </activation>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.codehaus.mojo</groupId>
-            <artifactId>animal-sniffer-maven-plugin</artifactId>
-            <executions>
-              <execution>
-                <id>enforce-java-api-compatibility</id>
-                <goals>
-                  <goal>check</goal>
-                </goals>
-                <phase>verify</phase>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
+      <properties>
+        <maven.compiler.release>${jdk.source.version}</maven.compiler.release>
+      </properties>
     </profile>
   </profiles>
 </project>

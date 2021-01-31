@@ -85,10 +85,6 @@
     <!-- ####################################################################### -->
     <!-- Outside The Maven Land (List at http://maven.apache.org/plugins/) -->
     <!-- ####################################################################### -->
-    <!-- http://www.mojohaus.org/animal-sniffer/ -->
-    <!-- https://github.com/mojohaus/animal-sniffer -->
-    <master_plugin_animal-sniffer_version>1.19</master_plugin_animal-sniffer_version>
-
     <!-- http://www.mojohaus.org/build-helper-maven-plugin -->
     <!-- https://github.com/mojohaus/build-helper-maven-plugin -->
     <master_plugin_build-helper_version>3.2.0</master_plugin_build-helper_version>
@@ -364,12 +360,6 @@
           <groupId>org.codehaus.mojo</groupId>
           <artifactId>build-helper-maven-plugin</artifactId>
           <version>${master_plugin_build-helper_version}</version>
-        </plugin>
-
-        <plugin>
-          <groupId>org.codehaus.mojo</groupId>
-          <artifactId>animal-sniffer-maven-plugin</artifactId>
-          <version>${master_plugin_animal-sniffer_version}</version>
         </plugin>
 
         <plugin>
