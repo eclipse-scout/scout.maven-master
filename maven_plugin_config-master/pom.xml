@@ -734,5 +734,5 @@
 <!--        <maven.compiler.release>${jdk.source.version}</maven.compiler.release>-->
 <!--      </properties>-->
 <!--    </profile>-->
-<!--  </profiles>-->
+  </profiles>
 </project>
