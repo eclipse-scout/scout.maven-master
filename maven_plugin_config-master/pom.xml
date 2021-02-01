@@ -724,15 +724,15 @@
       </build>
     </profile>
 
-    <profile>
-      <!-- Set maven.compiler.release when running a JDK > 8 (checks for API incompatibilities between JDKs) -->
-      <id>compiler_release</id>
-      <activation>
-        <jdk>[9,)</jdk>
-      </activation>
-      <properties>
-        <maven.compiler.release>${jdk.source.version}</maven.compiler.release>
-      </properties>
-    </profile>
-  </profiles>
+<!--    <profile>-->
+<!--      &lt;!&ndash; Set maven.compiler.release when running a JDK > 8 (checks for API incompatibilities between JDKs) &ndash;&gt;-->
+<!--      <id>compiler_release</id>-->
+<!--      <activation>-->
+<!--        <jdk>[9,)</jdk>-->
+<!--      </activation>-->
+<!--      <properties>-->
+<!--        <maven.compiler.release>${jdk.source.version}</maven.compiler.release>-->
+<!--      </properties>-->
+<!--    </profile>-->
+<!--  </profiles>-->
 </project>
