@@ -73,6 +73,7 @@ if [[ "$TAG" ]]; then
 fi
 _MAVEN_OPTS="$_MAVEN_OPTS -e -B"
 
+mvn versions:set -DnewVersion=$VERSION -DprocessAllModules -f maven_plugin_version-master -N $_MAVEN_OPTS
 mvn -Prelease.setversion -Dmaster_release_newVersion=$VERSION -f maven_plugin_version-master -N $_MAVEN_OPTS
 processError
 
@@ -82,8 +83,12 @@ processError
 mvn -Prelease.tag -Declipse_gerrit_username=$GIT_USERNAME -Dmaster_release_pushChanges=false -f maven_plugin_version-master $_MAVEN_OPTS
 processError
 
+mvn versions:set -DnewVersion=$NEXT_VERSION -DprocessAllModules -f maven_plugin_version-master -N $_MAVEN_OPTS
 mvn -Prelease.setversion -Dmaster_release_newVersion=$NEXT_VERSION -f maven_plugin_version-master -N $_MAVEN_OPTS -Dmaster_release_tagName="master"
+mvn versions:update-child-modules -f maven_plugin_version-master -DprocessAllModules=true -N $_MAVEN_OPTS
 processError
 
 mvn -Prelease.checkin -Declipse_gerrit_username=$GIT_USERNAME -Dmaster_release_pushChanges=false -Dmaster_release_checkinMessage="[release] prepare for next development iteration" -f maven_plugin_version-master $_MAVEN_OPTS
 processError
+
+echo "************ Amend last commit with corrected pom.xml version numbers. Only the maven_plugin_version-master seems to get updated"
