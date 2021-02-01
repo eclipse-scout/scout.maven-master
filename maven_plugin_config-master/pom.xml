@@ -25,7 +25,7 @@
 
   <properties>
     <jdk.min.version>1.8</jdk.min.version>
-    <jdk.source.version>1.8</jdk.source.version>
+    <jdk.source.version>8</jdk.source.version>
     <maven.compiler.source>${jdk.source.version}</maven.compiler.source>
     <maven.compiler.target>${jdk.source.version}</maven.compiler.target>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
