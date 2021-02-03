@@ -48,6 +48,11 @@ function get_options {
 	done
 	_MAVEN_OPTS="$_MAVEN_OPTS $@"
 }
+
+echo "************ The script currently does not work correctly, -Prelease.setversion only sets the version in the parent pom instead of all poms *********"
+echo "***** You can use the script stepwise by moving the exit command lower and commenting out steps already done"
+exit
+
 get_options $*
 
 if [[ -z "$GIT_USERNAME" ]]; then
@@ -91,4 +96,3 @@ processError
 mvn -Prelease.checkin -Declipse_gerrit_username=$GIT_USERNAME -Dmaster_release_pushChanges=false -Dmaster_release_checkinMessage="[release] prepare for next development iteration" -f maven_plugin_version-master $_MAVEN_OPTS
 processError
 
-echo "************ Amend last commit with corrected pom.xml version numbers. Only the maven_plugin_version-master seems to get updated"
