@@ -20,6 +20,7 @@
   </parent>
 
   <artifactId>maven-master</artifactId>
+  <version>3.13.5-SNAPSHOT</version> <!-- additional version tag required ('parent is also a child module' & versions-maven-plugin) -->
   <packaging>pom</packaging>
   <name>Maven Master Root Module</name>
 
