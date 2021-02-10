@@ -566,6 +566,10 @@
     </mailingList>
   </mailingLists>
 
+  <scm>
+    <url>https://git.eclipse.org/c/scout/maven-master.git/</url>
+  </scm>
+
   <issueManagement>
     <system>Bugzilla</system>
     <url>https://bugs.eclipse.org/bugs/buglist.cgi?query_format=advanced;product=Scout;classification=Technology</url>
