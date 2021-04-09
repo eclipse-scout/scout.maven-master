@@ -451,21 +451,9 @@
         </plugin>
 
         <plugin>
-          <groupId>org.eclipse.tycho.extras</groupId>
-          <artifactId>tycho-pack200a-plugin</artifactId>
-          <version>${master_plugin_tycho-extras_version}</version>
-        </plugin>
-
-        <plugin>
           <groupId>org.eclipse.cbi.maven.plugins</groupId>
           <artifactId>eclipse-jarsigner-plugin</artifactId>
           <version>${master_plugin_jarsigner_version}</version>
-        </plugin>
-
-        <plugin>
-          <groupId>org.eclipse.tycho.extras</groupId>
-          <artifactId>tycho-pack200b-plugin</artifactId>
-          <version>${master_plugin_tycho-extras_version}</version>
         </plugin>
 
         <plugin>
