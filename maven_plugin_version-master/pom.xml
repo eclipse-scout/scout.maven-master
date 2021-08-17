@@ -562,7 +562,7 @@
   </mailingLists>
 
   <scm>
-    <url>https://git.eclipse.org/c/scout/maven-master.git/</url>
+    <url>https://github.com/eclipse-scout/scout.maven-master.git/</url>
   </scm>
 
   <issueManagement>

@@ -1,7 +1,0 @@
-[gerrit]
-host=git.eclipse.org
-port=29418
-project=scout/org.eclipse.scout-aggregator.git
-defaultbranch=parent/develop
-defaultremote=origin
-defaultrebase=0
