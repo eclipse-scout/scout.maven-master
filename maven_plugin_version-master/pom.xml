@@ -14,7 +14,7 @@
 
   <groupId>org.eclipse.scout</groupId>
   <artifactId>maven_plugin_version-master</artifactId>
-  <version>3.14.3-SNAPSHOT</version>
+  <version>3.15.0-SNAPSHOT</version>
   <packaging>pom</packaging>
   <description>Maven Master Plugin Version Configuration, hosted at Eclipse Scout</description>
 
@@ -52,9 +52,9 @@
     <!-- Packaging types/tools -->
     <!-- These plugins relate to packaging respective artifact types. -->
     <!-- ####################################################################### -->
-    <master_plugin_ear_version>3.0.2</master_plugin_ear_version>
+    <master_plugin_ear_version>3.2.0</master_plugin_ear_version>
     <master_plugin_jar_version>3.2.0</master_plugin_jar_version>
-    <master_plugin_war_version>3.3.1</master_plugin_war_version>
+    <master_plugin_war_version>3.3.2</master_plugin_war_version>
     <master_plugin_source_version>3.2.1</master_plugin_source_version>
 
     <!-- ####################################################################### -->
@@ -62,9 +62,9 @@
     <!-- Plugins which generate reports, are configured as reports in the POM and run under the site generation lifecycle. -->
     <!-- ####################################################################### -->
     <master_plugin_changelog_version>2.3</master_plugin_changelog_version>
-    <master_plugin_javadoc_version>3.2.0</master_plugin_javadoc_version>
-    <master_plugin_jxr_version>3.0.0</master_plugin_jxr_version>
-    <master_plugin_project-info-reports_version>3.1.0</master_plugin_project-info-reports_version>
+    <master_plugin_javadoc_version>3.3.1</master_plugin_javadoc_version>
+    <master_plugin_jxr_version>3.1.1</master_plugin_jxr_version>
+    <master_plugin_project-info-reports_version>3.1.2</master_plugin_project-info-reports_version>
 
     <!-- ####################################################################### -->
     <!-- Tools -->
@@ -73,17 +73,12 @@
     <master_plugin_ant_version>1.10.11</master_plugin_ant_version>
     <master_plugin_antrun_version>3.0.0</master_plugin_antrun_version>
     <master_plugin_assembly_version>3.3.0</master_plugin_assembly_version>
-    <master_plugin_dependency_version>3.1.2</master_plugin_dependency_version>
-    <master_plugin_enforcer_version>3.0.0-M3</master_plugin_enforcer_version>
-    <master_plugin_gpg_version>1.6</master_plugin_gpg_version>
+    <master_plugin_dependency_version>3.2.0</master_plugin_dependency_version>
+    <master_plugin_enforcer_version>3.0.0</master_plugin_enforcer_version>
+    <master_plugin_gpg_version>3.0.1</master_plugin_gpg_version>
     <master_plugin_release_version>2.5.3</master_plugin_release_version>
-    <master_plugin_scm_version>1.11.2</master_plugin_scm_version>
-    <master_plugin_security_dependency_check_version>6.2.2</master_plugin_security_dependency_check_version>
-
-    <!-- ####################################################################### -->
-    <!-- Retired -->
-    <!-- ####################################################################### -->
-    <master_plugin_eclipse_version>2.10</master_plugin_eclipse_version>
+    <master_plugin_scm_version>1.12.0</master_plugin_scm_version>
+    <master_plugin_security_dependency_check_version>6.3.1</master_plugin_security_dependency_check_version>
 
     <!-- ####################################################################### -->
     <!-- Outside The Maven Land (List at http://maven.apache.org/plugins/) -->
@@ -97,7 +92,10 @@
     <master_plugin_versions_version>2.8.1</master_plugin_versions_version>
 
     <!-- https://codehaus-cargo.github.io/cargo/Home.html -->
-    <master_plugin_cargo_version>1.8.4</master_plugin_cargo_version>
+    <master_plugin_cargo_version>1.9.7</master_plugin_cargo_version>
+
+    <!-- https://github.com/asciidoctor/asciidoctor-maven-plugin -->
+    <master_plugin_asciidoctor_version>2.2.1</master_plugin_asciidoctor_version>
 
     <!-- http://tomcat.apache.org/maven-plugin.html -->
     <master_plugin_tomcat7_version>2.2</master_plugin_tomcat7_version>
@@ -109,48 +107,45 @@
     <master_plugin_exec_version>3.0.0</master_plugin_exec_version>
 
     <!-- https://github.com/basepom/duplicate-finder-maven-plugin/releases -->
-    <master_plugin_duplicate-finder_version>1.4.0</master_plugin_duplicate-finder_version>
+    <master_plugin_duplicate-finder_version>1.5.0</master_plugin_duplicate-finder_version>
 
     <!-- https://github.com/wildfly/jandex-maven-plugin -->
-    <master_plugin_jandex_version>1.0.8</master_plugin_jandex_version>
+    <master_plugin_jandex_version>1.2.0</master_plugin_jandex_version>
 
     <!-- Plugin version of 'jaxws-maven-plugin' to generate webservice stub. -->
     <!-- https://eclipse-ee4j.github.io/metro-jax-ws/jaxws-maven-plugin/ -->
     <!-- https://github.com/eclipse-ee4j/metro-jax-ws -->
     <!-- https://github.com/eclipse-ee4j/metro-jax-ws/tree/master/jaxws-ri/extras/jaxws-maven-plugin -->
-    <master_plugin_jaxws_version>2.3.3</master_plugin_jaxws_version>
+    <master_plugin_jaxws_version>2.3.5</master_plugin_jaxws_version>
 
     <!-- https://github.com/eclipse-ee4j/jax-ws-api -->
     <master_dependency_jaxws_api_version>2.3.3</master_dependency_jaxws_api_version>
 
     <!-- Version to generate JAX-WS artifacts -->
-    <!-- https://github.com/javaee/metro-jax-ws -->
-    <!-- http://www.mojohaus.org/jaxws-maven-plugin/ -->
-    <!-- org.glassfish.jaxb:txw2 2.3.2 -->
-    <!-- com.sun.xml.ws:jaxws-rt 2.3.2 -->
-    <!-- com.sun.xml.ws:jaxws-tools 2.3.2 -->
-    <master_dependency_jaxws_version>2.3.3</master_dependency_jaxws_version>
+    <!-- https://github.com/eclipse-ee4j/metro-jax-ws -->
+    <!-- https://github.com/eclipse-ee4j/metro-jax-ws/tree/master/jaxws-ri/extras/jaxws-maven-plugin -->
+    <master_dependency_jaxws_version>2.3.5</master_dependency_jaxws_version>
 
     <!-- http://site.kuali.org/maven/plugins/properties-maven-plugin/latest/index.html -->
     <master_plugin_properties_version>2.0.1</master_plugin_properties_version>
 
     <!-- http://code.mycila.com/license-maven-plugin/ -->
     <!-- https://github.com/mycila/license-maven-plugin -->
-    <master_plugin_license_version>3.0</master_plugin_license_version>
+    <master_plugin_license_version>4.1</master_plugin_license_version>
 
     <!-- http://felix.apache.org/components/bundle-plugin/ -->
     <!-- http://svn.apache.org/viewvc/felix/releases/maven-bundle-plugin-4.1.0/ -->
-    <master_plugin_bundle_version>5.1.1</master_plugin_bundle_version>
+    <master_plugin_bundle_version>5.1.2</master_plugin_bundle_version>
 
     <!-- https://github.com/ktoso/maven-git-commit-id-plugin -->
-    <master_plugin_git-commit-id_version>4.0.2</master_plugin_git-commit-id_version>
+    <master_plugin_git-commit-id_version>4.9.10</master_plugin_git-commit-id_version>
 
     <!-- https://www.eclemma.org/jacoco/trunk/doc/maven.html -->
-    <master_plugin_jacoco_version>0.8.5</master_plugin_jacoco_version>
+    <master_plugin_jacoco_version>0.8.7</master_plugin_jacoco_version>
 
     <!-- http://www.mojohaus.org/flatten-maven-plugin/ -->
     <!-- https://github.com/mojohaus/flatten-maven-plugin -->
-    <master_plugin_flatten_version>1.2.5</master_plugin_flatten_version>
+    <master_plugin_flatten_version>1.2.7</master_plugin_flatten_version>
 
     <!-- https://code.google.com/archive/p/maven-replacer-plugin/ -->
     <!-- https://github.com/dtracers/maven-replacer-plugin -->
@@ -161,8 +156,8 @@
 
     <!-- https://www.eclipse.org/tycho/sitedocs/index.html -->
     <!-- version of Tycho used by org.eclipse.scout.sdk.core.releng build and profiles eclipse-sign and eclipse-pack -->
-    <!-- Tycho >= 2.0.0 requires at least Java 11 and Maven 3.6.3 -->
-    <master_plugin_tycho_version>1.7.0</master_plugin_tycho_version>
+    <!-- Tycho 2.4.0 includes 'Eclipse Compiler for Java' 3.26.0 which is part of Eclipse 4.20 (2021-06) -->
+    <master_plugin_tycho_version>2.4.0</master_plugin_tycho_version>
 
     <!-- https://www.eclipse.org/tycho/ -->
     <master_dependency_tycho-compiler_version>${master_plugin_tycho_version}</master_dependency_tycho-compiler_version>
@@ -174,7 +169,7 @@
     <master_plugin_jarsigner_version>1.3.2</master_plugin_jarsigner_version>
 
     <!-- https://github.com/eirslett/frontend-maven-plugin -->
-    <master_plugin_frontend_version>1.10.3</master_plugin_frontend_version>
+    <master_plugin_frontend_version>1.12.0</master_plugin_frontend_version>
   </properties>
 
   <build>
@@ -290,12 +285,6 @@
 
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-eclipse-plugin</artifactId>
-          <version>${master_plugin_eclipse_version}</version>
-        </plugin>
-
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-war-plugin</artifactId>
           <version>${master_plugin_war_version}</version>
         </plugin>
@@ -348,7 +337,7 @@
             <dependency>
               <groupId>org.eclipse.jgit</groupId>
               <artifactId>org.eclipse.jgit</artifactId>
-              <version>5.8.1.202007141445-r</version>
+              <version>5.13.0.202109080827-r</version>
             </dependency>
           </dependencies>
         </plugin>
@@ -391,8 +380,14 @@
 
         <plugin>
           <groupId>org.codehaus.cargo</groupId>
-          <artifactId>cargo-maven2-plugin</artifactId>
+          <artifactId>cargo-maven3-plugin</artifactId>
           <version>${master_plugin_cargo_version}</version>
+        </plugin>
+
+        <plugin>
+          <groupId>org.asciidoctor</groupId>
+          <artifactId>asciidoctor-maven-plugin</artifactId>
+          <version>${master_plugin_asciidoctor_version}</version>
         </plugin>
 
         <plugin>
@@ -536,7 +531,7 @@
         This program and the accompanying materials are made
         available under the terms of the Eclipse Public License v1.0
         which accompanies this distribution, and is available at
-        http://www.eclipse.org/legal/epl-v10.htm
+        https://www.eclipse.org/legal/epl-v10.html
       </comments>
     </license>
   </licenses>
@@ -553,10 +548,10 @@
   <mailingLists>
     <mailingList>
       <name>scout-dev Mailing List</name>
-      <subscribe>https://dev.eclipse.org/mailman/listinfo/scout-dev</subscribe>
-      <unsubscribe>https://dev.eclipse.org/mailman/listinfo/scout-dev</unsubscribe>
+      <subscribe>https://accounts.eclipse.org/mailing-list/scout-dev</subscribe>
+      <unsubscribe>https://accounts.eclipse.org/mailing-list/scout-dev</unsubscribe>
       <post>scout-dev@eclipse.org</post>
-      <archive>http://dev.eclipse.org/mhonarc/lists/scout-dev</archive>
+      <archive>https://www.eclipse.org/lists/scout-dev</archive>
     </mailingList>
   </mailingLists>
 

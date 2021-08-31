@@ -15,7 +15,7 @@
   <parent>
     <groupId>org.eclipse.scout</groupId>
     <artifactId>maven_plugin_version-master</artifactId>
-    <version>3.14.3-SNAPSHOT</version>
+    <version>3.15.0-SNAPSHOT</version>
     <relativePath>../maven_plugin_version-master</relativePath>
   </parent>
 
@@ -24,15 +24,16 @@
   <description>Maven Master Plugin Build Configuration - General</description>
 
   <properties>
-    <jdk.min.version>1.8</jdk.min.version>
-    <jdk.source.version>8</jdk.source.version>
+    <jdk.min.version>11</jdk.min.version>
+    <jdk.source.version>11</jdk.source.version>
     <maven.compiler.source>${jdk.source.version}</maven.compiler.source>
     <maven.compiler.target>${jdk.source.version}</maven.compiler.target>
+    <maven.compiler.release>${jdk.source.version}</maven.compiler.release>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <maven.build.timestamp.format>yyyyMMdd-HHmmss</maven.build.timestamp.format>
-    <maven.min.version>3.5.3</maven.min.version>
-    <maven.api.version>3.5.3</maven.api.version>
+    <maven.min.version>3.6.3</maven.min.version>
+    <maven.api.version>3.6.3</maven.api.version>
 
     <master_deployAtEnd>true</master_deployAtEnd>
     <master_sanityCheck_skip>false</master_sanityCheck_skip>
@@ -64,7 +65,7 @@
       -Dfile.encoding=${project.build.sourceEncoding}</master_test_argLine>
 
     <!-- Javadoc Control -->
-    <master_javadoc_opts></master_javadoc_opts>
+    <master_javadoc_opts/>
   </properties>
 
   <build>
@@ -75,6 +76,7 @@
           <artifactId>maven-resources-plugin</artifactId>
           <configuration>
             <encoding>${project.build.sourceEncoding}</encoding>
+            <propertiesEncoding>ISO-8859-1</propertiesEncoding>
             <!--
               The delimiter will be used if subprojects set the <filtering> tag to true.
               It specifies the form for properties to be replaced.
@@ -327,43 +329,47 @@
           <groupId>com.mycila</groupId>
           <artifactId>license-maven-plugin</artifactId>
           <configuration>
-            <header>${project.basedir}/../license_files/copyright.txt</header>
-            <headerDefinitions>
-              <headerDefinition>${project.basedir}/../license_files/scoutLicenceHeaderJava.xml</headerDefinition>
-            </headerDefinitions>
-            <failIfMissing>true</failIfMissing>
-            <strictCheck>true</strictCheck>
-            <aggregate>true</aggregate>
-            <useDefaultExcludes>false</useDefaultExcludes>
-            <includes>
-              <include>**/pom.xml</include>
-              <include>**/*.properties</include>
-              <include>**/*.java</include>
-              <include>**/*.js</include>
-              <include>**/*.css</include>
-              <include>**/*.less</include>
-              <include>**/*.xml</include>
-              <include>**/*.xsd</include>
-            </includes>
-            <excludes>
-              <exclude>**/target/**</exclude>
-              <exclude>**/node_modules/**</exclude>
-              <exclude>**/test-results/**</exclude>
-              <exclude>**/dist/**</exclude>
-              <exclude>**/.*</exclude>
-              <exclude>**/.settings/**</exclude>
-              <exclude>**/release.properties</exclude>
-              <exclude>**/pom.xml.releaseBackup</exclude>
-              <exclude>**/*.sh</exclude>
-              <exclude>**/src/main/resources/WebContent/**</exclude>
-              <exclude>**/src/main/ws-stub/**</exclude>
-            </excludes>
-            <mapping>
-              <java>SCOUT_JAVADOC_STYLE</java>
-              <js>SCOUT_JAVADOC_STYLE</js>
-              <less>SCOUT_JAVADOC_STYLE</less>
-              <css>SCOUT_JAVADOC_STYLE</css>
-            </mapping>
+            <licenseSets>
+              <licenseSet>
+                <header>${project.basedir}/../license_files/copyright.txt</header>
+                <headerDefinitions>
+                  <headerDefinition>${project.basedir}/../license_files/scoutLicenceHeaderJava.xml</headerDefinition>
+                </headerDefinitions>
+                <failIfMissing>true</failIfMissing>
+                <strictCheck>true</strictCheck>
+                <aggregate>true</aggregate>
+                <useDefaultExcludes>false</useDefaultExcludes>
+                <includes>
+                  <include>**/pom.xml</include>
+                  <include>**/*.properties</include>
+                  <include>**/*.java</include>
+                  <include>**/*.js</include>
+                  <include>**/*.css</include>
+                  <include>**/*.less</include>
+                  <include>**/*.xml</include>
+                  <include>**/*.xsd</include>
+                </includes>
+                <excludes>
+                  <exclude>**/target/**</exclude>
+                  <exclude>**/node_modules/**</exclude>
+                  <exclude>**/test-results/**</exclude>
+                  <exclude>**/dist/**</exclude>
+                  <exclude>**/.*</exclude>
+                  <exclude>**/.settings/**</exclude>
+                  <exclude>**/release.properties</exclude>
+                  <exclude>**/pom.xml.releaseBackup</exclude>
+                  <exclude>**/*.sh</exclude>
+                  <exclude>**/src/main/resources/WebContent/**</exclude>
+                  <exclude>**/src/main/ws-stub/**</exclude>
+                </excludes>
+                <mapping>
+                  <java>SCOUT_JAVADOC_STYLE</java>
+                  <js>SCOUT_JAVADOC_STYLE</js>
+                  <less>SCOUT_JAVADOC_STYLE</less>
+                  <css>SCOUT_JAVADOC_STYLE</css>
+                </mapping>
+              </licenseSet>
+            </licenseSets>
             <skip>${master_sanityCheck_skip}</skip>
           </configuration>
           <dependencies>
@@ -408,7 +414,7 @@
                 </excludes>
                 <searchTransitive>true</searchTransitive>
               </bannedDependencies>
-              <banDuplicatePomDependencyVersions></banDuplicatePomDependencyVersions>
+              <banDuplicatePomDependencyVersions/>
               <!-- can't be used until html ui in eclipse repo and of the tools-build
                 <reactorModuleConvergence /> -->
               <requireSameVersions>
@@ -456,7 +462,7 @@
                     </goals>
                   </pluginExecutionFilter>
                   <action>
-                    <ignore></ignore>
+                    <ignore/>
                   </action>
                 </pluginExecution>
                 <pluginExecution>
@@ -469,7 +475,7 @@
                     </goals>
                   </pluginExecutionFilter>
                   <action>
-                    <ignore></ignore>
+                    <ignore/>
                   </action>
                 </pluginExecution>
               </pluginExecutions>
@@ -706,16 +712,5 @@
         </plugins>
       </build>
     </profile>
-
-<!--    <profile>-->
-<!--      &lt;!&ndash; Set maven.compiler.release when running a JDK > 8 (checks for API incompatibilities between JDKs) &ndash;&gt;-->
-<!--      <id>compiler_release</id>-->
-<!--      <activation>-->
-<!--        <jdk>[9,)</jdk>-->
-<!--      </activation>-->
-<!--      <properties>-->
-<!--        <maven.compiler.release>${jdk.source.version}</maven.compiler.release>-->
-<!--      </properties>-->
-<!--    </profile>-->
   </profiles>
 </project>
