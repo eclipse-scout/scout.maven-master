@@ -14,7 +14,7 @@
 
   <groupId>org.eclipse.scout</groupId>
   <artifactId>maven_plugin_version-master</artifactId>
-  <version>3.15.2-SNAPSHOT</version>
+  <version>22.0-SNAPSHOT</version>
   <packaging>pom</packaging>
   <name>${project.groupId}:${project.artifactId}</name>
   <description>Maven Master Plugin Version Configuration, hosted at Eclipse Scout</description>
@@ -25,9 +25,10 @@
     <master_deploy_SnapshotId>repo.eclipse.org</master_deploy_SnapshotId>
     <master_deploy_SnapshotUrl>https://repo.eclipse.org/content/repositories/scout-snapshots/</master_deploy_SnapshotUrl>
 
-    <master_node_version>v12.18.4</master_node_version>
-    <master_pnpm_version>5.7.0</master_pnpm_version>
-    <master_scout_releng_version>^10.0.0</master_scout_releng_version>
+    <master_node_version>v16.13.0</master_node_version>
+    <master_pnpm_version>6.22.2</master_pnpm_version>
+    <master_npm_version>8.1.4</master_npm_version>
+    <master_scout_releng_version>^22.0.0</master_scout_releng_version>
 
     <!-- new version for npm set version -->
     <master_release_newVersion>${project.version}</master_release_newVersion>

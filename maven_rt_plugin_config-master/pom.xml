@@ -15,7 +15,7 @@
   <parent>
     <groupId>org.eclipse.scout</groupId>
     <artifactId>maven_plugin_config-master</artifactId>
-    <version>3.15.2-SNAPSHOT</version>
+    <version>22.0-SNAPSHOT</version>
     <relativePath>../maven_plugin_config-master</relativePath>
   </parent>
 
@@ -562,7 +562,7 @@
       </activation>
 
       <properties>
-        <npm_update_marker_file>${project.basedir}${file.separator}${project.parent.relativePath}${file.separator}target${file.separator}npm_update.marker</npm_update_marker_file>
+        <npm_update_marker_file>${master_node_dir}${file.separator}..${file.separator}npm_update.marker</npm_update_marker_file>
       </properties>
 
       <build>
@@ -612,6 +612,7 @@
                     <argument>error</argument>
                     <argument>--prefix</argument>
                     <argument>${master_node_dir}</argument>
+                    <argument>npm@${master_npm_version}</argument>
                     <argument>pnpm@${master_pnpm_version}</argument>
                     <argument>@eclipse-scout/releng@${master_scout_releng_version}</argument>
                   </arguments>
@@ -630,7 +631,7 @@
                   <workingDirectory>${master_npm_workspace_dir}</workingDirectory>
                   <skip>${master_skip_npm_update}</skip>
                   <arguments>
-                    <argument>${master_node_modules_dir}/pnpm/bin/pnpm.js</argument>
+                    <argument>${master_node_modules_dir}/pnpm/bin/pnpm.cjs</argument>
                     <argument>--recursive</argument>
                     <argument>update</argument>
                     <argument>--no-save</argument> <!-- prevent pnpm to change any versions in package.json - versions managed by scout releng scripts -->
@@ -785,6 +786,7 @@
                   <arguments>
                     <argument>${master_node_modules_dir}/@eclipse-scout/releng/bin/releng-scripts.js</argument>
                     <argument>snapshot-install-dependency</argument>
+                    <argument>--workspaceRoot=${master_npm_workspace_dir}</argument>
                   </arguments>
                 </configuration>
               </execution>
@@ -800,6 +802,7 @@
                   <arguments>
                     <argument>${master_node_modules_dir}/@eclipse-scout/releng/bin/releng-scripts.js</argument>
                     <argument>snapshot-publish-dependency</argument>
+                    <argument>--workspaceRoot=${master_npm_workspace_dir}</argument>
                   </arguments>
                 </configuration>
               </execution>
@@ -813,7 +816,7 @@
                   <skip>${master_skip_release_predependency}</skip>
                   <executable>${master_node_dir}/node</executable>
                   <!-- DO NOT USE 'arguments' - we use here 'commandlineArgs' as 'master_npm_release_dependency_mapping' may contain multiple arguments -->
-                  <commandlineArgs>${master_node_modules_dir}/@eclipse-scout/releng/bin/releng-scripts.js release-install-dependency ${master_npm_release_dependency_mapping}</commandlineArgs>
+                  <commandlineArgs>${master_node_modules_dir}/@eclipse-scout/releng/bin/releng-scripts.js release-install-dependency ${master_npm_release_dependency_mapping} --workspaceRoot=${master_npm_workspace_dir}</commandlineArgs>
                 </configuration>
               </execution>
               <execution>
@@ -829,6 +832,7 @@
                     <argument>${master_node_modules_dir}/@eclipse-scout/releng/bin/releng-scripts.js</argument>
                     <argument>release-publish-dependency</argument>
                     <argument>--newVersion=${master_release_newVersion}</argument>
+                    <argument>--workspaceRoot=${master_npm_workspace_dir}</argument>
                   </arguments>
                 </configuration>
               </execution>
