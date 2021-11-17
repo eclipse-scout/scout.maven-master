@@ -21,6 +21,7 @@
 
   <artifactId>maven_sdk_p2_plugin_config-master</artifactId>
   <packaging>pom</packaging>
+  <name>${project.groupId}:${project.artifactId}</name>
   <description>Maven Master Plugin Build Configuration for SDK-P2</description>
 
   <build>

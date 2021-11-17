@@ -16,6 +16,7 @@
   <artifactId>maven_plugin_version-master</artifactId>
   <version>3.14.3-SNAPSHOT</version>
   <packaging>pom</packaging>
+  <name>${project.groupId}:${project.artifactId}</name>
   <description>Maven Master Plugin Version Configuration, hosted at Eclipse Scout</description>
 
   <properties>
