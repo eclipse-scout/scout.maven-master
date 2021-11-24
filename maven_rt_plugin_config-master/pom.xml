@@ -562,7 +562,7 @@
       </activation>
 
       <properties>
-        <npm_update_marker_file>${master_node_dir}${file.separator}..${file.separator}npm_update.marker</npm_update_marker_file>
+        <npm_update_marker_file>${project.basedir}${file.separator}${project.parent.relativePath}${file.separator}target${file.separator}npm_update.marker</npm_update_marker_file>
       </properties>
 
       <build>
