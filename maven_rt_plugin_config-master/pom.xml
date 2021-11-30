@@ -463,17 +463,16 @@
         <master_skip_snapshot_predependency>false</master_skip_snapshot_predependency>
       </properties>
     </profile>
+
     <profile>
       <id>npm-snapshot-postdependency</id>
-      <activation>
-        <property>
-          <name>!master_npm_release_build</name>
-        </property>
-      </activation>
+      <!-- must be activated explicitly to create a unique npm snapshot having a timestamp version -->
+      <!-- this is typically required if the built snapshot should be published to a repository -->
       <properties>
         <master_skip_snapshot_postdependency>false</master_skip_snapshot_postdependency>
       </properties>
     </profile>
+
     <profile>
       <id>npm-release-predependency</id>
       <activation>
