@@ -27,16 +27,21 @@
   <properties>
     <master_skip_npm_build_dev>false</master_skip_npm_build_dev>
     <master_skip_npm_build_prod>false</master_skip_npm_build_prod>
+    <master_skip_npm_version_snapshot_dependencies>true</master_skip_npm_version_snapshot_dependencies>
+    <master_skip_npm_version_snapshot>true</master_skip_npm_version_snapshot>
+    <master_skip_npm_version_release_dependencies>true</master_skip_npm_version_release_dependencies>
+    <master_skip_npm_version_release>true</master_skip_npm_version_release>
     <master_skip_karma_test>${master_webTest_skip}</master_skip_karma_test>
     <master_skip_copy_webpack_build_output>false</master_skip_copy_webpack_build_output>
-    <master_skip_snapshot_predependency>true</master_skip_snapshot_predependency>
-    <master_skip_snapshot_postdependency>true</master_skip_snapshot_postdependency>
-    <master_skip_release_predependency>true</master_skip_release_predependency>
-    <master_skip_release_postdependency>true</master_skip_release_postdependency>
+    <master_skip_install_node>false</master_skip_install_node>
+    <master_skip_init_node>false</master_skip_init_node>
+    <master_skip_npm_update>false</master_skip_npm_update>
+
     <master_node_dir>${project.basedir}${file.separator}${project.parent.relativePath}${file.separator}target${file.separator}node</master_node_dir>
     <master_node_modules_dir>${master_node_dir}/node_modules</master_node_modules_dir>
     <master_nodeDownloadRoot>https://nodejs.org/dist/</master_nodeDownloadRoot>
     <master_npm_workspace_dir>${project.basedir}${file.separator}${project.parent.relativePath}${file.separator}..</master_npm_workspace_dir>
+    <master_npm_release_dependency_mapping/>
     <master_webpack_options>--progress=false</master_webpack_options>
     <master_karma_output_dir>target/karma-reports</master_karma_output_dir>
   </properties>
@@ -452,29 +457,30 @@
       </build>
     </profile>
 
+    <!-- NPM snapshot scripts -->
     <profile>
-      <id>npm-snapshot-predependency</id>
+      <id>npm-version-snapshot-dependencies</id>
       <activation>
         <property>
           <name>!master_npm_release_build</name>
         </property>
       </activation>
       <properties>
-        <master_skip_snapshot_predependency>false</master_skip_snapshot_predependency>
+        <master_skip_npm_version_snapshot_dependencies>false</master_skip_npm_version_snapshot_dependencies>
       </properties>
     </profile>
-
     <profile>
-      <id>npm-snapshot-postdependency</id>
+      <id>npm-version-snapshot</id>
       <!-- must be activated explicitly to create a unique npm snapshot having a timestamp version -->
       <!-- this is typically required if the built snapshot should be published to a repository -->
       <properties>
-        <master_skip_snapshot_postdependency>false</master_skip_snapshot_postdependency>
+        <master_skip_npm_version_snapshot>false</master_skip_npm_version_snapshot>
       </properties>
     </profile>
 
+    <!-- NPM release scripts -->
     <profile>
-      <id>npm-release-predependency</id>
+      <id>npm-version-release-dependencies</id>
       <activation>
         <property>
           <name>master_npm_release_build</name>
@@ -482,11 +488,11 @@
         </property>
       </activation>
       <properties>
-        <master_skip_release_predependency>false</master_skip_release_predependency>
+        <master_skip_npm_version_release_dependencies>false</master_skip_npm_version_release_dependencies>
       </properties>
     </profile>
     <profile>
-      <id>npm-release-postdependency</id>
+      <id>npm-version-release</id>
       <activation>
         <property>
           <name>master_npm_release_build</name>
@@ -494,7 +500,7 @@
         </property>
       </activation>
       <properties>
-        <master_skip_release_postdependency>false</master_skip_release_postdependency>
+        <master_skip_npm_version_release>false</master_skip_npm_version_release>
       </properties>
     </profile>
 
@@ -774,62 +780,62 @@
             <artifactId>exec-maven-plugin</artifactId>
             <executions>
               <execution>
-                <id>scout-releng-snapshot-install-dependency</id>
+                <id>npm-run-version:snapshot:dependencies</id>
                 <goals>
                   <goal>exec</goal>
                 </goals>
                 <phase>process-sources</phase>
                 <configuration>
-                  <skip>${master_skip_snapshot_predependency}</skip>
+                  <skip>${master_skip_npm_version_snapshot_dependencies}</skip>
                   <executable>${master_node_dir}/node</executable>
                   <arguments>
                     <argument>${master_node_modules_dir}/@eclipse-scout/releng/bin/releng-scripts.js</argument>
-                    <argument>snapshot-install-dependency</argument>
+                    <argument>version:snapshot:dependencies</argument>
                     <argument>--workspaceRoot=${master_npm_workspace_dir}</argument>
                   </arguments>
                 </configuration>
               </execution>
               <execution>
-                <id>scout-releng-snapshot-publish-dependency</id>
+                <id>npm-run-version:snapshot</id>
                 <goals>
                   <goal>exec</goal>
                 </goals>
                 <phase>process-resources</phase>
                 <configuration>
-                  <skip>${master_skip_snapshot_postdependency}</skip>
+                  <skip>${master_skip_npm_version_snapshot}</skip>
                   <executable>${master_node_dir}/node</executable>
                   <arguments>
                     <argument>${master_node_modules_dir}/@eclipse-scout/releng/bin/releng-scripts.js</argument>
-                    <argument>snapshot-publish-dependency</argument>
+                    <argument>version:snapshot</argument>
                     <argument>--workspaceRoot=${master_npm_workspace_dir}</argument>
                   </arguments>
                 </configuration>
               </execution>
               <execution>
-                <id>scout-releng-release-install-dependency</id>
+                <id>npm-run-version:release:dependencies</id>
                 <goals>
                   <goal>exec</goal>
                 </goals>
                 <phase>process-sources</phase>
                 <configuration>
-                  <skip>${master_skip_release_predependency}</skip>
+                  <skip>${master_skip_npm_version_release_dependencies}</skip>
                   <executable>${master_node_dir}/node</executable>
                   <!-- DO NOT USE 'arguments' - we use here 'commandlineArgs' as 'master_npm_release_dependency_mapping' may contain multiple arguments -->
-                  <commandlineArgs>${master_node_modules_dir}/@eclipse-scout/releng/bin/releng-scripts.js release-install-dependency ${master_npm_release_dependency_mapping} --workspaceRoot=${master_npm_workspace_dir}</commandlineArgs>
+                  <commandlineArgs>${master_node_modules_dir}/@eclipse-scout/releng/bin/releng-scripts.js version:release:dependencies ${master_npm_release_dependency_mapping} --workspaceRoot="${master_npm_workspace_dir}"</commandlineArgs>
                 </configuration>
               </execution>
               <execution>
-                <id>scout-releng-release-publish-dependency</id>
+                <id>npm-run-version:release</id>
                 <goals>
                   <goal>exec</goal>
                 </goals>
                 <phase>process-sources</phase> <!-- for release use process-source instead of resources. post-dependency is therefore executed BEFORE the pnpm update (in snapshot it is executed afterwards) -->
                 <configuration>
-                  <skip>${master_skip_release_postdependency}</skip>
+                  <skip>${master_skip_npm_version_release}</skip>
                   <executable>${master_node_dir}/node</executable>
                   <arguments>
                     <argument>${master_node_modules_dir}/@eclipse-scout/releng/bin/releng-scripts.js</argument>
-                    <argument>release-publish-dependency</argument>
+                    <argument>version:release</argument>
                     <argument>--newVersion=${master_release_newVersion}</argument>
                     <argument>--workspaceRoot=${master_npm_workspace_dir}</argument>
                   </arguments>
