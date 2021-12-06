@@ -39,6 +39,8 @@
 
     <master_node_dir>${project.basedir}${file.separator}${project.parent.relativePath}${file.separator}target${file.separator}node</master_node_dir>
     <master_node_modules_dir>${master_node_dir}/node_modules</master_node_modules_dir>
+    <!--suppress UnresolvedMavenProperty -->
+    <master_node_options>${env.NODE_OPTIONS}</master_node_options>
     <master_nodeDownloadRoot>https://nodejs.org/dist/</master_nodeDownloadRoot>
     <master_npm_workspace_dir>${project.basedir}${file.separator}${project.parent.relativePath}${file.separator}..</master_npm_workspace_dir>
     <master_npm_release_dependency_mapping/>
@@ -144,6 +146,9 @@
             <installDirectory>${master_node_dir}${file.separator}..</installDirectory>
             <nodeDownloadRoot>${master_nodeDownloadRoot}</nodeDownloadRoot>
             <nodeVersion>${master_node_version}</nodeVersion>
+            <environmentVariables>
+              <NODE_OPTIONS>${master_node_options}</NODE_OPTIONS>
+            </environmentVariables>
           </configuration>
         </plugin>
       </plugins>
