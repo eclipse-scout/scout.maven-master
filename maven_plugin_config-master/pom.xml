@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  ~ Copyright (c) 2010-2021 BSI Business Systems Integration AG.
+  ~ Copyright (c) 2010-2022 BSI Business Systems Integration AG.
   ~ All rights reserved. This program and the accompanying materials
   ~ are made available under the terms of the Eclipse Public License v1.0
   ~ which accompanies this distribution, and is available at
@@ -244,12 +244,7 @@
                   <name>${project.groupId}:${project.artifactId}</name>
                   <manifestEntries>
                     <!-- This is actually the time when the build was done -->
-                    <Build-Time>${git.build.time}</Build-Time>
-                    <!-- Git specific properties -->
-                    <Git-Branch>${git.branch}</Git-Branch>
-                    <Git-Commit-Id>${git.commit.id}</Git-Commit-Id>
-                    <Git-Commit-Id-Describe>${git.commit.id.describe}</Git-Commit-Id-Describe>
-                    <Git-Remote-Origin-Url>${git.remote.origin.url}</Git-Remote-Origin-Url>
+                    <Build-Time>${maven.build.timestamp}</Build-Time>
                     <!-- project information -->
                     <Project-ArtifactId>${project.artifactId}</Project-ArtifactId>
                     <Project-GroupId>${project.groupId}</Project-GroupId>
