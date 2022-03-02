@@ -246,7 +246,7 @@
                   <name>${project.groupId}:${project.artifactId}</name>
                   <manifestEntries>
                     <!-- This is actually the time when the build was done -->
-                    <Build-Time>${git.build.time}</Build-Time>
+                    <Build-Time>${maven.build.timestamp}</Build-Time>
                     <!-- Git specific properties -->
                     <Git-Branch>${git.branch}</Git-Branch>
                     <Git-Commit-Id>${git.commit.id}</Git-Commit-Id>
