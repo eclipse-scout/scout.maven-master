@@ -15,12 +15,12 @@
   <parent>
     <groupId>org.eclipse.scout</groupId>
     <artifactId>maven_plugin_config-master</artifactId>
-    <version>22.0.2-SNAPSHOT</version>
+    <version>22.0.3-SNAPSHOT</version>
     <relativePath>./maven_plugin_config-master</relativePath>
   </parent>
 
   <artifactId>maven-master</artifactId>
-  <version>22.0.2-SNAPSHOT</version> <!-- additional version tag required ('parent is also a child module' & versions-maven-plugin) -->
+  <version>22.0.3-SNAPSHOT</version> <!-- additional version tag required ('parent is also a child module' & versions-maven-plugin) -->
   <packaging>pom</packaging>
   <name>root</name>
 
