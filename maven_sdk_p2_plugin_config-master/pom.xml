@@ -73,6 +73,7 @@
           <configuration>
             <strictBinIncludes>false</strictBinIncludes>
             <format>yyyyMMdd-HHmm</format>
+            <deleteOnExit>false</deleteOnExit>
           </configuration>
         </plugin>
 
