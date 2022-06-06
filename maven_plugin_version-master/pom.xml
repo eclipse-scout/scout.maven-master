@@ -483,8 +483,8 @@
         </plugin>
 
         <plugin>
-          <groupId>org.eclipse.tycho.extras</groupId>
-          <artifactId>tycho-source-feature-plugin</artifactId>
+          <groupId>org.eclipse.tycho</groupId>
+          <artifactId>tycho-source-plugin</artifactId>
           <version>${master_plugin_tycho-extras_version}</version>
         </plugin>
 

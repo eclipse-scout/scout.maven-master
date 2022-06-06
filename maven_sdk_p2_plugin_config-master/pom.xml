@@ -78,8 +78,8 @@
         </plugin>
 
         <plugin>
-          <groupId>org.eclipse.tycho.extras</groupId>
-          <artifactId>tycho-source-feature-plugin</artifactId>
+          <groupId>org.eclipse.tycho</groupId>
+          <artifactId>tycho-source-plugin</artifactId>
           <configuration>
             <archive>
               <addMavenDescriptor>false</addMavenDescriptor>
@@ -147,19 +147,14 @@
       <build>
         <plugins>
           <plugin>
-            <groupId>org.eclipse.tycho.extras</groupId>
-            <artifactId>tycho-source-feature-plugin</artifactId>
+            <groupId>org.eclipse.tycho</groupId>
+            <artifactId>tycho-source-plugin</artifactId>
             <executions>
               <execution>
                 <id>generate-source-feature</id>
                 <goals>
-                  <goal>source-feature</goal>
+                  <goal>feature-source</goal>
                 </goals>
-                <configuration>
-                  <excludes>
-                    <!-- <plugin id="org.eclipse.scout.sdk.compatibility.v37v41.fragment" /> -->
-                  </excludes>
-                </configuration>
               </execution>
             </executions>
           </plugin>
