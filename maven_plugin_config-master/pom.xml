@@ -144,6 +144,11 @@
               <artifactId>ecj</artifactId>
               <version>${master_ecj-compiler_version}</version>
             </dependency>
+            <dependency>
+              <groupId>org.eclipse.platform</groupId>
+              <artifactId>org.eclipse.osgi</artifactId>
+              <version>${master_plugin_tycho_osgi_override}</version>
+            </dependency>
           </dependencies>
         </plugin>
 

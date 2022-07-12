@@ -189,6 +189,9 @@
     <!-- https://www.eclipse.org/tycho/sitedocs-extras/index.html -->
     <master_plugin_tycho-extras_version>${master_plugin_tycho_version}</master_plugin_tycho-extras_version>
 
+    <!-- Overrides transitive org.eclipse.osgi SNAPSHOT dependency referenced by tycho -->
+    <master_plugin_tycho_osgi_override>3.15.0</master_plugin_tycho_osgi_override>
+
     <!-- https://www.eclipse.org/cbi/sitedocs/eclipse-jarsigner-plugin/ -->
     <master_plugin_jarsigner_version>1.3.2</master_plugin_jarsigner_version>
   </properties>
@@ -493,6 +496,13 @@
           <groupId>org.eclipse.tycho</groupId>
           <artifactId>tycho-maven-plugin</artifactId>
           <version>${master_plugin_tycho_version}</version>
+          <dependencies>
+            <dependency>
+              <groupId>org.eclipse.platform</groupId>
+              <artifactId>org.eclipse.osgi</artifactId>
+              <version>${master_plugin_tycho_osgi_override}</version>
+            </dependency>
+          </dependencies>
         </plugin>
 
         <plugin>
@@ -517,48 +527,104 @@
           <groupId>org.eclipse.tycho</groupId>
           <artifactId>target-platform-configuration</artifactId>
           <version>${master_plugin_tycho_version}</version>
+          <dependencies>
+            <dependency>
+              <groupId>org.eclipse.platform</groupId>
+              <artifactId>org.eclipse.osgi</artifactId>
+              <version>${master_plugin_tycho_osgi_override}</version>
+            </dependency>
+          </dependencies>
         </plugin>
 
         <plugin>
           <groupId>org.eclipse.tycho</groupId>
           <artifactId>tycho-packaging-plugin</artifactId>
           <version>${master_plugin_tycho_version}</version>
+          <dependencies>
+            <dependency>
+              <groupId>org.eclipse.platform</groupId>
+              <artifactId>org.eclipse.osgi</artifactId>
+              <version>${master_plugin_tycho_osgi_override}</version>
+            </dependency>
+          </dependencies>
         </plugin>
 
         <plugin>
           <groupId>org.eclipse.tycho</groupId>
           <artifactId>tycho-p2-director-plugin</artifactId>
           <version>${master_plugin_tycho_version}</version>
+          <dependencies>
+            <dependency>
+              <groupId>org.eclipse.platform</groupId>
+              <artifactId>org.eclipse.osgi</artifactId>
+              <version>${master_plugin_tycho_osgi_override}</version>
+            </dependency>
+          </dependencies>
         </plugin>
 
         <plugin>
           <groupId>org.eclipse.tycho</groupId>
           <artifactId>tycho-p2-repository-plugin</artifactId>
           <version>${master_plugin_tycho_version}</version>
+          <dependencies>
+            <dependency>
+              <groupId>org.eclipse.platform</groupId>
+              <artifactId>org.eclipse.osgi</artifactId>
+              <version>${master_plugin_tycho_osgi_override}</version>
+            </dependency>
+          </dependencies>
         </plugin>
 
         <plugin>
           <groupId>org.eclipse.tycho.extras</groupId>
           <artifactId>tycho-source-feature-plugin</artifactId>
           <version>${master_plugin_tycho-extras_version}</version>
+          <dependencies>
+            <dependency>
+              <groupId>org.eclipse.platform</groupId>
+              <artifactId>org.eclipse.osgi</artifactId>
+              <version>${master_plugin_tycho_osgi_override}</version>
+            </dependency>
+          </dependencies>
         </plugin>
 
         <plugin>
           <groupId>org.eclipse.tycho.extras</groupId>
           <artifactId>tycho-custom-bundle-plugin</artifactId>
           <version>${master_plugin_tycho-extras_version}</version>
+          <dependencies>
+            <dependency>
+              <groupId>org.eclipse.platform</groupId>
+              <artifactId>org.eclipse.osgi</artifactId>
+              <version>${master_plugin_tycho_osgi_override}</version>
+            </dependency>
+          </dependencies>
         </plugin>
 
         <plugin>
           <groupId>org.eclipse.tycho</groupId>
           <artifactId>tycho-p2-plugin</artifactId>
           <version>${master_plugin_tycho_version}</version>
+          <dependencies>
+            <dependency>
+              <groupId>org.eclipse.platform</groupId>
+              <artifactId>org.eclipse.osgi</artifactId>
+              <version>${master_plugin_tycho_osgi_override}</version>
+            </dependency>
+          </dependencies>
         </plugin>
 
         <plugin>
           <groupId>org.eclipse.tycho</groupId>
           <artifactId>tycho-p2-publisher-plugin</artifactId>
           <version>${master_plugin_tycho_version}</version>
+          <dependencies>
+            <dependency>
+              <groupId>org.eclipse.platform</groupId>
+              <artifactId>org.eclipse.osgi</artifactId>
+              <version>${master_plugin_tycho_osgi_override}</version>
+            </dependency>
+          </dependencies>
         </plugin>
 
         <plugin>
