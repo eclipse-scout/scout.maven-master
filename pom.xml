@@ -73,6 +73,10 @@
             <version>${project.version}</version>
             <repositoryId>${master_deploy_SnapshotId}</repositoryId>
             <url>${master_deploy_SnapshotUrl}</url>
+            <gpgArguments>
+              <arg>--pinentry-mode</arg>
+              <arg>loopback</arg>
+            </gpgArguments>
           </configuration>
         </plugin>
       </plugins>
@@ -144,6 +148,10 @@
                 <repositoryId>${master_deploy_ReleaseId}</repositoryId>
                 <url>${master_deploy_ReleaseUrl}</url>
                 <updateReleaseInfo>true</updateReleaseInfo>
+                <gpgArguments>
+                  <arg>--pinentry-mode</arg>
+                  <arg>loopback</arg>
+                </gpgArguments>
               </configuration>
             </plugin>
           </plugins>
