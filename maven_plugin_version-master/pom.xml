@@ -812,18 +812,6 @@
       <name>eclipse-snapshot-repo</name>
       <url>https://repo.eclipse.org/content/groups/snapshots/</url>
     </pluginRepository>
-    <!-- Bintray Repository for for snapshots of https://github.com/mojohaus/animal-sniffer -->
-    <pluginRepository>
-      <snapshots>
-        <enabled>false</enabled>
-      </snapshots>
-      <releases>
-        <enabled>true</enabled>
-      </releases>
-      <id>bintray-bsi-business-systems-integration-ag-scout-eclipse-org</id>
-      <name>bintray-plugins</name>
-      <url>http://dl.bintray.com/bsi-business-systems-integration-ag/scout-eclipse-org</url>
-    </pluginRepository>
   </pluginRepositories>
 
   <distributionManagement>
