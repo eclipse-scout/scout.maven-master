@@ -128,8 +128,8 @@
     <!-- https://github.com/eclipse-ee4j/metro-jax-ws/tree/master/jaxws-ri/extras/jaxws-maven-plugin -->
     <master_dependency_jaxws_version>2.3.5</master_dependency_jaxws_version>
 
-    <!-- http://site.kuali.org/maven/plugins/properties-maven-plugin/latest/index.html -->
-    <master_plugin_properties_version>2.0.1</master_plugin_properties_version>
+    <!-- https://www.mojohaus.org/properties-maven-plugin/ -->
+    <master_plugin_properties_version>1.1.0</master_plugin_properties_version>
 
     <!-- https://mycila.carbou.me/license-maven-plugin/ -->
     <!-- https://github.com/mycila/license-maven-plugin -->
@@ -393,7 +393,7 @@
         </plugin>
 
         <plugin>
-          <groupId>org.kuali.maven.plugins</groupId>
+          <groupId>org.codehaus.mojo</groupId>
           <artifactId>properties-maven-plugin</artifactId>
           <version>${master_plugin_properties_version}</version>
         </plugin>
