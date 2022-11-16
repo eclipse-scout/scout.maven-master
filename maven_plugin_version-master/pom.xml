@@ -111,8 +111,8 @@
     <!-- https://github.com/basepom/duplicate-finder-maven-plugin -->
     <master_plugin_duplicate-finder_version>1.5.1</master_plugin_duplicate-finder_version>
 
-    <!-- https://github.com/wildfly/jandex-maven-plugin -->
-    <master_plugin_jandex_version>1.2.3</master_plugin_jandex_version>
+    <!-- https://github.com/smallrye/jandex -->
+    <master_plugin_jandex_version>3.0.3</master_plugin_jandex_version>
 
     <!-- Plugin version of 'jaxws-maven-plugin' to generate webservice stub. -->
     <!-- https://eclipse-ee4j.github.io/metro-jax-ws/jaxws-maven-plugin/ -->
@@ -156,15 +156,15 @@
     <!-- https://github.com/sonatype/nexus-maven-plugins/tree/master/staging/maven-plugin -->
     <master_plugin_nexus-staging_version>1.6.13</master_plugin_nexus-staging_version>
 
-    <!-- https://www.eclipse.org/tycho/sitedocs/index.html -->
+    <!-- https://tycho.eclipseprojects.io/doc/latest/index.html -->
     <!-- version of Tycho used by org.eclipse.scout.sdk.core.releng build and profiles eclipse-sign and eclipse-pack -->
     <!-- Tycho 2.7.5 includes 'Eclipse Compiler for Java' 3.29.0 which is part of Eclipse 4.23 (2022-03) -->
     <master_plugin_tycho_version>2.7.5</master_plugin_tycho_version>
 
-    <!-- https://www.eclipse.org/tycho/ -->
+    <!-- https://github.com/eclipse-tycho/tycho -->
     <master_dependency_tycho-compiler_version>${master_plugin_tycho_version}</master_dependency_tycho-compiler_version>
 
-    <!-- https://www.eclipse.org/tycho/sitedocs-extras/index.html -->
+    <!-- https://tycho.eclipseprojects.io/doc/2.7.5/tycho-extras/index.html -->
     <master_plugin_tycho-extras_version>${master_plugin_tycho_version}</master_plugin_tycho-extras_version>
 
     <!-- https://www.eclipse.org/cbi/sitedocs/eclipse-jarsigner-plugin/ -->
@@ -369,7 +369,7 @@
         </plugin>
 
         <plugin>
-          <groupId>org.jboss.jandex</groupId>
+          <groupId>io.smallrye</groupId>
           <artifactId>jandex-maven-plugin</artifactId>
           <version>${master_plugin_jandex_version}</version>
         </plugin>

@@ -62,9 +62,9 @@
               <pluginExecutions>
                 <pluginExecution>
                   <pluginExecutionFilter>
-                    <groupId>org.jboss.jandex</groupId>
+                    <groupId>io.smallrye</groupId>
                     <artifactId>jandex-maven-plugin</artifactId>
-                    <versionRange>[1.0.1,)</versionRange>
+                    <versionRange>[3,)</versionRange>
                     <goals>
                       <goal>jandex</goal>
                     </goals>
@@ -168,7 +168,7 @@
         <plugins>
           <!-- Create META-INF/jandex.idx -->
           <plugin>
-            <groupId>org.jboss.jandex</groupId>
+            <groupId>io.smallrye</groupId>
             <artifactId>jandex-maven-plugin</artifactId>
             <executions>
               <execution>
@@ -199,7 +199,7 @@
         <plugins>
           <!-- Create META-INF/jandex.idx -->
           <plugin>
-            <groupId>org.jboss.jandex</groupId>
+            <groupId>io.smallrye</groupId>
             <artifactId>jandex-maven-plugin</artifactId>
             <executions>
               <execution>
