@@ -649,6 +649,28 @@
                   </arguments>
                 </configuration>
               </execution>
+
+              <!-- pnpm list recursive (print installed dependencies to build output) -->
+              <execution>
+                <id>pnpm-list</id>
+                <goals>
+                  <goal>exec</goal>
+                </goals>
+                <phase>generate-resources</phase>
+                <configuration>
+                  <executable>${master_node_dir}/node</executable>
+                  <workingDirectory>${master_npm_workspace_dir}</workingDirectory>
+                  <skip>${master_skip_npm_update}</skip>
+                  <arguments>
+                    <argument>${master_node_modules_dir}/pnpm/bin/pnpm.cjs</argument>
+                    <argument>list</argument>
+                    <argument>--recursive</argument>
+                    <argument>--prod</argument> <!-- only runtime dependencies -->
+                    <argument>--depth</argument>
+                    <argument>0</argument>
+                  </arguments>
+                </configuration>
+              </execution>
             </executions>
           </plugin>
         </plugins>
