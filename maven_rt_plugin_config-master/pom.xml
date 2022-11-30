@@ -216,6 +216,7 @@
                       <directory>${project.build.directory}/test-classes/</directory>
                     </fileSet>
                   </fileSets>
+                  <indexDir>${project.build.testOutputDirectory}</indexDir>
                 </configuration>
               </execution>
             </executions>
