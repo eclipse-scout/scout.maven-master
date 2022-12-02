@@ -112,7 +112,8 @@
     <master_plugin_duplicate-finder_version>1.5.1</master_plugin_duplicate-finder_version>
 
     <!-- https://github.com/smallrye/jandex -->
-    <master_plugin_jandex_version>3.0.3</master_plugin_jandex_version>
+    <!-- https://smallrye.io/jandex/jandex/3.0.5/index.html -->
+    <master_plugin_jandex_version>3.0.5</master_plugin_jandex_version>
 
     <!-- Plugin version of 'jaxws-maven-plugin' to generate webservice stub. -->
     <!-- https://eclipse-ee4j.github.io/metro-jax-ws/jaxws-maven-plugin/ -->
