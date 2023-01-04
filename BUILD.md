@@ -1,10 +1,9 @@
-# Build *Scout Maven Master*
+# Build Eclipse Scout Maven-Master
 
-## Perform the release - push tag and branch to Eclipse Gerrit
-  shell_scripts/release.sh -u avandorp -r 2.0.9 -d 2.0.10-SNAPSHOT -t v2.0.9
+## Snapshot build
 
-Note that a *FileNotFoundException* for 'maven_plugin_version-master\maven_plugin_version-master' is expected and can be ignored if the build succeeds.
+Use the [SnapshotBuild Jenkins Job](https://ci.eclipse.org/scout/view/Master%20Releng/job/org.eclipse.scout_maven-master_snapshotBuild/).
 
-## Change Version
-  mvn versions:set -DnewVersion=3.0-SNAPSHOT
-  mvn versions:set -DnewVersion=3.0-SNAPSHOT -f maven_plugin_version-master/pom.xml
+## Release build
+
+Use the [ReleaseBuild_ossrh Jenkins Job](https://ci.eclipse.org/scout/view/Master%20Releng/job/org.eclipse.scout_maven-master_releaseBuild_ossrh/).
