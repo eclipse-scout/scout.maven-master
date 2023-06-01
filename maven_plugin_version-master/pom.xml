@@ -137,7 +137,7 @@
 
     <!-- https://felix.apache.org/documentation/_attachments/components/bundle-plugin/ -->
     <!-- https://svn.apache.org/viewvc/felix/ -->
-    <master_plugin_bundle_version>5.1.8</master_plugin_bundle_version>
+    <master_plugin_bundle_version>5.1.9</master_plugin_bundle_version>
 
     <!-- https://github.com/ktoso/maven-git-commit-id-plugin -->
     <master_plugin_git-commit-id_version>4.9.10</master_plugin_git-commit-id_version>
