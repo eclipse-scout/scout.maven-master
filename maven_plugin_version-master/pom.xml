@@ -86,7 +86,7 @@
     <!-- ####################################################################### -->
     <!-- https://www.mojohaus.org/build-helper-maven-plugin/usage.html -->
     <!-- https://github.com/mojohaus/build-helper-maven-plugin -->
-    <master_plugin_build-helper_version>3.3.0</master_plugin_build-helper_version>
+    <master_plugin_build-helper_version>3.4.0</master_plugin_build-helper_version>
 
     <!-- https://www.mojohaus.org/versions-maven-plugin/ -->
     <!-- https://github.com/mojohaus/versions-maven-plugin -->
