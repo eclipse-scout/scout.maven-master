@@ -43,7 +43,7 @@
     <master_plugin_clean_version>3.2.0</master_plugin_clean_version>
     <master_plugin_compiler_version>3.10.1</master_plugin_compiler_version>
     <master_plugin_deploy_version>3.0.0</master_plugin_deploy_version>
-    <master_plugin_failsafe_version>2.22.2</master_plugin_failsafe_version>
+    <master_plugin_failsafe_version>3.1.0</master_plugin_failsafe_version>
     <master_plugin_install_version>3.0.1</master_plugin_install_version>
     <master_plugin_resources_version>3.3.0</master_plugin_resources_version>
     <master_plugin_site_version>3.12.1</master_plugin_site_version>
