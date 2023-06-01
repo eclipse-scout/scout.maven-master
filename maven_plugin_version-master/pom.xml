@@ -133,7 +133,7 @@
 
     <!-- https://mycila.carbou.me/license-maven-plugin/ -->
     <!-- https://github.com/mycila/license-maven-plugin -->
-    <master_plugin_license_version>4.1</master_plugin_license_version>
+    <master_plugin_license_version>4.2</master_plugin_license_version>
 
     <!-- https://felix.apache.org/documentation/_attachments/components/bundle-plugin/ -->
     <!-- https://svn.apache.org/viewvc/felix/ -->
