@@ -21,7 +21,6 @@
   <artifactId>maven-master</artifactId>
   <version>24.1-SNAPSHOT</version> <!-- additional version tag required ('parent is also a child module' & versions-maven-plugin) -->
   <packaging>pom</packaging>
-  <name>root</name>
 
   <modules>
     <module>maven_plugin_version-master</module>
