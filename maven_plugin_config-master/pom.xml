@@ -24,7 +24,7 @@
   <description>Maven Master Plugin Build Configuration - General</description>
 
   <properties>
-    <jdk.min.version>11</jdk.min.version>
+    <jdk.min.version>17</jdk.min.version>
     <jdk.source.version>11</jdk.source.version>
     <maven.compiler.source>${jdk.source.version}</maven.compiler.source>
     <maven.compiler.target>${jdk.source.version}</maven.compiler.target>
@@ -32,8 +32,8 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <maven.build.timestamp.format>yyyyMMdd-HHmmss</maven.build.timestamp.format>
-    <maven.min.version>3.6.3</maven.min.version>
-    <maven.api.version>3.6.3</maven.api.version>
+    <maven.min.version>3.9.2</maven.min.version>
+    <maven.api.version>3.9.2</maven.api.version>
 
     <master_deployAtEnd>true</master_deployAtEnd>
     <master_sanityCheck_skip>false</master_sanityCheck_skip>
@@ -116,6 +116,7 @@
             <encoding>${project.build.sourceEncoding}</encoding>
             <compilerArgs>
               <arg>-proc:none</arg>
+              <arg>-warn:none</arg>
             </compilerArgs>
           </configuration>
           <dependencies>
@@ -279,7 +280,6 @@
             <checkCompileClasspath>true</checkCompileClasspath>
             <checkRuntimeClasspath>true</checkRuntimeClasspath>
             <checkTestClasspath>true</checkTestClasspath>
-            <quiet>false</quiet>
             <preferLocal>true</preferLocal>
             <useResultFile>false</useResultFile>
             <includePomProjects>true</includePomProjects>

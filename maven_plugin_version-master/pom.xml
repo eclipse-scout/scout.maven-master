@@ -40,14 +40,14 @@
     <!-- Core plugins. -->
     <!-- Plugins corresponding to default core phases (ie. clean, compile). They may have multiple goals as well. -->
     <!-- ####################################################################### -->
-    <master_plugin_clean_version>3.2.0</master_plugin_clean_version>
-    <master_plugin_compiler_version>3.10.1</master_plugin_compiler_version>
-    <master_plugin_deploy_version>3.0.0</master_plugin_deploy_version>
-    <master_plugin_failsafe_version>2.22.2</master_plugin_failsafe_version>
-    <master_plugin_install_version>3.0.1</master_plugin_install_version>
-    <master_plugin_resources_version>3.3.0</master_plugin_resources_version>
+    <master_plugin_clean_version>3.3.2</master_plugin_clean_version>
+    <master_plugin_compiler_version>3.11.0</master_plugin_compiler_version>
+    <master_plugin_deploy_version>3.1.1</master_plugin_deploy_version>
+    <master_plugin_failsafe_version>3.2.2</master_plugin_failsafe_version>
+    <master_plugin_install_version>3.1.1</master_plugin_install_version>
+    <master_plugin_resources_version>3.3.1</master_plugin_resources_version>
     <master_plugin_site_version>3.12.1</master_plugin_site_version>
-    <master_plugin_surefire_version>2.22.2</master_plugin_surefire_version>
+    <master_plugin_surefire_version>3.2.2</master_plugin_surefire_version>
 
     <!-- ####################################################################### -->
     <!-- Packaging types/tools -->
@@ -55,48 +55,54 @@
     <!-- ####################################################################### -->
     <master_plugin_ear_version>3.3.0</master_plugin_ear_version>
     <master_plugin_jar_version>3.3.0</master_plugin_jar_version>
-    <master_plugin_war_version>3.3.2</master_plugin_war_version>
-    <master_plugin_source_version>3.2.1</master_plugin_source_version>
+    <master_plugin_war_version>3.4.0</master_plugin_war_version>
+    <master_plugin_source_version>3.3.0</master_plugin_source_version>
 
     <!-- ####################################################################### -->
     <!-- Reporting plugins -->
     <!-- Plugins which generate reports, are configured as reports in the POM and run under the site generation lifecycle. -->
     <!-- ####################################################################### -->
     <master_plugin_changelog_version>2.3</master_plugin_changelog_version>
-    <master_plugin_javadoc_version>3.4.1</master_plugin_javadoc_version>
-    <master_plugin_jxr_version>3.3.0</master_plugin_jxr_version>
-    <master_plugin_project-info-reports_version>3.4.1</master_plugin_project-info-reports_version>
+    <master_plugin_javadoc_version>3.6.2</master_plugin_javadoc_version>
+    <master_plugin_jxr_version>3.3.1</master_plugin_jxr_version>
+    <master_plugin_project-info-reports_version>3.5.0</master_plugin_project-info-reports_version>
 
     <!-- ####################################################################### -->
     <!-- Tools -->
     <!-- These are miscellaneous tools available through Maven by default. -->
     <!-- ####################################################################### -->
-    <master_plugin_ant_version>1.10.12</master_plugin_ant_version>
+    <master_plugin_ant_version>1.10.14</master_plugin_ant_version>
     <master_plugin_antrun_version>3.1.0</master_plugin_antrun_version>
-    <master_plugin_assembly_version>3.4.2</master_plugin_assembly_version>
-    <master_plugin_dependency_version>3.3.0</master_plugin_dependency_version>
-    <master_plugin_enforcer_version>3.1.0</master_plugin_enforcer_version>
-    <master_plugin_gpg_version>3.0.1</master_plugin_gpg_version>
-    <master_plugin_release_version>2.5.3</master_plugin_release_version>
-    <master_plugin_scm_version>1.13.0</master_plugin_scm_version>
-    <master_plugin_security_dependency_check_version>7.3.0</master_plugin_security_dependency_check_version>
+    <master_plugin_assembly_version>3.6.0</master_plugin_assembly_version>
+    <master_plugin_dependency_version>3.6.1</master_plugin_dependency_version>
+    <master_plugin_enforcer_version>3.4.1</master_plugin_enforcer_version>
+    <master_plugin_gpg_version>3.1.0</master_plugin_gpg_version>
+    <master_plugin_release_version>3.0.1</master_plugin_release_version>
+    <master_plugin_scm_version>2.0.1</master_plugin_scm_version>
+
+    <!-- https://jeremylong.github.io/DependencyCheck/dependency-check-maven/index.html -->
+    <master_plugin_security_dependency_check_version>8.4.3</master_plugin_security_dependency_check_version>
 
     <!-- ####################################################################### -->
     <!-- Outside The Maven Land (List at https://maven.apache.org/plugins/) -->
     <!-- ####################################################################### -->
     <!-- https://www.mojohaus.org/build-helper-maven-plugin/usage.html -->
     <!-- https://github.com/mojohaus/build-helper-maven-plugin -->
-    <master_plugin_build-helper_version>3.3.0</master_plugin_build-helper_version>
+    <master_plugin_build-helper_version>3.4.0</master_plugin_build-helper_version>
 
     <!-- https://www.mojohaus.org/versions-maven-plugin/ -->
     <!-- https://github.com/mojohaus/versions-maven-plugin -->
-    <master_plugin_versions_version>2.13.0</master_plugin_versions_version>
+    <master_plugin_versions_version>2.16.2</master_plugin_versions_version>
+
+    <!-- https://cloud.google.com/java/getting-started/jib -->
+    <!-- https://github.com/GoogleContainerTools/jib/tree/master/jib-maven-plugin -->
+    <master_plugin_jib_version>3.4.0</master_plugin_jib_version>
 
     <!-- https://codehaus-cargo.github.io/cargo/Home.html -->
-    <master_plugin_cargo_version>1.10.3</master_plugin_cargo_version>
+    <master_plugin_cargo_version>1.10.10</master_plugin_cargo_version>
 
     <!-- https://github.com/asciidoctor/asciidoctor-maven-plugin -->
-    <master_plugin_asciidoctor_version>2.2.2</master_plugin_asciidoctor_version>
+    <master_plugin_asciidoctor_version>2.2.4</master_plugin_asciidoctor_version>
 
     <!-- https://tomcat.apache.org/maven-plugin.html -->
     <master_plugin_tomcat7_version>2.2</master_plugin_tomcat7_version>
@@ -105,14 +111,14 @@
     <!-- Outside The Maven Land (Own list) -->
     <!-- ####################################################################### -->
     <!-- https://www.mojohaus.org/exec-maven-plugin/ -->
-    <master_plugin_exec_version>3.1.0</master_plugin_exec_version>
+    <master_plugin_exec_version>3.1.1</master_plugin_exec_version>
 
     <!-- https://github.com/basepom/duplicate-finder-maven-plugin -->
-    <master_plugin_duplicate-finder_version>1.5.1</master_plugin_duplicate-finder_version>
+    <master_plugin_duplicate-finder_version>2.0.1</master_plugin_duplicate-finder_version>
 
     <!-- https://github.com/smallrye/jandex -->
-    <!-- https://smallrye.io/jandex/jandex/3.0.5/index.html -->
-    <master_plugin_jandex_version>3.0.5</master_plugin_jandex_version>
+    <!-- https://smallrye.io/jandex -->
+    <master_plugin_jandex_version>3.1.5</master_plugin_jandex_version>
 
     <!-- Plugin version of 'jaxws-maven-plugin' to generate webservice stub. -->
     <!-- https://eclipse-ee4j.github.io/metro-jax-ws/jaxws-maven-plugin/ -->
@@ -120,7 +126,7 @@
     <!-- https://github.com/eclipse-ee4j/metro-jax-ws/tree/master/jaxws-ri/extras/jaxws-maven-plugin -->
     <master_plugin_jaxws_version>2.3.5</master_plugin_jaxws_version>
 
-    <!-- https://github.com/eclipse-ee4j/jax-ws-api -->
+    <!-- https://github.com/jakartaee/jax-ws-api -->
     <master_dependency_jaxws_api_version>2.3.3</master_dependency_jaxws_api_version>
 
     <!-- Version to generate JAX-WS artifacts -->
@@ -129,25 +135,25 @@
     <master_dependency_jaxws_version>2.3.5</master_dependency_jaxws_version>
 
     <!-- https://www.mojohaus.org/properties-maven-plugin/ -->
-    <master_plugin_properties_version>1.1.0</master_plugin_properties_version>
+    <master_plugin_properties_version>1.2.1</master_plugin_properties_version>
 
-    <!-- https://mycila.carbou.me/license-maven-plugin/ -->
-    <!-- https://github.com/mycila/license-maven-plugin -->
-    <master_plugin_license_version>4.1</master_plugin_license_version>
+    <!-- https://oss.carbou.me/license-maven-plugin/ -->
+    <!-- https://github.com/mathieucarbou/license-maven-plugin -->
+    <master_plugin_license_version>4.3</master_plugin_license_version>
 
     <!-- https://felix.apache.org/documentation/_attachments/components/bundle-plugin/ -->
     <!-- https://svn.apache.org/viewvc/felix/ -->
-    <master_plugin_bundle_version>5.1.8</master_plugin_bundle_version>
+    <master_plugin_bundle_version>5.1.9</master_plugin_bundle_version>
 
     <!-- https://github.com/ktoso/maven-git-commit-id-plugin -->
     <master_plugin_git-commit-id_version>4.9.10</master_plugin_git-commit-id_version>
 
     <!-- https://www.eclemma.org/jacoco/trunk/doc/maven.html -->
-    <master_plugin_jacoco_version>0.8.8</master_plugin_jacoco_version>
+    <master_plugin_jacoco_version>0.8.11</master_plugin_jacoco_version>
 
     <!-- https://www.mojohaus.org/flatten-maven-plugin/ -->
     <!-- https://github.com/mojohaus/flatten-maven-plugin -->
-    <master_plugin_flatten_version>1.3.0</master_plugin_flatten_version>
+    <master_plugin_flatten_version>1.5.0</master_plugin_flatten_version>
 
     <!-- https://code.google.com/archive/p/maven-replacer-plugin/ -->
     <!-- https://github.com/dtracers/maven-replacer-plugin -->
@@ -156,21 +162,22 @@
     <!-- https://github.com/sonatype/nexus-maven-plugins/tree/master/staging/maven-plugin -->
     <master_plugin_nexus-staging_version>1.6.13</master_plugin_nexus-staging_version>
 
-    <!-- https://tycho.eclipseprojects.io/doc/latest/index.html -->
+    <!-- https://tycho.eclipseprojects.io/doc/3.0.2/index.html -->
     <!-- version of Tycho used by org.eclipse.scout.sdk.core.releng build and profiles eclipse-sign and eclipse-pack -->
-    <!-- Tycho 2.7.5 includes 'Eclipse Compiler for Java' 3.29.0 which is part of Eclipse 4.23 (2022-03) -->
-    <master_plugin_tycho_version>2.7.5</master_plugin_tycho_version>
+    <master_plugin_tycho_version>3.0.2</master_plugin_tycho_version>
 
     <!-- https://github.com/eclipse-tycho/tycho -->
+    <!-- Tycho 3.0.2 includes 'Eclipse Compiler for Java' 3.31.0 which is part of Eclipse 4.27 (2023-03) and IntelliJ 2023-2 -->
     <master_dependency_tycho-compiler_version>${master_plugin_tycho_version}</master_dependency_tycho-compiler_version>
 
-    <!-- https://tycho.eclipseprojects.io/doc/2.7.5/tycho-extras/index.html -->
+    <!-- https://tycho.eclipseprojects.io/doc/3.0.2/tycho-extras/index.html -->
     <master_plugin_tycho-extras_version>${master_plugin_tycho_version}</master_plugin_tycho-extras_version>
 
     <!-- https://www.eclipse.org/cbi/sitedocs/eclipse-jarsigner-plugin/ -->
-    <master_plugin_jarsigner_version>1.3.2</master_plugin_jarsigner_version>
+    <master_plugin_jarsigner_version>1.4.3</master_plugin_jarsigner_version>
 
     <!-- https://github.com/eirslett/frontend-maven-plugin -->
+    <!-- Do not use version >= 1.13 until https://github.com/eirslett/frontend-maven-plugin/issues/1124 is fixed -->
     <master_plugin_frontend_version>1.12.1</master_plugin_frontend_version>
   </properties>
 
@@ -339,7 +346,7 @@
             <dependency>
               <groupId>org.eclipse.jgit</groupId>
               <artifactId>org.eclipse.jgit</artifactId>
-              <version>6.3.0.202209071007-r</version>
+              <version>6.7.0.202309050840-r</version>
             </dependency>
           </dependencies>
         </plugin>
@@ -360,6 +367,12 @@
           <groupId>org.codehaus.mojo</groupId>
           <artifactId>versions-maven-plugin</artifactId>
           <version>${master_plugin_versions_version}</version>
+        </plugin>
+
+        <plugin>
+          <groupId>com.google.cloud.tools</groupId>
+          <artifactId>jib-maven-plugin</artifactId>
+          <version>${master_plugin_jib_version}</version>
         </plugin>
 
         <plugin>
@@ -447,15 +460,15 @@
         </plugin>
 
         <plugin>
-          <groupId>org.eclipse.tycho</groupId>
-          <artifactId>tycho-maven-plugin</artifactId>
-          <version>${master_plugin_tycho_version}</version>
-        </plugin>
-
-        <plugin>
           <groupId>org.eclipse.cbi.maven.plugins</groupId>
           <artifactId>eclipse-jarsigner-plugin</artifactId>
           <version>${master_plugin_jarsigner_version}</version>
+        </plugin>
+
+        <plugin>
+          <groupId>org.eclipse.tycho</groupId>
+          <artifactId>tycho-maven-plugin</artifactId>
+          <version>${master_plugin_tycho_version}</version>
         </plugin>
 
         <plugin>
