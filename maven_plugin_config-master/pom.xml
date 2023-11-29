@@ -387,7 +387,6 @@
                 <banLatest>true</banLatest>
                 <banRelease>true</banRelease>
                 <phases>clean,deploy</phases>
-                <unCheckedPluginList>org.apache.maven.plugins:maven-deploy-plugin</unCheckedPluginList>
               </requirePluginVersions>
               <requireReleaseDeps>
                 <message>No SNAPSHOT versions allowed for dependencies</message>
@@ -408,8 +407,9 @@
                 </excludes>
                 <searchTransitive>true</searchTransitive>
               </bannedDependencies>
+              <dependencyConvergence/>
               <banDuplicatePomDependencyVersions/>
-              <!-- can't be used until html ui in eclipse repo and of the tools-build
+              <!-- can't be used until all our modules use the root module as parent
                 <reactorModuleConvergence /> -->
               <requireSameVersions>
                 <dependencies>
