@@ -166,9 +166,12 @@
     <!-- version of Tycho used by org.eclipse.scout.sdk.core.releng build and profiles eclipse-sign and eclipse-pack -->
     <master_plugin_tycho_version>3.0.2</master_plugin_tycho_version>
 
-    <!-- https://github.com/eclipse-tycho/tycho -->
-    <!-- Tycho 3.0.2 includes 'Eclipse Compiler for Java' 3.31.0 which is part of Eclipse 4.27 (2023-03) and IntelliJ 2023-2 -->
-    <master_dependency_tycho-compiler_version>${master_plugin_tycho_version}</master_dependency_tycho-compiler_version>
+    <!-- https://github.com/eclipse-jdt/eclipse.jdt.core/wiki/ECJ -->
+    <!-- 'Eclipse Compiler for Java' 3.31.0 which is part of Eclipse 4.27 (2023-03) and IntelliJ 2023-2 -->
+    <master_dependency_ecj_version>3.31.0</master_dependency_ecj_version>
+
+    <!-- https://codehaus-plexus.github.io/plexus-compiler/plexus-compilers/plexus-compiler-eclipse/index.html -->
+    <master_dependency_plexus-compiler-eclipse_version>2.13.0</master_dependency_plexus-compiler-eclipse_version>
 
     <!-- https://tycho.eclipseprojects.io/doc/3.0.2/tycho-extras/index.html -->
     <master_plugin_tycho-extras_version>${master_plugin_tycho_version}</master_plugin_tycho-extras_version>

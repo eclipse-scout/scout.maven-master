@@ -110,20 +110,27 @@
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-compiler-plugin</artifactId>
           <configuration>
-            <compilerId>jdt</compilerId>
+            <compilerId>eclipse</compilerId>
             <source>${jdk.source.version}</source>
             <target>${jdk.source.version}</target>
             <encoding>${project.build.sourceEncoding}</encoding>
-            <compilerArgs>
-              <arg>-proc:none</arg>
-              <arg>-warn:none</arg>
-            </compilerArgs>
           </configuration>
           <dependencies>
             <dependency>
-              <groupId>org.eclipse.tycho</groupId>
-              <artifactId>tycho-compiler-jdt</artifactId>
-              <version>${master_dependency_tycho-compiler_version}</version>
+              <groupId>org.codehaus.plexus</groupId>
+              <artifactId>plexus-compiler-eclipse</artifactId>
+              <version>${master_dependency_plexus-compiler-eclipse_version}</version>
+              <exclusions>
+                <exclusion>
+                  <groupId>org.eclipse.jdt</groupId>
+                  <artifactId>ecj</artifactId>
+                </exclusion>
+              </exclusions>
+            </dependency>
+            <dependency>
+              <groupId>org.eclipse.jdt</groupId>
+              <artifactId>ecj</artifactId>
+              <version>${master_dependency_ecj_version}</version>
             </dependency>
           </dependencies>
         </plugin>
