@@ -35,21 +35,15 @@
               <filter>
                 <type>p2-installable-unit</type>
                 <id>org.eclipse.equinox.servletbridge.extensionbundle</id>
-                <removeAll/>
+                <removeAll />
               </filter>
             </filters>
-            <resolver>p2</resolver>
             <pomDependencies>consider</pomDependencies>
             <environments>
               <environment>
                 <os>linux</os>
                 <ws>gtk</ws>
                 <arch>x86_64</arch>
-              </environment>
-              <environment>
-                <os>linux</os>
-                <ws>gtk</ws>
-                <arch>ppc64</arch>
               </environment>
               <environment>
                 <os>win32</os>
@@ -62,7 +56,6 @@
                 <arch>x86_64</arch>
               </environment>
             </environments>
-            <includePackedArtifacts>true</includePackedArtifacts>
           </configuration>
         </plugin>
 
@@ -202,9 +195,6 @@
           <plugin>
             <groupId>org.eclipse.tycho</groupId>
             <artifactId>tycho-p2-publisher-plugin</artifactId>
-            <configuration>
-              <publishArtifacts>true</publishArtifacts>
-            </configuration>
           </plugin>
 
           <plugin>
