@@ -63,7 +63,7 @@
     <!-- Plugins which generate reports, are configured as reports in the POM and run under the site generation lifecycle. -->
     <!-- ####################################################################### -->
     <master_plugin_changelog_version>2.3</master_plugin_changelog_version>
-    <master_plugin_javadoc_version>3.6.2</master_plugin_javadoc_version>
+    <master_plugin_javadoc_version>3.6.3</master_plugin_javadoc_version>
     <master_plugin_jxr_version>3.3.1</master_plugin_jxr_version>
     <master_plugin_project-info-reports_version>3.5.0</master_plugin_project-info-reports_version>
 
@@ -81,14 +81,14 @@
     <master_plugin_scm_version>2.0.1</master_plugin_scm_version>
 
     <!-- https://jeremylong.github.io/DependencyCheck/dependency-check-maven/index.html -->
-    <master_plugin_security_dependency_check_version>8.4.3</master_plugin_security_dependency_check_version>
+    <master_plugin_security_dependency_check_version>9.0.4</master_plugin_security_dependency_check_version>
 
     <!-- ####################################################################### -->
     <!-- Outside The Maven Land (List at https://maven.apache.org/plugins/) -->
     <!-- ####################################################################### -->
     <!-- https://www.mojohaus.org/build-helper-maven-plugin/usage.html -->
     <!-- https://github.com/mojohaus/build-helper-maven-plugin -->
-    <master_plugin_build-helper_version>3.4.0</master_plugin_build-helper_version>
+    <master_plugin_build-helper_version>3.5.0</master_plugin_build-helper_version>
 
     <!-- https://www.mojohaus.org/versions-maven-plugin/ -->
     <!-- https://github.com/mojohaus/versions-maven-plugin -->
@@ -99,7 +99,7 @@
     <master_plugin_jib_version>3.4.0</master_plugin_jib_version>
 
     <!-- https://codehaus-cargo.github.io/cargo/Home.html -->
-    <master_plugin_cargo_version>1.10.10</master_plugin_cargo_version>
+    <master_plugin_cargo_version>1.10.11</master_plugin_cargo_version>
 
     <!-- https://github.com/asciidoctor/asciidoctor-maven-plugin -->
     <master_plugin_asciidoctor_version>2.2.4</master_plugin_asciidoctor_version>
@@ -118,7 +118,7 @@
 
     <!-- https://github.com/smallrye/jandex -->
     <!-- https://smallrye.io/jandex -->
-    <master_plugin_jandex_version>3.1.5</master_plugin_jandex_version>
+    <master_plugin_jandex_version>3.1.6</master_plugin_jandex_version>
 
     <!-- Plugin version of 'jaxws-maven-plugin' to generate webservice stub. -->
     <!-- https://eclipse-ee4j.github.io/metro-jax-ws/jaxws-maven-plugin/ -->
@@ -162,16 +162,16 @@
     <!-- https://github.com/sonatype/nexus-maven-plugins/tree/master/staging/maven-plugin -->
     <master_plugin_nexus-staging_version>1.6.13</master_plugin_nexus-staging_version>
 
-    <!-- https://tycho.eclipseprojects.io/doc/3.0.2/index.html -->
-    <!-- version of Tycho used by org.eclipse.scout.sdk.core.releng build and profiles eclipse-sign and eclipse-pack -->
-    <master_plugin_tycho_version>3.0.2</master_plugin_tycho_version>
-
     <!-- https://github.com/eclipse-jdt/eclipse.jdt.core/wiki/ECJ -->
-    <!-- 'Eclipse Compiler for Java' 3.31.0 which is part of Eclipse 4.27 (2023-03) and IntelliJ 2023-2 -->
+    <!-- 'Eclipse Compiler for Java' 3.31.0 which is part of Eclipse 4.27 (2023-03), IntelliJ 2023-2 and IntelliJ 2023-3 -->
     <master_dependency_ecj_version>3.31.0</master_dependency_ecj_version>
 
     <!-- https://codehaus-plexus.github.io/plexus-compiler/plexus-compilers/plexus-compiler-eclipse/index.html -->
     <master_dependency_plexus-compiler-eclipse_version>2.13.0</master_dependency_plexus-compiler-eclipse_version>
+
+    <!-- https://tycho.eclipseprojects.io/doc/4.0.4/index.html -->
+    <!-- version of Tycho used by org.eclipse.scout.sdk.core.releng build and profiles eclipse-sign and eclipse-pack -->
+    <master_plugin_tycho_version>4.0.4</master_plugin_tycho_version>
 
     <!-- https://tycho.eclipseprojects.io/doc/3.0.2/tycho-extras/index.html -->
     <master_plugin_tycho-extras_version>${master_plugin_tycho_version}</master_plugin_tycho-extras_version>
@@ -348,7 +348,7 @@
             <dependency>
               <groupId>org.eclipse.jgit</groupId>
               <artifactId>org.eclipse.jgit</artifactId>
-              <version>6.7.0.202309050840-r</version>
+              <version>6.8.0.202311291450-r</version>
             </dependency>
           </dependencies>
         </plugin>
