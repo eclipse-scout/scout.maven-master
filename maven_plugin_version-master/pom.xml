@@ -43,11 +43,11 @@
     <master_plugin_clean_version>3.3.2</master_plugin_clean_version>
     <master_plugin_compiler_version>3.11.0</master_plugin_compiler_version>
     <master_plugin_deploy_version>3.1.1</master_plugin_deploy_version>
-    <master_plugin_failsafe_version>3.2.2</master_plugin_failsafe_version>
+    <master_plugin_failsafe_version>3.2.3</master_plugin_failsafe_version>
     <master_plugin_install_version>3.1.1</master_plugin_install_version>
     <master_plugin_resources_version>3.3.1</master_plugin_resources_version>
     <master_plugin_site_version>3.12.1</master_plugin_site_version>
-    <master_plugin_surefire_version>3.2.2</master_plugin_surefire_version>
+    <master_plugin_surefire_version>3.2.3</master_plugin_surefire_version>
 
     <!-- ####################################################################### -->
     <!-- Packaging types/tools -->
@@ -81,7 +81,7 @@
     <master_plugin_scm_version>2.0.1</master_plugin_scm_version>
 
     <!-- https://jeremylong.github.io/DependencyCheck/dependency-check-maven/index.html -->
-    <master_plugin_security_dependency_check_version>9.0.4</master_plugin_security_dependency_check_version>
+    <master_plugin_security_dependency_check_version>9.0.5</master_plugin_security_dependency_check_version>
 
     <!-- ####################################################################### -->
     <!-- Outside The Maven Land (List at https://maven.apache.org/plugins/) -->
@@ -173,7 +173,7 @@
     <!-- version of Tycho used by org.eclipse.scout.sdk.core.releng build and profiles eclipse-sign and eclipse-pack -->
     <master_plugin_tycho_version>4.0.4</master_plugin_tycho_version>
 
-    <!-- https://tycho.eclipseprojects.io/doc/3.0.2/tycho-extras/index.html -->
+    <!-- https://tycho.eclipseprojects.io/doc/4.0.4/tycho-extras/index.html -->
     <master_plugin_tycho-extras_version>${master_plugin_tycho_version}</master_plugin_tycho-extras_version>
 
     <!-- https://www.eclipse.org/cbi/sitedocs/eclipse-jarsigner-plugin/ -->
