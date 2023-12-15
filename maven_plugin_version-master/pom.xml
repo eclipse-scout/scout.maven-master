@@ -124,7 +124,7 @@
     <!-- https://eclipse-ee4j.github.io/metro-jax-ws/jaxws-maven-plugin/ -->
     <!-- https://github.com/eclipse-ee4j/metro-jax-ws -->
     <!-- https://github.com/eclipse-ee4j/metro-jax-ws/tree/master/jaxws-ri/extras/jaxws-maven-plugin -->
-    <master_plugin_jaxws_version>3.0.2</master_plugin_jaxws_version>
+    <master_plugin_jaxws_version>4.0.2</master_plugin_jaxws_version>
 
     <!-- https://github.com/jakartaee/jax-ws-api -->
     <master_dependency_jaxws_api_version>3.0.1</master_dependency_jaxws_api_version>
