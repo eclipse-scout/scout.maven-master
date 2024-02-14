@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  ~ Copyright (c) 2010, 2023 BSI Business Systems Integration AG
+  ~ Copyright (c) 2010, 2024 BSI Business Systems Integration AG
   ~
   ~ This program and the accompanying materials are made
   ~ available under the terms of the Eclipse Public License 2.0
@@ -456,7 +456,7 @@
           <version>1.0.0</version>
           <configuration>
             <lifecycleMappingMetadata>
-              <pluginExecutions>
+              <pluginExecutions combine.children="append">
                 <pluginExecution>
                   <pluginExecutionFilter>
                     <groupId>org.codehaus.mojo</groupId>
@@ -477,6 +477,19 @@
                     <versionRange>[${master_plugin_git-commit-id_version},)</versionRange>
                     <goals>
                       <goal>revision</goal>
+                    </goals>
+                  </pluginExecutionFilter>
+                  <action>
+                    <ignore/>
+                  </action>
+                </pluginExecution>
+                <pluginExecution>
+                  <pluginExecutionFilter>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-jar-plugin</artifactId>
+                    <versionRange>[${master_plugin_jar_version},)</versionRange>
+                    <goals>
+                      <goal>jar</goal>
                     </goals>
                   </pluginExecutionFilter>
                   <action>
