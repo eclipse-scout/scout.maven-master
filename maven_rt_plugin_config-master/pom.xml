@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  ~ Copyright (c) 2010, 2023 BSI Business Systems Integration AG
+  ~ Copyright (c) 2010, 2024 BSI Business Systems Integration AG
   ~
   ~ This program and the accompanying materials are made
   ~ available under the terms of the Eclipse Public License 2.0
@@ -32,16 +32,13 @@
     <master_skip_npm_version_release>true</master_skip_npm_version_release>
     <master_skip_karma_test>${master_webTest_skip}</master_skip_karma_test>
     <master_skip_copy_webpack_build_output>false</master_skip_copy_webpack_build_output>
-    <master_skip_install_node>false</master_skip_install_node>
-    <master_skip_init_node>false</master_skip_init_node>
-    <master_skip_npm_update>false</master_skip_npm_update>
 
-    <master_node_dir>${project.basedir}${file.separator}${project.parent.relativePath}${file.separator}target${file.separator}node</master_node_dir>
+    <master_npm_workspace_dir>${project.basedir}</master_npm_workspace_dir>
+    <master_node_dir>${master_npm_workspace_dir}${file.separator}target${file.separator}node</master_node_dir>
     <master_node_modules_dir>${master_node_dir}/node_modules</master_node_modules_dir>
     <!--suppress UnresolvedMavenProperty -->
     <master_node_options>${env.NODE_OPTIONS}</master_node_options>
     <master_nodeDownloadRoot>https://nodejs.org/dist/</master_nodeDownloadRoot>
-    <master_npm_workspace_dir>${project.basedir}${file.separator}${project.parent.relativePath}${file.separator}..</master_npm_workspace_dir>
     <master_npm_release_dependency_mapping/>
     <master_webpack_options>--progress=false --clean=false</master_webpack_options>
     <master_karma_output_dir>target/karma-reports</master_karma_output_dir>
@@ -155,6 +152,20 @@
   </build>
 
   <profiles>
+    <profile>
+      <!-- by default the workspace-dir is in the project.basedir. !-->
+      <!-- In case the build is started from a module below the root (e.g. the parent or another submodule) the workspace-dir must be adjusted (one level up) -->
+      <!-- If the project uses more than two levels for modules having a package.json, the property 'master_npm_workspace_dir' must be set explicitly to the correct level -->
+      <id>adjust-master_npm_workspace_dir-for-parent-build</id>
+      <activation>
+        <file>
+          <exists>${basedir}${file.separator}..${file.separator}pnpm-workspace.yaml</exists>
+        </file>
+      </activation>
+      <properties>
+        <master_npm_workspace_dir>${project.basedir}${file.separator}..</master_npm_workspace_dir>
+      </properties>
+    </profile>
     <profile>
       <!-- Only create the jandex.idx when a scout.xml is found -->
       <id>jandex-idx</id>
@@ -535,7 +546,7 @@
                 <configuration>
                   <exportAntProperties>true</exportAntProperties>
                   <target>
-                    <available file="${master_node_dir}" property="master_skip_install_node"/>
+                    <available file="${master_node_dir}" property="master_skip_install_node" />
                   </target>
                 </configuration>
               </execution>
@@ -553,6 +564,8 @@
                 </goals>
                 <phase>generate-sources</phase>
                 <configuration>
+                  <!--Do NOT declare this property. It must be undefined by default so that the ANT task using 'available' works correctly -->
+                  <!--suppress UnresolvedMavenProperty, MavenModelInspection -->
                   <skip>${master_skip_install_node}</skip>
                 </configuration>
               </execution>
@@ -572,7 +585,7 @@
       </activation>
 
       <properties>
-        <npm_update_marker_file>${project.basedir}${file.separator}${project.parent.relativePath}${file.separator}target${file.separator}npm_update.marker</npm_update_marker_file>
+        <npm_update_marker_file>${master_npm_workspace_dir}${file.separator}target${file.separator}npm_update.marker</npm_update_marker_file>
       </properties>
 
       <build>
@@ -591,9 +604,9 @@
                 <configuration>
                   <exportAntProperties>true</exportAntProperties>
                   <target>
-                    <available file="${master_node_modules_dir}/@eclipse-scout" property="master_skip_init_node"/>
-                    <available file="${npm_update_marker_file}" property="master_skip_npm_update"/>
-                    <touch file="${npm_update_marker_file}" mkdirs="true"/>
+                    <available file="${master_node_modules_dir}/@eclipse-scout" property="master_skip_init_node" />
+                    <available file="${npm_update_marker_file}" property="master_skip_npm_update" />
+                    <touch file="${npm_update_marker_file}" mkdirs="true" />
                   </target>
                 </configuration>
               </execution>
@@ -614,6 +627,8 @@
                 <configuration>
                   <executable>${master_node_dir}/node</executable>
                   <workingDirectory>${master_node_dir}</workingDirectory>
+                  <!--Do NOT declare this property. It must be undefined by default so that the ANT task using 'available' works correctly -->
+                  <!--suppress UnresolvedMavenProperty, MavenModelInspection -->
                   <skip>${master_skip_init_node}</skip>
                   <arguments>
                     <argument>${master_node_modules_dir}/npm/bin/npm-cli.js</argument>
@@ -639,6 +654,8 @@
                 <configuration>
                   <executable>${master_node_dir}/node</executable>
                   <workingDirectory>${master_npm_workspace_dir}</workingDirectory>
+                  <!--Do NOT declare this property. It must be undefined by default so that the ANT task using 'available' works correctly -->
+                  <!--suppress UnresolvedMavenProperty, MavenModelInspection -->
                   <skip>${master_skip_npm_update}</skip>
                   <arguments>
                     <argument>${master_node_modules_dir}/pnpm/bin/pnpm.cjs</argument>
@@ -660,6 +677,8 @@
                 <configuration>
                   <executable>${master_node_dir}/node</executable>
                   <workingDirectory>${master_npm_workspace_dir}</workingDirectory>
+                  <!--Do NOT declare this property. It must be undefined by default so that the ANT task using 'available' works correctly -->
+                  <!--suppress UnresolvedMavenProperty, MavenModelInspection -->
                   <skip>${master_skip_npm_update}</skip>
                   <arguments>
                     <argument>${master_node_modules_dir}/pnpm/bin/pnpm.cjs</argument>
