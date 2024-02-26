@@ -34,12 +34,12 @@
     <master_skip_copy_webpack_build_output>false</master_skip_copy_webpack_build_output>
 
     <master_npm_workspace_dir>${project.basedir}</master_npm_workspace_dir>
-    <master_node_dir>${master_npm_workspace_dir}${file.separator}target${file.separator}node</master_node_dir>
+    <master_node_dir>${master_npm_workspace_dir}/target/node</master_node_dir>
     <master_node_modules_dir>${master_node_dir}/node_modules</master_node_modules_dir>
     <!--suppress UnresolvedMavenProperty -->
     <master_node_options>${env.NODE_OPTIONS}</master_node_options>
     <master_nodeDownloadRoot>https://nodejs.org/dist/</master_nodeDownloadRoot>
-    <master_npm_release_dependency_mapping/>
+    <master_npm_release_dependency_mapping />
     <master_webpack_options>--progress=false --clean=false</master_webpack_options>
     <master_karma_output_dir>target/karma-reports</master_karma_output_dir>
   </properties>
@@ -66,7 +66,7 @@
                     </goals>
                   </pluginExecutionFilter>
                   <action>
-                    <ignore/>
+                    <ignore />
                   </action>
                 </pluginExecution>
                 <!-- WS-STUB generation: Instrument 'm2e' to generate webservice stub in Eclipse IDE (does not affect standalone Maven build) -->
@@ -101,7 +101,7 @@
                     </goals>
                   </pluginExecutionFilter>
                   <action>
-                    <ignore/>
+                    <ignore />
                   </action>
                 </pluginExecution>
                 <pluginExecution>
@@ -114,7 +114,7 @@
                     </goals>
                   </pluginExecutionFilter>
                   <action>
-                    <ignore/>
+                    <ignore />
                   </action>
                 </pluginExecution>
                 <pluginExecution>
@@ -127,7 +127,7 @@
                     </goals>
                   </pluginExecutionFilter>
                   <action>
-                    <ignore/>
+                    <ignore />
                   </action>
                 </pluginExecution>
               </pluginExecutions>
@@ -139,7 +139,7 @@
           <groupId>com.github.eirslett</groupId>
           <artifactId>frontend-maven-plugin</artifactId>
           <configuration>
-            <installDirectory>${master_node_dir}${file.separator}..</installDirectory>
+            <installDirectory>${master_node_dir}/..</installDirectory>
             <nodeDownloadRoot>${master_nodeDownloadRoot}</nodeDownloadRoot>
             <nodeVersion>${master_node_version}</nodeVersion>
             <environmentVariables>
@@ -159,11 +159,11 @@
       <id>adjust-master_npm_workspace_dir-for-parent-build</id>
       <activation>
         <file>
-          <exists>${basedir}${file.separator}..${file.separator}pnpm-workspace.yaml</exists>
+          <exists>${basedir}/../pnpm-workspace.yaml</exists>
         </file>
       </activation>
       <properties>
-        <master_npm_workspace_dir>${project.basedir}${file.separator}..</master_npm_workspace_dir>
+        <master_npm_workspace_dir>${basedir}/..</master_npm_workspace_dir>
       </properties>
     </profile>
     <profile>
@@ -285,7 +285,7 @@
         <!-- Destination directory for generated APT artifacts. -->
         <jaxws.apt.directory>${project.build.directory}/generated-sources/annotations</jaxws.apt.directory>
         <!-- WSDL file name to set the 'wsdl-location' in @WebService and @WebServiceClient annotation -->
-        <jaxws.wsdl.file/>
+        <jaxws.wsdl.file />
       </properties>
 
       <build>
@@ -585,7 +585,8 @@
       </activation>
 
       <properties>
-        <npm_update_marker_file>${master_npm_workspace_dir}${file.separator}target${file.separator}npm_update.marker</npm_update_marker_file>
+        <!-- include timestamp in marker file to ensure no files from previous builds are used -->
+        <npm_update_marker_file>${master_npm_workspace_dir}/target/npm_update_${maven.build.timestamp}.marker</npm_update_marker_file>
       </properties>
 
       <build>
@@ -596,16 +597,42 @@
             <artifactId>maven-antrun-plugin</artifactId>
             <executions>
               <execution>
-                <id>check-npm-install-workspace</id>
+                <id>check-install-node-tools</id>
                 <goals>
                   <goal>run</goal>
                 </goals>
-                <phase>generate-sources</phase>
+                <phase>initialize</phase>
                 <configuration>
                   <exportAntProperties>true</exportAntProperties>
                   <target>
                     <available file="${master_node_modules_dir}/@eclipse-scout" property="master_skip_init_node" />
+                  </target>
+                </configuration>
+              </execution>
+              <execution>
+                <id>check-npm-update</id>
+                <goals>
+                  <goal>run</goal>
+                </goals>
+                <phase>process-sources</phase>
+                <configuration>
+                  <exportAntProperties>true</exportAntProperties>
+                  <target>
                     <available file="${npm_update_marker_file}" property="master_skip_npm_update" />
+                  </target>
+                </configuration>
+              </execution>
+              <execution>
+                <id>mark-npm-update-done</id>
+                <goals>
+                  <goal>run</goal>
+                </goals>
+                <phase>generate-resources</phase>
+                <configuration>
+                  <!--Do NOT declare this property. It must be undefined by default so that the ANT task using 'available' works correctly -->
+                  <!--suppress UnresolvedMavenProperty, MavenModelInspection -->
+                  <skip>${master_skip_npm_update}</skip>
+                  <target>
                     <touch file="${npm_update_marker_file}" mkdirs="true" />
                   </target>
                 </configuration>
@@ -692,6 +719,7 @@
               </execution>
             </executions>
           </plugin>
+
         </plugins>
       </build>
     </profile>
