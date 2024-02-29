@@ -14,12 +14,12 @@
   <parent>
     <groupId>org.eclipse.scout</groupId>
     <artifactId>maven_plugin_config-master</artifactId>
-    <version>24.1.2-SNAPSHOT</version>
+    <version>24.1.2</version>
     <relativePath>./maven_plugin_config-master</relativePath>
   </parent>
 
   <artifactId>maven-master</artifactId>
-  <version>24.1.2-SNAPSHOT</version> <!-- additional version tag required ('parent is also a child module' & versions-maven-plugin) -->
+  <version>24.1.2</version> <!-- additional version tag required ('parent is also a child module' & versions-maven-plugin) -->
   <packaging>pom</packaging>
 
   <modules>
