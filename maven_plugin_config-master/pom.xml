@@ -31,6 +31,7 @@
     <maven.compiler.release>${jdk.source.version}</maven.compiler.release>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <project.properties.encoding>UTF-8</project.properties.encoding>
     <maven.build.timestamp.format>yyyyMMdd-HHmmss</maven.build.timestamp.format>
     <maven.min.version>3.9.2</maven.min.version>
     <maven.api.version>3.9.2</maven.api.version>
@@ -76,6 +77,7 @@
           <artifactId>maven-resources-plugin</artifactId>
           <configuration>
             <encoding>${project.build.sourceEncoding}</encoding>
+            <propertiesEncoding>${project.properties.encoding}</propertiesEncoding>
             <!--
               The delimiter will be used if subprojects set the <filtering> tag to true.
               It specifies the form for properties to be replaced.
