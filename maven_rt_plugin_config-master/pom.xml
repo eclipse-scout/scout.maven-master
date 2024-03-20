@@ -147,6 +147,17 @@
             </environmentVariables>
           </configuration>
         </plugin>
+
+        <plugin>
+          <groupId>org.codehaus.cargo</groupId>
+          <artifactId>cargo-maven3-plugin</artifactId>
+          <configuration>
+            <container>
+              <output>cargo/jetty.log</output>
+            </container>
+          </configuration>
+        </plugin>
+
       </plugins>
     </pluginManagement>
   </build>
