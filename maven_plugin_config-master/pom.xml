@@ -342,9 +342,6 @@
                 <headerDefinitions>
                   <headerDefinition>${project.basedir}/../license_files/scoutLicenceHeaderJava.xml</headerDefinition>
                 </headerDefinitions>
-                <failIfMissing>true</failIfMissing>
-                <strictCheck>true</strictCheck>
-                <aggregate>true</aggregate>
                 <useDefaultExcludes>false</useDefaultExcludes>
                 <includes>
                   <include>**/pom.xml</include>
@@ -369,14 +366,17 @@
                   <exclude>**/src/main/resources/WebContent/**</exclude>
                   <exclude>**/src/main/ws-stub/**</exclude>
                 </excludes>
-                <mapping>
-                  <java>SCOUT_JAVADOC_STYLE</java>
-                  <js>SCOUT_JAVADOC_STYLE</js>
-                  <less>SCOUT_JAVADOC_STYLE</less>
-                  <css>SCOUT_JAVADOC_STYLE</css>
-                </mapping>
               </licenseSet>
             </licenseSets>
+            <mapping>
+              <java>SCOUT_JAVADOC_STYLE</java>
+              <js>SCOUT_JAVADOC_STYLE</js>
+              <less>SCOUT_JAVADOC_STYLE</less>
+              <css>SCOUT_JAVADOC_STYLE</css>
+            </mapping>
+            <failIfMissing>true</failIfMissing>
+            <strictCheck>true</strictCheck>
+            <aggregate>true</aggregate>
             <skip>${master_sanityCheck_skip}</skip>
           </configuration>
           <dependencies>
