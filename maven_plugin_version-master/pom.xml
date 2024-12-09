@@ -134,12 +134,12 @@
     <master_plugin_jaxws_version>4.0.3</master_plugin_jaxws_version>
 
     <!-- https://github.com/jakartaee/jax-ws-api -->
-    <master_dependency_jaxws_api_version>3.0.1</master_dependency_jaxws_api_version>
+    <master_dependency_jaxws_api_version>4.0.2</master_dependency_jaxws_api_version>
 
     <!-- Version to generate JAX-WS artifacts -->
     <!-- https://github.com/eclipse-ee4j/metro-jax-ws -->
     <!-- https://github.com/eclipse-ee4j/metro-jax-ws/tree/master/jaxws-ri/extras/jaxws-maven-plugin -->
-    <master_dependency_jaxws_version>3.0.2</master_dependency_jaxws_version>
+    <master_dependency_jaxws_version>4.0.3</master_dependency_jaxws_version>
 
     <!-- https://www.mojohaus.org/properties-maven-plugin/ -->
     <master_plugin_properties_version>1.2.1</master_plugin_properties_version>
