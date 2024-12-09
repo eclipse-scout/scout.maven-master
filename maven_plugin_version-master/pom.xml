@@ -24,9 +24,9 @@
     <master_deploy_SnapshotId>repo.eclipse.org</master_deploy_SnapshotId>
     <master_deploy_SnapshotUrl>https://repo.eclipse.org/content/repositories/scout-snapshots/</master_deploy_SnapshotUrl>
 
-    <master_node_version>v20.10.0</master_node_version>
-    <master_pnpm_version>8.11.0</master_pnpm_version>
-    <master_npm_version>10.2.4</master_npm_version>
+    <master_node_version>v22.12.0</master_node_version>
+    <master_pnpm_version>9.15.0</master_pnpm_version>
+    <master_npm_version>10.9.0</master_npm_version>
     <master_scout_releng_version>^24.1.0</master_scout_releng_version>
 
     <!-- new version for npm set version -->

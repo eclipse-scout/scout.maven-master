@@ -690,6 +690,8 @@
                     <argument>update</argument>
                     <argument>--no-save</argument> <!-- prevent pnpm to change any versions in package.json - versions managed by scout releng scripts -->
                     <argument>--ignore-scripts</argument>
+                    <argument>--config.link-workspace-packages=true</argument>
+                    <argument>--config.prefer-workspace-packages=true</argument>
                   </arguments>
                 </configuration>
               </execution>
