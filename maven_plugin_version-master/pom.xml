@@ -89,6 +89,9 @@
     <!-- https://github.com/CycloneDX/cyclonedx-maven-plugin -->
     <master_plugin_cyclonedx_version>2.9.1</master_plugin_cyclonedx_version>
 
+    <!-- https://github.com/maven-download-plugin/maven-download-plugin -->
+    <master_plugin_download_version>2.0.0</master_plugin_download_version>
+
     <!-- ####################################################################### -->
     <!-- Outside The Maven Land (List at https://maven.apache.org/plugins/) -->
     <!-- ####################################################################### -->
@@ -537,6 +540,12 @@
           <groupId>org.cyclonedx</groupId>
           <artifactId>cyclonedx-maven-plugin</artifactId>
           <version>${master_plugin_cyclonedx_version}</version>
+        </plugin>
+
+        <plugin>
+          <groupId>io.github.download-maven-plugin</groupId>
+          <artifactId>download-maven-plugin</artifactId>
+          <version>${master_plugin_download_version}</version>
         </plugin>
 
         <plugin>
