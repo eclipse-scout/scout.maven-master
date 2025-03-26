@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  ~ Copyright (c) 2010, 2024 BSI Business Systems Integration AG
+  ~ Copyright (c) 2010, 2025 BSI Business Systems Integration AG
   ~
   ~ This program and the accompanying materials are made
   ~ available under the terms of the Eclipse Public License 2.0
@@ -515,6 +515,7 @@
             <schemaVersion>${master_cyclonedx_version}</schemaVersion>
             <excludeTestProject>${master_cyclonedx_excludeTestProject}</excludeTestProject>
             <outputFormat>${master_cyclonedx_outputFormat}</outputFormat>
+            <skipAttach>true</skipAttach> <!-- always skip as the JS sbom is never uploaded anyway and the upload would therefore not be complete. -->
             <skip>${master_cyclonedx_skip}</skip>
           </configuration>
         </plugin>
