@@ -800,6 +800,9 @@
                     <resource>
                       <directory>${basedir}/target/dist</directory>
                       <filtering>false</filtering>
+                      <excludes>
+                        <exclude>prod/cyclonedx/**/*</exclude>
+                      </excludes>
                     </resource>
                   </resources>
                 </configuration>
