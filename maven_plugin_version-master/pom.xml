@@ -81,6 +81,10 @@
     <master_plugin_scm_version>1.13.0</master_plugin_scm_version>
     <master_plugin_security_dependency_check_version>7.3.0</master_plugin_security_dependency_check_version>
 
+    <!-- https://cyclonedx.github.io/cyclonedx-maven-plugin/ -->
+    <!-- https://github.com/CycloneDX/cyclonedx-maven-plugin -->
+    <master_plugin_cyclonedx_version>2.9.1</master_plugin_cyclonedx_version>
+
     <!-- ####################################################################### -->
     <!-- Outside The Maven Land (List at https://maven.apache.org/plugins/) -->
     <!-- ####################################################################### -->
@@ -516,6 +520,12 @@
           <groupId>org.owasp</groupId>
           <artifactId>dependency-check-maven</artifactId>
           <version>${master_plugin_security_dependency_check_version}</version>
+        </plugin>
+
+        <plugin>
+          <groupId>org.cyclonedx</groupId>
+          <artifactId>cyclonedx-maven-plugin</artifactId>
+          <version>${master_plugin_cyclonedx_version}</version>
         </plugin>
       </plugins>
     </pluginManagement>

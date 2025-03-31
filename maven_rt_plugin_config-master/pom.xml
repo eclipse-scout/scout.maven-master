@@ -43,7 +43,7 @@
     <master_nodeDownloadRoot>https://nodejs.org/dist/</master_nodeDownloadRoot>
     <master_npm_workspace_dir>${project.basedir}${file.separator}${project.parent.relativePath}${file.separator}..</master_npm_workspace_dir>
     <master_npm_release_dependency_mapping/>
-    <master_webpack_options>--progress=false --clean=false</master_webpack_options>
+    <master_webpack_options>--progress=false --clean=false --cyclonedxSkip=${master_cyclonedx_skip} --cyclonedxVersion=${master_cyclonedx_version}</master_webpack_options>
     <master_karma_output_dir>target/karma-reports</master_karma_output_dir>
   </properties>
 
@@ -751,6 +751,9 @@
                     <resource>
                       <directory>${basedir}/target/dist</directory>
                       <filtering>false</filtering>
+                      <excludes>
+                        <exclude>prod/cyclonedx/**/*</exclude>
+                      </excludes>
                     </resource>
                   </resources>
                 </configuration>
