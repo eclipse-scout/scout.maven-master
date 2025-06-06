@@ -31,8 +31,8 @@
 
     <!-- new version for npm set version -->
     <master_release_newVersion>${project.version}</master_release_newVersion>
-    <!-- ossrh profile -->
-    <master_ossrh_autoReleaseAfterClose>false</master_ossrh_autoReleaseAfterClose>
+    <!-- central-portal profile -->
+    <master_centralPortal_autoPublish>false</master_centralPortal_autoPublish>
 
     <!-- ####################################################################### -->
     <!-- Maven Plugin versions, ordered like https://maven.apache.org/plugins/ -->
@@ -166,8 +166,8 @@
     <!-- https://github.com/dtracers/maven-replacer-plugin -->
     <master_plugin_replacer_version>1.5.3</master_plugin_replacer_version>
 
-    <!-- https://github.com/sonatype/nexus-maven-plugins/tree/main/staging/maven-plugin -->
-    <master_plugin_nexus-staging_version>1.7.0</master_plugin_nexus-staging_version>
+    <!-- https://central.sonatype.org/publish/publish-portal-maven/ -->
+    <master_plugin_central-publishing_version>0.7.0</master_plugin_central-publishing_version>
 
     <!-- https://github.com/eclipse-jdt/eclipse.jdt.core/wiki/ECJ -->
     <!-- 'Eclipse Compiler for Java' 3.40.0 which is part of Eclipse 4.34 (2024-12). IntelliJ still uses 3.31.0 which does not support Java 21. Must be patched for Java 21 support. -->
@@ -453,9 +453,9 @@
         </plugin>
 
         <plugin>
-          <groupId>org.sonatype.plugins</groupId>
-          <artifactId>nexus-staging-maven-plugin</artifactId>
-          <version>${master_plugin_nexus-staging_version}</version>
+          <groupId>org.sonatype.central</groupId>
+          <artifactId>central-publishing-maven-plugin</artifactId>
+          <version>${master_plugin_central-publishing_version}</version>
         </plugin>
 
         <plugin>
@@ -701,30 +701,21 @@
         </plugins>
       </build>
     </profile>
-
     <profile>
-      <id>ossrh</id>
+      <id>central-portal</id>
       <build>
         <plugins>
           <plugin>
-            <groupId>org.sonatype.plugins</groupId>
-            <artifactId>nexus-staging-maven-plugin</artifactId>
+            <groupId>org.sonatype.central</groupId>
+            <artifactId>central-publishing-maven-plugin</artifactId>
             <extensions>true</extensions>
             <configuration>
-              <serverId>ossrh</serverId>
-              <nexusUrl>https://oss.sonatype.org/</nexusUrl>
-              <autoReleaseAfterClose>${master_ossrh_autoReleaseAfterClose}</autoReleaseAfterClose>
+              <publishingServerId>central</publishingServerId>
+              <autoPublish>${master_centralPortal_autoPublish}</autoPublish>
             </configuration>
           </plugin>
         </plugins>
       </build>
-      <distributionManagement>
-        <repository>
-          <id>ossrh</id>
-          <name>Open Source Project Repository Hosting - Releases (Maven Central)</name>
-          <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-        </repository>
-      </distributionManagement>
     </profile>
   </profiles>
 </project>
