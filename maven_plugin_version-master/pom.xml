@@ -79,7 +79,7 @@
     <master_plugin_gpg_version>3.2.7</master_plugin_gpg_version>
     <master_plugin_release_version>3.1.1</master_plugin_release_version>
     <master_plugin_scm_version>2.1.0</master_plugin_scm_version>
-    <master_plugin_archetype_version>3.3.1</master_plugin_archetype_version>
+    <master_plugin_archetype_version>3.4.0</master_plugin_archetype_version>
 
     <!-- https://jeremylong.github.io/DependencyCheck/dependency-check-maven/index.html -->
     <!-- https://github.com/jeremylong/DependencyCheck/tree/main/maven -->
