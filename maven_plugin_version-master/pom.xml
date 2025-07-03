@@ -170,8 +170,8 @@
     <master_plugin_central-publishing_version>0.7.0</master_plugin_central-publishing_version>
 
     <!-- https://github.com/eclipse-jdt/eclipse.jdt.core/wiki/ECJ -->
-    <!-- 'Eclipse Compiler for Java' 3.40.0 which is part of Eclipse 4.34 (2024-12). IntelliJ still uses 3.31.0 which does not support Java 21. Must be patched for Java 21 support. -->
-    <master_dependency_ecj_version>3.40.0</master_dependency_ecj_version>
+    <!-- 'Eclipse Compiler for Java' 3.42.0 which is part of Eclipse 4.36 (2025-06). IntelliJ still uses 3.31.0 which does not support Java 21/24. Must be patched for Java 21/24 support. -->
+    <master_dependency_ecj_version>3.42.0</master_dependency_ecj_version>
 
     <!-- https://codehaus-plexus.github.io/plexus-compiler/plexus-compilers/plexus-compiler-eclipse/index.html -->
     <master_dependency_plexus-compiler-eclipse_version>2.15.0</master_dependency_plexus-compiler-eclipse_version>
