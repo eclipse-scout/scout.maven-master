@@ -156,7 +156,7 @@
     <master_plugin_git-commit-id_version>9.0.1</master_plugin_git-commit-id_version>
 
     <!-- https://www.jacoco.org/jacoco/trunk/doc/maven.html -->
-    <master_plugin_jacoco_version>0.8.12</master_plugin_jacoco_version>
+    <master_plugin_jacoco_version>0.8.13</master_plugin_jacoco_version>
 
     <!-- https://www.mojohaus.org/flatten-maven-plugin/ -->
     <!-- https://github.com/mojohaus/flatten-maven-plugin -->
