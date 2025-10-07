@@ -79,7 +79,8 @@
     <master_plugin_gpg_version>3.2.7</master_plugin_gpg_version>
     <master_plugin_release_version>3.1.1</master_plugin_release_version>
     <master_plugin_scm_version>2.1.0</master_plugin_scm_version>
-    <master_plugin_archetype_version>3.4.0</master_plugin_archetype_version>
+    <master_plugin_archetype_version>3.4.1</master_plugin_archetype_version>
+    <master_plugin_archetype_plexus_archiver_version>4.10.4</master_plugin_archetype_plexus_archiver_version> <!-- plexus-archiver 4.10.2 used by maven-archetype-plugin 3.4.1 has a memory issue: https://github.com/codehaus-plexus/plexus-archiver/pull/390 -->
 
     <!-- https://jeremylong.github.io/DependencyCheck/dependency-check-maven/index.html -->
     <!-- https://github.com/jeremylong/DependencyCheck/tree/main/maven -->
@@ -552,6 +553,13 @@
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-archetype-plugin</artifactId>
           <version>${master_plugin_archetype_version}</version>
+          <dependencies>
+            <dependency> <!-- override plexus-archiver version -->
+              <groupId>org.codehaus.plexus</groupId>
+              <artifactId>plexus-archiver</artifactId>
+              <version>${master_plugin_archetype_plexus_archiver_version}</version>
+            </dependency>
+          </dependencies>
         </plugin>
       </plugins>
     </pluginManagement>
