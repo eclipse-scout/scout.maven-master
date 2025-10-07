@@ -24,7 +24,7 @@
   <description>Maven Master Plugin Build Configuration - General</description>
 
   <properties>
-    <jdk.min.version>24</jdk.min.version>
+    <jdk.min.version>25</jdk.min.version>
     <jdk.source.version>21</jdk.source.version>
     <maven.compiler.source>${jdk.source.version}</maven.compiler.source>
     <maven.compiler.target>${jdk.source.version}</maven.compiler.target>
