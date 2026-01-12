@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  ~ Copyright (c) 2010, 2025 BSI Business Systems Integration AG
+  ~ Copyright (c) 2010, 2026 BSI Business Systems Integration AG
   ~
   ~ This program and the accompanying materials are made
   ~ available under the terms of the Eclipse Public License 2.0
@@ -27,7 +27,7 @@
     <master_node_version>v24.12.0</master_node_version>
     <master_pnpm_version>10.26.1</master_pnpm_version>
     <master_npm_version>11.6.2</master_npm_version>
-    <master_scout_releng_version>^25.1.0</master_scout_releng_version>
+    <master_scout_releng_version>^26.1.0</master_scout_releng_version>
 
     <!-- new version for npm set version -->
     <master_release_newVersion>${project.version}</master_release_newVersion>
