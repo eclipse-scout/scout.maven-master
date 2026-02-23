@@ -171,8 +171,8 @@
     <master_plugin_central-publishing_version>0.9.0</master_plugin_central-publishing_version>
 
     <!-- https://github.com/eclipse-jdt/eclipse.jdt.core/wiki/ECJ -->
-    <!-- 'Eclipse Compiler for Java' 3.43.0 which is part of Eclipse 4.37 (2025-09). IntelliJ still uses 3.31.0 as bundled version, which does not support Java 21+. But the Eclipse Scout Plugin provides the new version of the Eclipse Compiler. -->
-    <master_dependency_ecj_version>3.43.0</master_dependency_ecj_version>
+    <!-- 'Eclipse Compiler for Java' 3.45.0 which is part of Eclipse 4.39 (2026-03). IntelliJ still uses 3.31.0 as bundled version, which does not support Java 21+. But the Eclipse Scout Plugin provides the new version of the Eclipse Compiler. -->
+    <master_dependency_ecj_version>3.44.0</master_dependency_ecj_version> <!-- FIXME rsb update to 3.45.0 as soon as it's released -->
 
     <!-- https://codehaus-plexus.github.io/plexus-compiler/plexus-compilers/plexus-compiler-eclipse/index.html -->
     <master_dependency_plexus-compiler-eclipse_version>2.16.1</master_dependency_plexus-compiler-eclipse_version>
