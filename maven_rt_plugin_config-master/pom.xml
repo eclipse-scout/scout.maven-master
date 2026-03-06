@@ -40,7 +40,6 @@
     <master_node_options>${env.NODE_OPTIONS}</master_node_options>
     <master_nodeDownloadRoot>https://nodejs.org/dist/</master_nodeDownloadRoot>
     <master_npm_release_dependency_mapping />
-    <master_webpack_options>--progress=false --clean=false --cyclonedxSkip=${master_cyclonedx_skip} --cyclonedxVersion=${master_cyclonedx_version}</master_webpack_options>
     <master_karma_output_dir>target/karma-reports</master_karma_output_dir>
   </properties>
 
@@ -97,7 +96,6 @@
                     <versionRange>[${master_plugin_frontend_version},)</versionRange>
                     <goals>
                       <goal>install-node-and-npm</goal>
-                      <goal>npm</goal>
                     </goals>
                   </pluginExecutionFilter>
                   <action>
@@ -664,7 +662,6 @@
                     <argument>error</argument>
                     <argument>--prefix</argument>
                     <argument>${master_node_dir}</argument>
-                    <argument>npm@${master_npm_version}</argument>
                     <argument>pnpm@${master_pnpm_version}</argument>
                     <argument>@eclipse-scout/releng@${master_scout_releng_version}</argument>
                   </arguments>
@@ -721,7 +718,6 @@
               </execution>
             </executions>
           </plugin>
-
         </plugins>
       </build>
     </profile>
@@ -733,7 +729,6 @@
           <exists>${basedir}/webpack.config.js</exists>
         </file>
       </activation>
-
       <build>
         <pluginManagement>
           <plugins>
@@ -753,37 +748,55 @@
             </plugin>
           </plugins>
         </pluginManagement>
-
         <plugins>
           <plugin>
-            <groupId>com.github.eirslett</groupId>
-            <artifactId>frontend-maven-plugin</artifactId>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>exec-maven-plugin</artifactId>
             <executions>
               <execution>
                 <id>npm-run-build:prod</id>
                 <goals>
-                  <goal>npm</goal>
+                  <goal>exec</goal>
                 </goals>
                 <phase>compile</phase>
                 <configuration>
+                  <executable>${master_node_dir}/node</executable>
+                  <workingDirectory>${basedir}</workingDirectory>
                   <skip>${master_skip_npm_build_prod}</skip>
-                  <arguments>--scripts-prepend-node-path=true run build:prod -- ${master_webpack_options}</arguments>
+                  <arguments>
+                    <argument>${master_node_modules_dir}/pnpm/bin/pnpm.cjs</argument>
+                    <argument>run</argument>
+                    <argument>build:prod</argument>
+                    <argument>--progress=false</argument>
+                    <argument>--clean=false</argument>
+                    <argument>--cyclonedxSkip=${master_cyclonedx_skip}</argument>
+                    <argument>--cyclonedxVersion=${master_cyclonedx_version}</argument>
+                  </arguments>
                 </configuration>
               </execution>
               <execution>
                 <id>npm-run-build:dev</id>
                 <goals>
-                  <goal>npm</goal>
+                  <goal>exec</goal>
                 </goals>
                 <phase>compile</phase>
                 <configuration>
+                  <executable>${master_node_dir}/node</executable>
+                  <workingDirectory>${basedir}</workingDirectory>
                   <skip>${master_skip_npm_build_dev}</skip>
-                  <arguments>--scripts-prepend-node-path=true run build:dev -- ${master_webpack_options}</arguments>
+                  <arguments>
+                    <argument>${master_node_modules_dir}/pnpm/bin/pnpm.cjs</argument>
+                    <argument>run</argument>
+                    <argument>build:dev</argument>
+                    <argument>--progress=false</argument>
+                    <argument>--clean=false</argument>
+                    <argument>--cyclonedxSkip=${master_cyclonedx_skip}</argument>
+                    <argument>--cyclonedxVersion=${master_cyclonedx_version}</argument>
+                  </arguments>
                 </configuration>
               </execution>
             </executions>
           </plugin>
-
           <plugin>
             <artifactId>maven-resources-plugin</artifactId>
             <executions>
@@ -820,22 +833,28 @@
           <exists>${basedir}/karma.conf.js</exists>
         </file>
       </activation>
-
       <build>
         <plugins>
           <plugin>
-            <groupId>com.github.eirslett</groupId>
-            <artifactId>frontend-maven-plugin</artifactId>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>exec-maven-plugin</artifactId>
             <executions>
               <execution>
                 <id>npm-test-karma</id>
                 <goals>
-                  <goal>npm</goal>
+                  <goal>exec</goal>
                 </goals>
                 <phase>test</phase>
                 <configuration>
+                  <executable>${master_node_dir}/node</executable>
+                  <workingDirectory>${basedir}</workingDirectory>
                   <skip>${master_skip_karma_test}</skip>
-                  <arguments>--scripts-prepend-node-path=true run test:ci -- --junitReporter.outputDir=${master_karma_output_dir}</arguments>
+                  <arguments>
+                    <argument>${master_node_modules_dir}/pnpm/bin/pnpm.cjs</argument>
+                    <argument>run</argument>
+                    <argument>test:ci</argument>
+                    <argument>--junitReporter.outputDir=${master_karma_output_dir}</argument>
+                  </arguments>
                 </configuration>
               </execution>
             </executions>
@@ -851,7 +870,6 @@
           <exists>${basedir}/package.json</exists>
         </file>
       </activation>
-
       <build>
         <plugins>
           <plugin>
