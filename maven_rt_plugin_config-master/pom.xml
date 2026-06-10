@@ -41,11 +41,84 @@
     <master_nodeDownloadRoot>https://nodejs.org/dist/</master_nodeDownloadRoot>
     <master_npm_release_dependency_mapping />
     <master_karma_output_dir>target/karma-reports</master_karma_output_dir>
+    
+    <sonar.exclusions>
+      **/generated-sources/**,
+      **/generated/**,
+      **/resources/WebContent/**,
+      **/*_.java
+    </sonar.exclusions>
   </properties>
 
   <build>
     <pluginManagement>
       <plugins>
+
+        <!--This plugin's configuration is used to set sonar scope properties (sonar.sources and sonar.tests) explicitly. -->
+        <!-- Use it like this: mvn org.apache.maven.plugins:maven-antrun-plugin:run@set-sonar-scope-properties org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-antrun-plugin</artifactId>
+          <executions>
+            <execution>
+              <id>set-sonar-scope-properties</id>
+              <goals>
+                <goal>run</goal>
+              </goals>
+              <configuration>
+                <exportAntProperties>true</exportAntProperties>
+
+                <target>
+                  <!-- SPECIAL CASE: test-only modules (name ends with ".test" -->
+                  <!-- treat everything in this module as test code (also src/main) -->
+                  <condition property="is.test.module">
+                    <matches string="${project.artifactId}" pattern=".*\.test$" />
+                  </condition>
+                  <condition property="sonar.sources" value="pom.xml">
+                    <isset property="is.test.module" />
+                  </condition>
+                  <condition property="sonar.tests" value="src">
+                    <isset property="is.test.module" />
+                  </condition>
+
+                  <!-- DEFAULT LOGIC, if not a test module (has to be after, because ant does not override properties if already set -->
+
+                  <!-- treat everything in src/main as source code (not just java) -->
+                  <!-- default from the Maven Scanner would be src/main/java,pom.xml -->
+                  <condition property="sonar.sources" value="src/main,pom.xml">
+                    <!-- only if the folder exists in the module, otherwise we get an error from the sonar-maven-plugin -->
+                    <available file="src/main" type="dir" />
+                  </condition>
+                  <!-- if src/main does not exist, just use src as fallback (only if src/test does not exist) -->
+                  <condition property="sonar.sources" value="src,pom.xml">
+                    <and>
+                      <!-- only if the folder exists in the module, otherwise we get an error from the sonar-maven-plugin -->
+                      <available file="src" type="dir" />
+                      <!-- only if src/Test is not available, otherwise src/test would be classified as both source and test -->
+                      <not><available file="src/test" type="dir" /></not>
+                    </and>
+                  </condition>
+
+                  <!-- treat everything in src/test as test code -->
+                  <!-- default from the Maven Scanner would be src/test/java -->
+                  <condition property="sonar.tests" value="src/test">
+                    <!-- only if the folder exists in the module, otherwise we get an error from the sonar-maven-plugin -->
+                    <available file="src/test" type="dir" />
+                  </condition>Expand commentComment on lines R989 to R1008Resolved
+                  <!-- if src/test does not exist, check if test or tests exist -->
+                  <condition property="sonar.tests" value="test">
+                    <!-- only if the folder exists in the module, otherwise we get an error from the sonar-maven-plugin -->
+                    <available file="test" type="dir" />
+                  </condition>
+                  <condition property="sonar.tests" value="tests">
+                    <!-- only if the folder exists in the module, otherwise we get an error from the sonar-maven-plugin -->
+                    <available file="tests" type="dir" />
+                  </condition>
+                </target>
+              </configuration>
+            </execution>
+          </executions>
+        </plugin>
 
         <!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself. -->
         <plugin>
