@@ -41,7 +41,7 @@
     <master_nodeDownloadRoot>https://nodejs.org/dist/</master_nodeDownloadRoot>
     <master_npm_release_dependency_mapping />
     <master_karma_output_dir>target/karma-reports</master_karma_output_dir>
-    
+
     <sonar.exclusions>
       **/generated-sources/**,
       **/generated/**,
@@ -681,7 +681,7 @@
                 </configuration>
               </execution>
               <execution>
-                <id>check-npm-update</id>
+                <id>check-pnpm-update</id>
                 <goals>
                   <goal>run</goal>
                 </goals>
@@ -694,7 +694,7 @@
                 </configuration>
               </execution>
               <execution>
-                <id>mark-npm-update-done</id>
+                <id>mark-pnpm-update-done</id>
                 <goals>
                   <goal>run</goal>
                 </goals>
@@ -743,7 +743,7 @@
 
               <!-- pnpm update recursive (install js dependencies) -->
               <execution>
-                <id>npm-update</id>
+                <id>pnpm-update</id>
                 <goals>
                   <goal>exec</goal>
                 </goals>
@@ -755,13 +755,9 @@
                   <!--suppress UnresolvedMavenProperty, MavenModelInspection -->
                   <skip>${master_skip_npm_update}</skip>
                   <arguments>
-                    <argument>${master_node_modules_dir}/pnpm/bin/pnpm.cjs</argument>
-                    <argument>--recursive</argument>
-                    <argument>update</argument>
-                    <argument>--no-save</argument> <!-- prevent pnpm to change any versions in package.json - versions managed by scout releng scripts -->
-                    <argument>--ignore-scripts</argument>
-                    <argument>--config.link-workspace-packages=true</argument>
-                    <argument>--config.prefer-workspace-packages=true</argument>
+                    <argument>${master_node_modules_dir}/@eclipse-scout/releng/bin/releng-scripts.js</argument>
+                    <argument>install</argument>
+                    <argument>--updateMode=snapshots</argument>
                   </arguments>
                 </configuration>
               </execution>
