@@ -61,6 +61,8 @@
     <master_coverage_jacoco_destFile>${basedir}/../target/jacoco-all.exec</master_coverage_jacoco_destFile>
     <!-- https://maven.apache.org/surefire/maven-surefire-plugin/test-mojo.html#runOrder -->
     <master_test_runOrder>hourly</master_test_runOrder>
+    <!-- do not include properties in resulting XML files by default as they might become very large for modules with huge classpath -->
+    <master_test_enablePropertiesElement>false</master_test_enablePropertiesElement>
     <master_test_forkCount>0.5C</master_test_forkCount>
     <master_test_reuseVm>true</master_test_reuseVm>
     <master_test_timeout>300</master_test_timeout>
@@ -170,6 +172,7 @@
               <ftp.proxyPort>${ftp.proxyPort}</ftp.proxyPort>
               <ftp.nonProxyHosts>${ftp.nonProxyHosts}</ftp.nonProxyHosts>
             </systemPropertyVariables>
+            <enablePropertiesElement>${master_test_enablePropertiesElement}</enablePropertiesElement>
             <runOrder>${master_test_runOrder}</runOrder>
             <forkCount>${master_test_forkCount}</forkCount>
             <reuseForks>${master_test_reuseVm}</reuseForks>
@@ -192,6 +195,7 @@
               <java.awt.headless>true</java.awt.headless>
               <java.util.logging.SimpleFormatter.format>%1$tY-%1$tm-%1$td %1$tH:%1$tM:%1$tS %4$s %5$s%6$s%n</java.util.logging.SimpleFormatter.format>
             </systemPropertyVariables>
+            <enablePropertiesElement>${master_test_enablePropertiesElement}</enablePropertiesElement>
             <runOrder>${master_test_runOrder}</runOrder>
             <!-- failsafe must be forked into its own process in order to enable jacoco's java agent -->
             <forkCount>${master_test_forkCount}</forkCount>
