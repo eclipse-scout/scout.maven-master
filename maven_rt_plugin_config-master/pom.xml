@@ -831,6 +831,9 @@
                 <configuration>
                   <executable>${master_node_dir}/node</executable>
                   <workingDirectory>${basedir}</workingDirectory>
+                  <environmentVariables>
+                    <PATH>${master_node_dir}${path.separator}${env.PATH}</PATH>
+                  </environmentVariables>
                   <skip>${master_skip_npm_build_prod}</skip>
                   <arguments>
                     <argument>${master_node_modules_dir}/pnpm/bin/pnpm.cjs</argument>
@@ -852,6 +855,9 @@
                 <configuration>
                   <executable>${master_node_dir}/node</executable>
                   <workingDirectory>${basedir}</workingDirectory>
+                  <environmentVariables>
+                    <PATH>${master_node_dir}${path.separator}${env.PATH}</PATH>
+                  </environmentVariables>
                   <skip>${master_skip_npm_build_dev}</skip>
                   <arguments>
                     <argument>${master_node_modules_dir}/pnpm/bin/pnpm.cjs</argument>
@@ -917,6 +923,9 @@
                 <configuration>
                   <executable>${master_node_dir}/node</executable>
                   <workingDirectory>${basedir}</workingDirectory>
+                  <environmentVariables>
+                    <PATH>${master_node_dir}${path.separator}${env.PATH}</PATH>
+                  </environmentVariables>
                   <skip>${master_skip_karma_test}</skip>
                   <arguments>
                     <argument>${master_node_modules_dir}/pnpm/bin/pnpm.cjs</argument>
