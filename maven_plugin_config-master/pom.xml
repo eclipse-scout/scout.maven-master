@@ -60,7 +60,7 @@
     <!-- Surefire/Failsafe Fork/Order/Config Control -->
     <master_coverage_jacoco_destFile>${basedir}/../target/jacoco-all.exec</master_coverage_jacoco_destFile>
     <!-- https://maven.apache.org/surefire/maven-surefire-plugin/test-mojo.html#runOrder -->
-    <master_test_runOrder>hourly</master_test_runOrder>
+    <master_test_runOrder>random</master_test_runOrder>
     <!-- do not include properties in resulting XML files by default as they might become very large for modules with huge classpath -->
     <master_test_enablePropertiesElement>false</master_test_enablePropertiesElement>
     <master_test_forkCount>0.5C</master_test_forkCount>
