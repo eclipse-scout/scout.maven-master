@@ -71,7 +71,7 @@
     <!-- These are miscellaneous tools available through Maven by default. -->
     <!-- ####################################################################### -->
     <master_plugin_ant_version>1.10.18</master_plugin_ant_version>
-    <master_plugin_antrun_version>3.2.0</master_plugin_antrun_version>
+    <master_plugin_antrun_version>3.1.0</master_plugin_antrun_version> <!-- keep 3.1.0: maven-antrun-plugin 3.2.0 logs a lot of warnings (https://github.com/apache/maven-antrun-plugin/issues/348). -->
     <master_plugin_assembly_version>3.8.0</master_plugin_assembly_version>
     <master_plugin_dependency_version>3.10.0</master_plugin_dependency_version> <!-- keep 3.10.0: go-offline in 3.11.0 wrongly resolves org.eclipse.m2e:lifecycle-mapping:jar:1.0.0 (see https://github.com/jenkins-infra/helpdesk/issues/5198). -->
     <master_plugin_enforcer_version>3.7.0</master_plugin_enforcer_version>
