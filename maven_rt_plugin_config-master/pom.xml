@@ -30,7 +30,7 @@
     <master_skip_npm_version_snapshot>true</master_skip_npm_version_snapshot>
     <master_skip_npm_version_release_dependencies>true</master_skip_npm_version_release_dependencies>
     <master_skip_npm_version_release>true</master_skip_npm_version_release>
-    <master_skip_karma_test>${master_webTest_skip}</master_skip_karma_test>
+    <master_skip_npm_test>${master_webTest_skip}</master_skip_npm_test>
     <master_skip_copy_webpack_build_output>false</master_skip_copy_webpack_build_output>
 
     <master_npm_workspace_dir>${project.basedir}</master_npm_workspace_dir>
@@ -40,7 +40,7 @@
     <master_node_options>${env.NODE_OPTIONS}</master_node_options>
     <master_nodeDownloadRoot>https://nodejs.org/dist/</master_nodeDownloadRoot>
     <master_npm_release_dependency_mapping />
-    <master_karma_output_dir>target/karma-reports</master_karma_output_dir>
+    <master_npm_test_output_dir>target/npm-test-reports</master_npm_test_output_dir>
 
     <sonar.exclusions>
       **/generated-sources/**,
@@ -902,10 +902,10 @@
     </profile>
 
     <profile>
-      <id>npm-test-karma</id>
+      <id>npm-test</id>
       <activation>
         <file>
-          <exists>${basedir}/karma.conf.js</exists>
+          <exists>${basedir}/test.config.js</exists>
         </file>
       </activation>
       <build>
@@ -915,7 +915,7 @@
             <artifactId>exec-maven-plugin</artifactId>
             <executions>
               <execution>
-                <id>npm-test-karma</id>
+                <id>npm-test</id>
                 <goals>
                   <goal>exec</goal>
                 </goals>
@@ -926,12 +926,12 @@
                   <environmentVariables>
                     <PATH>${master_node_dir}${path.separator}${env.PATH}</PATH>
                   </environmentVariables>
-                  <skip>${master_skip_karma_test}</skip>
+                  <skip>${master_skip_npm_test}</skip>
                   <arguments>
                     <argument>${master_node_modules_dir}/pnpm/bin/pnpm.cjs</argument>
                     <argument>run</argument>
                     <argument>test:ci</argument>
-                    <argument>--junitReporter.outputDir=${master_karma_output_dir}</argument>
+                    <argument>--junitReportDir=${master_npm_test_output_dir}</argument>
                   </arguments>
                 </configuration>
               </execution>
